@@ -387,11 +387,13 @@ const SECTIONS = {
   s23:{label:'2.3 — Facteurs psychosociaux',icon:'💬',cls:'s4'},
   s24:{label:'2.4 — Facteurs économiques',icon:'💰',cls:'s5'},
   s3:{label:'3 — Évaluation de l\'inobservance',icon:'📋',cls:'s1'},
+  morisky:{label:'Questionnaire de Morisky (MMAS-4)',icon:'💊',cls:'s2'},
 };
 
-const Q = [
-  // DEMO
-  {id:'q_num',sec:'demo',label:'Numéro unique identifiant',type:'text',ph:'Ex: 001/2026',req:false},
+// Questions de base (fixes)
+const Q_BASE = [
+  // DEMO — q_num auto-généré, non affiché dans le formulaire
+  {id:'q_num',sec:'demo',label:'Numéro unique identifiant',type:'auto',req:false},
   {id:'q_date_dep',sec:'demo',label:'Date de dépistage',type:'date',req:false},
   {id:'q_date_trt',sec:'demo',label:'Date de mise sous traitement',type:'date',req:false},
   {id:'q_delai',sec:'demo',label:'Délai de mise sous traitement',type:'choice',req:true,opts:['Immédiat','< 1 mois','+ 3 mois']},
@@ -426,12 +428,33 @@ const Q = [
   {id:'q_aide_financiere',sec:'s24',label:'Bénéficiez-vous d\'une aide financière pour vos soins ?',type:'yesno',req:true},
   // S3
   {id:'q_horaire_meds',sec:'s3',label:'Respectez-vous les heures de prise de vos médicaments ?',type:'yesno',req:true},
-  {id:'q_morisky',sec:'s3',label:'Score de Morisky (sur 4)',type:'choice',req:false,opts:['0/4','1/4','2/4','3/4','4/4']},
   {id:'q_cv_m6',sec:'s3',label:'Charge virale M6',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
   {id:'q_cv_m12',sec:'s3',label:'Charge virale M12',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
   {id:'q_cv_m18_24',sec:'s3',label:'Charge virale M18-24',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
   {id:'q_raisons_inobs',sec:'s3',label:'Deux raisons qui vous empêchent de prendre correctement vos médicaments',type:'text',ph:'Raison 1 / Raison 2...',req:false},
+  // MORISKY MMAS-4 — scoring: Oui=0pt, Non=1pt (sauf Q4 inversé: Oui=1, Non=0)
+  {id:'q_m1',sec:'morisky',label:'Vous arrive-t-il d\'oublier de prendre votre traitement ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
+  {id:'q_m2',sec:'morisky',label:'Avez-vous parfois du mal à vous rappeler de prendre votre traitement ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
+  {id:'q_m3',sec:'morisky',label:'Quand vous vous sentez mieux, vous arrive-t-il d\'arrêter de prendre votre traitement ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
+  {id:'q_m4',sec:'morisky',label:'Si vous vous sentez moins bien lorsque vous prenez votre traitement, arrêtez-vous parfois de le prendre ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
+  // Score calculé automatiquement — affiché en lecture seule
+  {id:'q_morisky_score',sec:'morisky',label:'Score MMAS-4 (calculé automatiquement)',type:'morisky_result',req:false},
 ];
+
+// Questions personnalisées ajoutées par l'admin (stockées en localStorage)
+let customQuestions = [];
+
+// Q actif = base + custom
+function getQ() { return [...Q_BASE, ...customQuestions]; }
+// Pour compatibilité ancien code
+const Q = Q_BASE; // référence directe encore utilisée dans report/csv
+
+// Génère un numéro unique ex: 042/2026
+function genNumero() {
+  const n = responses.length + 1;
+  const year = new Date().getFullYear();
+  return String(n).padStart(3,'0') + '/' + year;
+}
 
 const PAL = ['#5b8df6','#10d9a0','#f6ad55','#f56565','#8b5cf6','#63b3ed','#fc8181','#48bb78','#ed8936','#9f7aea'];
 
