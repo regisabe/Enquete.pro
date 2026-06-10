@@ -164,7 +164,12 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
       <h1>EnquêtePro — ARV</h1>
       <p>Facteurs de l'inobservance du traitement ARV<br>Mémoire de recherche 2026</p>
     </div>
-    <div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
+    
+<div class="fg"><label>Clé API JSONBin</label><input type="password" id="login-apikey" placeholder="Coller la clé API"/></div>
+<div class="fg"><label>Bin ID</label><input type="text" id="login-binid" placeholder="ID du serveur"/></div>
+<button class="btn-login" style="margin-bottom:10px" onclick="prepareServerLogin()">🔄 Récupérer les comptes du serveur</button>
+<div id="srv-ok" style="display:none;padding:8px;margin-bottom:10px;border-radius:8px">Serveur détecté. Connectez‑vous.</div>
+<div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
     <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
     <div id="login-err" style="display:none;padding:9px 12px;background:rgba(245,101,101,.1);border:1px solid rgba(245,101,101,.25);border-radius:var(--radius-sm);font-size:13px;color:var(--danger);margin-bottom:10px;text-align:center"></div>
     <button class="btn-login" onclick="doLogin()">Se connecter →</button>
@@ -328,30 +333,12 @@ function initUsers() {
   }
 }
 
-
-async function loadUsersFromCloud(){
-  try{
-    const apiKey=gs('apikey');
-    const binId=gs('binid');
-    if(!apiKey || !binId) return;
-    const res=await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{
-      headers:{'X-Master-Key':apiKey}
-    });
-    const data=await res.json();
-    if(data.record?.users){
-      users=data.record.users;
-      saveLocal();
-    }
-  }catch(e){console.error(e);}
-}
-
-async function doLogin() {
+function doLogin() {
   const login = document.getElementById('ln').value.trim().toLowerCase();
   const pass  = document.getElementById('lp').value;
   const errEl = document.getElementById('login-err');
   errEl.style.display = 'none';
   if (!login || !pass) { showErr('Remplissez tous les champs.'); return; }
-  await loadUsersFromCloud();
   const user = users.find(u => u.active && u.login.toLowerCase() === login && u.password === pass);
   if (!user) { showErr('Identifiant ou mot de passe incorrect.'); return; }
   CU = user;
@@ -1206,20 +1193,7 @@ async function syncNow(){
   if(!apiKey){setSS('local');return;}
   try{
     let binId=gs('binid');
-    let payload={responses,users,customQ,updated:Date.now()};
-    try{
-      if(binId){
-        const rr=await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{headers:{'X-Master-Key':apiKey}});
-        const remote=await rr.json();
-        const rec=remote.record||{};
-        const remoteResponses=rec.responses||[];
-        const remoteUsers=rec.users||[];
-        payload.responses=[...remoteResponses];
-        responses.forEach(r=>{ if(!payload.responses.some(x=>x.id===r.id)) payload.responses.push(r); });
-        payload.users=[...remoteUsers];
-        users.forEach(u=>{ if(!payload.users.some(x=>x.login===u.login)) payload.users.push(u); });
-      }
-    }catch(e){console.error(e);}
+    const payload={responses,users,customQ,updated:Date.now()};
     if(!binId){
       const res=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'EnquetePro-ARV-Memoire','X-Bin-Private':'false'},body:JSON.stringify(payload)});
       const d=await res.json();
@@ -1359,6 +1333,22 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 loadLocal();
 initUsers();
 const _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
+
+async function prepareServerLogin(){
+ try{
+   const api=document.getElementById('login-apikey').value.trim();
+   const bin=document.getElementById('login-binid').value.trim();
+   if(!api||!bin){ alert('Renseignez la clé API et le Bin ID'); return; }
+   ss('apikey',api); ss('binid',bin);
+   const r=await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest',{headers:{'X-Master-Key':api}});
+   const d=await r.json();
+   if(d.record?.users){ users=d.record.users; saveLocal(); }
+   const ok=document.getElementById('srv-ok');
+   ok.style.display='block';
+   ok.innerHTML='✅ Comptes récupérés. Saisissez votre identifiant et mot de passe.';
+ }catch(e){ alert('Serveur introuvable ou clé incorrecte'); }
+}
+
 </script>
 </body>
 </html>
