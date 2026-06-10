@@ -5,7 +5,44 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>EnquêtePro — Inobservance ARV</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js">
+async function downloadProjectData(){
+ try{
+   const apiKey = gs('apikey');
+   const binId = gs('binid');
+   if(!apiKey || !binId){ alert('Configurez le serveur'); return; }
+
+   const res = await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{
+      headers:{'X-Master-Key':apiKey}
+   });
+
+   const data = await res.json();
+
+   if(data.record){
+      responses = data.record.responses || [];
+      users = data.record.users || [];
+      customQ = data.record.customQ || [];
+
+      saveLocal();
+
+      if(typeof renderDashboard==='function') renderDashboard();
+      if(typeof renderList==='function') renderList();
+      if(typeof renderReport==='function') renderReport();
+
+      alert('Projet téléchargé : '+responses.length+' enquêtes');
+   }
+ }catch(e){
+   alert('Erreur de téléchargement du projet');
+ }
+}
+
+setInterval(()=>{
+   try{
+      if(gs('apikey') && gs('binid')) downloadProjectData();
+   }catch(e){}
+},30000);
+
+</script>
 <style>
 :root{--bg:#0b0d14;--bg2:#11141f;--bg3:#181c2a;--bg4:#1f2436;--bg5:#262c40;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--accent:#5b8df6;--accent2:#8b5cf6;--accent3:#10d9a0;--danger:#f56565;--warn:#f6ad55;--text:#dde2f0;--text2:#7b82a0;--text3:#454d68;--radius:14px;--radius-sm:9px;--font-h:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;--shadow:0 12px 40px rgba(0,0,0,.55);--sb:230px}
 .light{--bg:#f0f3fb;--bg2:#fff;--bg3:#e8ecf7;--bg4:#dde3f5;--bg5:#d0d8f0;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);--accent:#2563eb;--accent2:#7c3aed;--accent3:#059669;--danger:#dc2626;--warn:#d97706;--text:#1a1e30;--text2:#4a5280;--text3:#8b92b0;--shadow:0 4px 24px rgba(0,0,0,.12)}
@@ -164,12 +201,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
       <h1>EnquêtePro — ARV</h1>
       <p>Facteurs de l'inobservance du traitement ARV<br>Mémoire de recherche 2026</p>
     </div>
-    
-<div class="fg"><label>Clé API JSONBin</label><input type="password" id="login-apikey" placeholder="Coller la clé API"/></div>
-<div class="fg"><label>Bin ID</label><input type="text" id="login-binid" placeholder="ID du serveur"/></div>
-<button class="btn-login" style="margin-bottom:10px" onclick="prepareServerLogin()">🔄 Récupérer les comptes du serveur</button>
-<div id="srv-ok" style="display:none;padding:8px;margin-bottom:10px;border-radius:8px">Serveur détecté. Connectez‑vous.</div>
-<div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
+    <div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
     <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
     <div id="login-err" style="display:none;padding:9px 12px;background:rgba(245,101,101,.1);border:1px solid rgba(245,101,101,.25);border-radius:var(--radius-sm);font-size:13px;color:var(--danger);margin-bottom:10px;text-align:center"></div>
     <button class="btn-login" onclick="doLogin()">Se connecter →</button>
@@ -1333,22 +1365,6 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 loadLocal();
 initUsers();
 const _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
-
-async function prepareServerLogin(){
- try{
-   const api=document.getElementById('login-apikey').value.trim();
-   const bin=document.getElementById('login-binid').value.trim();
-   if(!api||!bin){ alert('Renseignez la clé API et le Bin ID'); return; }
-   ss('apikey',api); ss('binid',bin);
-   const r=await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest',{headers:{'X-Master-Key':api}});
-   const d=await r.json();
-   if(d.record?.users){ users=d.record.users; saveLocal(); }
-   const ok=document.getElementById('srv-ok');
-   ok.style.display='block';
-   ok.innerHTML='✅ Comptes récupérés. Saisissez votre identifiant et mot de passe.';
- }catch(e){ alert('Serveur introuvable ou clé incorrecte'); }
-}
-
 </script>
 </body>
 </html>
