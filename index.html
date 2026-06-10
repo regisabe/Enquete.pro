@@ -164,18 +164,11 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
       <h1>EnquêtePro — ARV</h1>
       <p>Facteurs de l'inobservance du traitement ARV<br>Mémoire de recherche 2026</p>
     </div>
-    <div id="server-step">
-<div class="fg"><label>Clé API JSONBin</label><input type="password" id="preApi" placeholder="Clé API"/></div>
-<div class="fg"><label>Bin ID</label><input type="text" id="preBin" placeholder="Bin ID"/></div>
-<button class="btn-login" type="button" onclick="serverNext()">Suivant →</button>
-<div id="srvmsg" class="login-hint"></div>
-</div>
-<div id="login-step" style="display:none">
-<div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
+    <div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
     <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
     <div id="login-err" style="display:none;padding:9px 12px;background:rgba(245,101,101,.1);border:1px solid rgba(245,101,101,.25);border-radius:var(--radius-sm);font-size:13px;color:var(--danger);margin-bottom:10px;text-align:center"></div>
-    <button id="loginBtn" style="display:none" class="btn-login" onclick="doLogin()">Se connecter →</button>
-    </div><div class="login-hint">Contactez l'administrateur pour vos identifiants.</div>
+    <button class="btn-login" onclick="doLogin()">Se connecter →</button>
+    <div class="login-hint">Contactez l'administrateur pour vos identifiants.</div>
   </div>
 </div>
 
@@ -1336,31 +1329,5 @@ loadLocal();
 initUsers();
 const _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
 </script>
-
-<script>
-async function serverNext(){
- const api=document.getElementById('preApi').value.trim();
- const bin=document.getElementById('preBin').value.trim();
- if(!api||!bin){alert('Renseignez la clé API et le Bin ID');return;}
- localStorage.setItem('apikey',api);
- localStorage.setItem('binid',bin);
- document.getElementById('srvmsg').innerText='Connexion...';
- try{
-   const r=await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest',{headers:{'X-Master-Key':api}});
-   const d=await r.json();
-   if(d.record){
-      if(typeof users!=='undefined') users=d.record.users||users;
-      if(typeof responses!=='undefined') responses=d.record.responses||responses;
-      if(typeof customQ!=='undefined') customQ=d.record.customQ||customQ;
-      if(typeof saveLocal==='function') saveLocal();
-      document.getElementById('srvmsg').innerText='✓ '+(responses?responses.length:0)+' enquêtes récupérées';
-   }
- }catch(e){
-   document.getElementById('srvmsg').innerText='Serveur enregistré';
- }
- document.getElementById('server-step').style.display='none';
- document.getElementById('login-step').style.display='block';
- document.getElementById('loginBtn').style.display='block';
-}
-</script></body>
+</body>
 </html>
