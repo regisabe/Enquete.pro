@@ -42,6 +42,34 @@ setInterval(()=>{
    }catch(e){}
 },30000);
 
+
+async function serverNext(){
+ try{
+   const api=document.getElementById('preApi').value.trim();
+   const bin=document.getElementById('preBin').value.trim();
+   if(!api||!bin){alert('Renseignez la clé API et le Bin ID');return;}
+   if(typeof ss==='function'){ss('apikey',api);ss('binid',bin);}
+
+   const r=await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest',{
+      headers:{'X-Master-Key':api}
+   });
+   const d=await r.json();
+
+   if(d.record){
+      if(typeof responses!=='undefined') responses=d.record.responses||[];
+      if(typeof users!=='undefined') users=d.record.users||[];
+      if(typeof customQ!=='undefined') customQ=d.record.customQ||[];
+      if(typeof saveLocal==='function') saveLocal();
+   }
+
+   document.getElementById('srvmsg').innerHTML='✅ Serveur validé. '+((d.record?.responses||[]).length)+' enquêtes récupérées.';
+   document.getElementById('server-step').style.display='none';
+   document.getElementById('login-step').style.display='block';
+   document.getElementById('loginBtn').style.display='block';
+ }catch(e){
+   alert('Clé API ou Bin ID incorrect');
+ }
+}
 </script>
 <style>
 :root{--bg:#0b0d14;--bg2:#11141f;--bg3:#181c2a;--bg4:#1f2436;--bg5:#262c40;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--accent:#5b8df6;--accent2:#8b5cf6;--accent3:#10d9a0;--danger:#f56565;--warn:#f6ad55;--text:#dde2f0;--text2:#7b82a0;--text3:#454d68;--radius:14px;--radius-sm:9px;--font-h:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;--shadow:0 12px 40px rgba(0,0,0,.55);--sb:230px}
@@ -194,22 +222,28 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 </style>
 </head>
 <body>
-<div id="login-screen"><div id="step-server" style="padding:10px">
-<h3>Connexion au serveur</h3>
-<input id="preApi" placeholder="Clé API JSONBin" style="width:100%;margin:5px 0">
-<input id="preBin" placeholder="Bin ID" style="width:100%;margin:5px 0">
-<button onclick="fetchServerDataStep()">Suivant</button>
-</div><div id="step-login" style="display:none">>
+<div id="login-screen">
   <div class="login-box">
     <div class="login-logo">
       <div class="login-ico">🧬</div>
       <h1>EnquêtePro — ARV</h1>
       <p>Facteurs de l'inobservance du traitement ARV<br>Mémoire de recherche 2026</p>
     </div>
-    <div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
-    <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
+    
+<div id="server-step">
+<div class="fg"><label>Clé API JSONBin</label><input type="password" id="preApi" placeholder="Collez votre clé API"/></div>
+<div class="fg"><label>Bin ID</label><input type="text" id="preBin" placeholder="Bin ID du projet"/></div>
+<div id="srvmsg" style="font-size:12px;margin-bottom:10px;color:var(--text2)"></div>
+<button class="btn-login" onclick="serverNext()">Suivant →</button>
+</div>
+
+<div id="login-step" style="display:none">
+<div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
+<div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
+</div>
+
     <div id="login-err" style="display:none;padding:9px 12px;background:rgba(245,101,101,.1);border:1px solid rgba(245,101,101,.25);border-radius:var(--radius-sm);font-size:13px;color:var(--danger);margin-bottom:10px;text-align:center"></div>
-    <button class="btn-login" onclick="doLogin()">Se connecter →</button>
+    <button id="loginBtn" class="btn-login" style="display:none" onclick="doLogin()">Se connecter →</button>
     <div class="login-hint">Contactez l'administrateur pour vos identifiants.</div>
   </div>
 </div>
@@ -1370,19 +1404,6 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 loadLocal();
 initUsers();
 const _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
-</script>
-
-<script>
-async function fetchServerDataStep(){
- try{
-   const api=document.getElementById('preApi').value.trim();
-   const bin=document.getElementById('preBin').value.trim();
-   if(!api||!bin){alert('Renseignez la clé et le Bin ID');return;}
-   if(typeof ss==='function'){ ss('apikey',api); ss('binid',bin); }
-   document.getElementById('step-server').style.display='none';
-   document.getElementById('step-login').style.display='block';
- }catch(e){ alert('Erreur'); }
-}
 </script>
 </body>
 </html>
