@@ -5,74 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>EnquêtePro — Inobservance ARV</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js">
-async function downloadProjectData(){
- try{
-   const apiKey = gs('apikey');
-   const binId = gs('binid');
-   if(!apiKey || !binId){ alert('Configurez le serveur'); return; }
-
-   const res = await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{
-      headers:{'X-Master-Key':apiKey}
-   });
-
-   const data = await res.json();
-
-   if(data.record){
-      responses = data.record.responses || [];
-      users = data.record.users || [];
-      customQ = data.record.customQ || [];
-
-      saveLocal();
-
-      if(typeof renderDashboard==='function') renderDashboard();
-      if(typeof renderList==='function') renderList();
-      if(typeof renderReport==='function') renderReport();
-
-      alert('Projet téléchargé : '+responses.length+' enquêtes');
-   }
- }catch(e){
-   alert('Erreur de téléchargement du projet');
- }
-}
-
-setInterval(()=>{
-   try{
-      if(gs('apikey') && gs('binid')) downloadProjectData();
-   }catch(e){}
-},30000);
-
-
-async function serverNext(){
- try{
-   const api=document.getElementById('preApi').value.trim();
-   const bin=document.getElementById('preBin').value.trim();
-
-   if(!api || !bin){
-      alert('Renseignez la clé API et le Bin ID');
-      return;
-   }
-
-   ss('apikey',api);
-   ss('binid',bin);
-
-   const msg=document.getElementById('srvmsg');
-   if(msg) msg.innerHTML='⏳ Connexion au serveur...';
-
-   // Pour l'instant on laisse passer même si JSONBin répond mal
-   document.getElementById('server-step').style.display='none';
-   document.getElementById('login-step').style.display='block';
-
-   const btn=document.getElementById('loginBtn');
-   if(btn) btn.style.display='block';
-
-   if(msg) msg.innerHTML='✅ Serveur enregistré';
-
- }catch(e){
-   alert('Erreur Javascript : '+e.message);
- }
-}
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 :root{--bg:#0b0d14;--bg2:#11141f;--bg3:#181c2a;--bg4:#1f2436;--bg5:#262c40;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--accent:#5b8df6;--accent2:#8b5cf6;--accent3:#10d9a0;--danger:#f56565;--warn:#f6ad55;--text:#dde2f0;--text2:#7b82a0;--text3:#454d68;--radius:14px;--radius-sm:9px;--font-h:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;--shadow:0 12px 40px rgba(0,0,0,.55);--sb:230px}
 .light{--bg:#f0f3fb;--bg2:#fff;--bg3:#e8ecf7;--bg4:#dde3f5;--bg5:#d0d8f0;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);--accent:#2563eb;--accent2:#7c3aed;--accent3:#059669;--danger:#dc2626;--warn:#d97706;--text:#1a1e30;--text2:#4a5280;--text3:#8b92b0;--shadow:0 4px 24px rgba(0,0,0,.12)}
@@ -231,22 +164,18 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
       <h1>EnquêtePro — ARV</h1>
       <p>Facteurs de l'inobservance du traitement ARV<br>Mémoire de recherche 2026</p>
     </div>
-    
-<div id="server-step">
-<div class="fg"><label>Clé API JSONBin</label><input type="password" id="preApi" placeholder="Collez votre clé API"/></div>
-<div class="fg"><label>Bin ID</label><input type="text" id="preBin" placeholder="Bin ID du projet"/></div>
-<div id="srvmsg" style="font-size:12px;margin-bottom:10px;color:var(--text2)"></div>
-<button class="btn-login" onclick="serverNext()">Suivant →</button>
+    <div id="server-step">
+<div class="fg"><label>Clé API JSONBin</label><input type="password" id="preApi" placeholder="Clé API"/></div>
+<div class="fg"><label>Bin ID</label><input type="text" id="preBin" placeholder="Bin ID"/></div>
+<button class="btn-login" type="button" onclick="serverNext()">Suivant →</button>
+<div id="srvmsg" class="login-hint"></div>
 </div>
-
 <div id="login-step" style="display:none">
 <div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
-<div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
-</div>
-
+    <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
     <div id="login-err" style="display:none;padding:9px 12px;background:rgba(245,101,101,.1);border:1px solid rgba(245,101,101,.25);border-radius:var(--radius-sm);font-size:13px;color:var(--danger);margin-bottom:10px;text-align:center"></div>
-    <button id="loginBtn" class="btn-login" style="display:none" onclick="doLogin()">Se connecter →</button>
-    <div class="login-hint">Contactez l'administrateur pour vos identifiants.</div>
+    <button id="loginBtn" style="display:none" class="btn-login" onclick="doLogin()">Se connecter →</button>
+    </div><div class="login-hint">Contactez l'administrateur pour vos identifiants.</div>
   </div>
 </div>
 
@@ -1407,5 +1336,31 @@ loadLocal();
 initUsers();
 const _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
 </script>
-</body>
+
+<script>
+async function serverNext(){
+ const api=document.getElementById('preApi').value.trim();
+ const bin=document.getElementById('preBin').value.trim();
+ if(!api||!bin){alert('Renseignez la clé API et le Bin ID');return;}
+ localStorage.setItem('apikey',api);
+ localStorage.setItem('binid',bin);
+ document.getElementById('srvmsg').innerText='Connexion...';
+ try{
+   const r=await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest',{headers:{'X-Master-Key':api}});
+   const d=await r.json();
+   if(d.record){
+      if(typeof users!=='undefined') users=d.record.users||users;
+      if(typeof responses!=='undefined') responses=d.record.responses||responses;
+      if(typeof customQ!=='undefined') customQ=d.record.customQ||customQ;
+      if(typeof saveLocal==='function') saveLocal();
+      document.getElementById('srvmsg').innerText='✓ '+(responses?responses.length:0)+' enquêtes récupérées';
+   }
+ }catch(e){
+   document.getElementById('srvmsg').innerText='Serveur enregistré';
+ }
+ document.getElementById('server-step').style.display='none';
+ document.getElementById('login-step').style.display='block';
+ document.getElementById('loginBtn').style.display='block';
+}
+</script></body>
 </html>
