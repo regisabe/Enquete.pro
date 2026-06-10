@@ -3,41 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>EnquêtePro — Inobservance ARV · Mémoire</title>
+<title>EnquêtePro — Inobservance ARV</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-:root{
-  --bg:#0b0d14;--bg2:#11141f;--bg3:#181c2a;--bg4:#1f2436;--bg5:#262c40;
-  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
-  --accent:#5b8df6;--accent2:#8b5cf6;--accent3:#10d9a0;
-  --danger:#f56565;--warn:#f6ad55;
-  --text:#dde2f0;--text2:#7b82a0;--text3:#454d68;
-  --radius:14px;--radius-sm:9px;
-  --font-h:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;
-  --shadow:0 12px 40px rgba(0,0,0,.55);
-  --sb:230px;
-}
-.light{
-  --bg:#f0f3fb;--bg2:#ffffff;--bg3:#e8ecf7;--bg4:#dde3f5;--bg5:#d0d8f0;
-  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
-  --accent:#2563eb;--accent2:#7c3aed;--accent3:#059669;
-  --danger:#dc2626;--warn:#d97706;
-  --text:#1a1e30;--text2:#4a5280;--text3:#8b92b0;
-  --shadow:0 4px 24px rgba(0,0,0,.12);
-}
+:root{--bg:#0b0d14;--bg2:#11141f;--bg3:#181c2a;--bg4:#1f2436;--bg5:#262c40;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--accent:#5b8df6;--accent2:#8b5cf6;--accent3:#10d9a0;--danger:#f56565;--warn:#f6ad55;--text:#dde2f0;--text2:#7b82a0;--text3:#454d68;--radius:14px;--radius-sm:9px;--font-h:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;--shadow:0 12px 40px rgba(0,0,0,.55);--sb:230px}
+.light{--bg:#f0f3fb;--bg2:#fff;--bg3:#e8ecf7;--bg4:#dde3f5;--bg5:#d0d8f0;--border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);--accent:#2563eb;--accent2:#7c3aed;--accent3:#059669;--danger:#dc2626;--warn:#d97706;--text:#1a1e30;--text2:#4a5280;--text3:#8b92b0;--shadow:0 4px 24px rgba(0,0,0,.12)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
 body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height:100vh;transition:background .25s,color .25s;font-size:15px}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bg5);border-radius:2px}
-
-/* ===== LOGIN ===== */
 #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;position:relative;overflow:hidden}
 #login-screen::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(91,141,246,.12) 0%,transparent 65%);top:-150px;left:-150px;pointer-events:none}
 #login-screen::after{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.09) 0%,transparent 65%);bottom:-80px;right:-80px;pointer-events:none}
 .login-box{background:var(--bg2);border:1px solid var(--border2);border-radius:22px;padding:2.25rem;width:100%;max-width:420px;box-shadow:var(--shadow);position:relative;z-index:1;animation:fadeUp .5s ease}
-.login-logo{text-align:center;margin-bottom:1.75rem}
 .login-ico{width:62px;height:62px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 12px}
+.login-logo{text-align:center;margin-bottom:1.75rem}
 .login-logo h1{font-family:var(--font-h);font-size:21px;font-weight:700}
 .login-logo p{font-size:12.5px;color:var(--text2);margin-top:5px;line-height:1.55}
 .fg{margin-bottom:13px}
@@ -45,14 +25,10 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .fg input,.fg select{width:100%;padding:13px 14px;background:var(--bg3);border:1.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-b);font-size:15px;transition:border-color .2s;-webkit-appearance:none}
 .fg input:focus,.fg select:focus{outline:none;border-color:var(--accent);background:var(--bg4)}
 .fg select option{background:var(--bg2)}
-.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font-h);font-size:15px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:6px;letter-spacing:.3px}
+.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font-h);font-size:15px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:6px}
 .btn-login:active{transform:scale(.98);opacity:.9}
 .login-hint{font-size:12px;color:var(--text3);text-align:center;margin-top:12px;padding:8px 12px;background:var(--bg3);border-radius:var(--radius-sm);line-height:1.6}
-
-/* ===== LAYOUT ===== */
 #app{display:none;min-height:100vh}
-
-/* SIDEBAR */
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sb);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:300;transition:transform .28s cubic-bezier(.4,0,.2,1)}
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:299;backdrop-filter:blur(2px)}
 .sb-head{padding:1.3rem 1.1rem .9rem;border-bottom:1px solid var(--border);flex-shrink:0}
@@ -73,55 +49,42 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .u-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .u-role{font-size:11px;color:var(--text2)}
 .sb-btns{display:flex;gap:6px}
-
-/* MAIN */
 .main{margin-left:var(--sb);min-height:100vh;display:flex;flex-direction:column}
 .topbar{position:sticky;top:0;z-index:200;background:var(--bg);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .tb-left{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
 .page-title{font-family:var(--font-h);font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tb-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .content{flex:1;padding:1.25rem;max-width:960px;width:100%}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 15px;border-radius:var(--radius-sm);font-family:var(--font-b);font-size:13.5px;font-weight:500;cursor:pointer;border:1.5px solid var(--border2);background:var(--bg3);color:var(--text);transition:all .15s;white-space:nowrap;user-select:none;-webkit-appearance:none}
 .btn:active{transform:scale(.96)}
 .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn-primary:active{opacity:.85}
 .btn-success{background:var(--accent3);color:#fff;border-color:var(--accent3)}
 .btn-danger{color:var(--danger);border-color:rgba(245,101,101,.25);background:transparent}.btn-danger:active{background:rgba(245,101,101,.1)}
+.btn-warn{background:var(--warn);color:#fff;border-color:var(--warn)}
 .btn-sm{padding:6px 11px;font-size:12.5px}
 .btn-icon{padding:9px;min-width:38px}
 .btn-full{width:100%;padding:14px;font-size:15px}
-
-/* CARDS */
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;margin-bottom:14px}
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:10px;flex-wrap:wrap}
 .card-title{font-family:var(--font-h);font-size:14px;font-weight:600}
-
-/* FORM ELEMENTS */
 .input-f,.select-f,.ta-f{width:100%;padding:12px 13px;background:var(--bg3);border:1.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-b);font-size:14.5px;transition:border-color .2s;margin-bottom:10px;-webkit-appearance:none}
 .input-f:focus,.select-f:focus,.ta-f:focus{outline:none;border-color:var(--accent);background:var(--bg4)}
 .ta-f{resize:vertical;min-height:80px}
 .select-f option{background:var(--bg2)}
 .fl{display:block;font-size:11px;font-weight:600;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-/* BADGES */
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
 .badge-blue{background:rgba(91,141,246,.13);color:var(--accent)}
 .badge-green{background:rgba(16,217,160,.13);color:var(--accent3)}
 .badge-warn{background:rgba(246,173,85,.13);color:var(--warn)}
 .badge-danger{background:rgba(245,101,101,.13);color:var(--danger)}
 .badge-purple{background:rgba(139,92,246,.13);color:var(--accent2)}
-
-/* METRICS */
 .met-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:11px;margin-bottom:1.4rem}
 .met-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;position:relative;overflow:hidden}
 .met-card::after{content:'';position:absolute;right:-8px;top:-8px;width:60px;height:60px;border-radius:50%;background:var(--accent);opacity:.07}
 .met-card.m2::after{background:var(--accent2)}.met-card.m3::after{background:var(--accent3)}.met-card.m4::after{background:var(--warn)}
 .met-val{font-family:var(--font-h);font-size:26px;font-weight:700;margin-bottom:3px}
 .met-lbl{font-size:11px;color:var(--text2)}
-
-/* SECTION HEADERS */
 .sec-head{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:12px;margin-top:4px}
 .sec-head.s1{background:rgba(91,141,246,.08);border:1px solid rgba(91,141,246,.15)}
 .sec-head.s2{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.15)}
@@ -131,8 +94,6 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .sec-icon{font-size:20px;flex-shrink:0}
 .sec-title{font-family:var(--font-h);font-size:13.5px;font-weight:600}
 .sec-sub{font-size:11px;color:var(--text2)}
-
-/* FORM FILL */
 .fq{margin-bottom:12px}
 .fq-label{font-size:14.5px;font-weight:500;margin-bottom:11px;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
 .qn{background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;flex-shrink:0;margin-top:3px}
@@ -140,159 +101,84 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .opt-row:active{transform:scale(.98)}
 .opt-row.sel{border-color:var(--accent);background:rgba(91,141,246,.1);color:var(--accent)}
 .opt-row input{accent-color:var(--accent);flex-shrink:0;width:18px;height:18px}
-.scale-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
-.sc-btn{min-width:48px;height:48px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:var(--bg3);font-size:15px;font-weight:600;cursor:pointer;color:var(--text);transition:all .15s;display:flex;align-items:center;justify-content:center;user-select:none}
-.sc-btn:active{transform:scale(.92)}
-.sc-btn.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
-.sc-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:5px}
 .err-border{border:1.5px solid var(--danger)!important;background:rgba(245,101,101,.05)!important}
-
-/* PROGRESS TRACKER */
 .prog-tracker{display:flex;gap:0;margin-bottom:1.25rem;border-radius:var(--radius-sm);border:1px solid var(--border);overflow:hidden}
 .pt-step{flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--text3);background:var(--bg3);border-right:1px solid var(--border);transition:all .2s;cursor:pointer}
 .pt-step:last-child{border-right:none}
-.pt-step.done{background:rgba(16,217,160,.1);color:var(--accent3)}
-.pt-step.curr{background:rgba(91,141,246,.15);color:var(--accent)}
-
-/* PROGRESS BARS */
+.pt-step.active{background:rgba(91,141,246,.15);color:var(--accent)}
 .prog-wrap{margin-bottom:10px}
 .prog-info{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;gap:8px}
 .prog-bar-bg{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
 .prog-bar{height:100%;border-radius:3px;transition:width .4s ease}
-
-/* FILTER BAR */
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;padding:12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1.2rem;align-items:center}
-.filter-bar select{padding:9px 12px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-b);font-size:13.5px;cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237b82a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+.filter-bar select{padding:9px 28px 9px 12px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-b);font-size:13.5px;cursor:pointer;-webkit-appearance:none}
 .filter-bar select:focus{outline:none;border-color:var(--accent)}
 .filter-label{font-size:12px;font-weight:600;color:var(--text2)}
-
-/* CHART */
 .ch-wrap{position:relative;width:100%;margin-top:12px}
-
-/* RESPONSES */
 .resp-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:8px}
 .resp-meta{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px}
 .resp-ans{margin-bottom:5px;font-size:13px}
 .resp-ans .ra-q{color:var(--text2);font-size:11px;margin-bottom:2px}
-
-/* AGENT TABLE */
 .agent-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
 .agent-row:last-child{border-bottom:none}
-
-/* SYNC */
 .sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 .s-ok{background:var(--accent3);box-shadow:0 0 6px var(--accent3)}
 .s-pend{background:var(--warn);animation:pulse 1.4s infinite}
 .s-err{background:var(--danger)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-
-/* TOAST */
 #toast{position:fixed;bottom:20px;right:16px;left:16px;max-width:360px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:13px 16px;font-size:13.5px;z-index:9999;box-shadow:var(--shadow);transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none;line-height:1.4;text-align:center}
 #toast.show{transform:translateY(0);opacity:1}
-
-/* MODAL */
 .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;z-index:500;padding:0;animation:fadeIn .15s ease}
-.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:22px 22px 0 0;padding:1.75rem 1.5rem;width:100%;max-width:520px;box-shadow:var(--shadow);animation:slideUp .25s ease;max-height:88vh;overflow-y:auto}
+.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:22px 22px 0 0;padding:1.75rem 1.5rem;width:100%;max-width:560px;box-shadow:var(--shadow);animation:slideUp .25s ease;max-height:88vh;overflow-y:auto}
 .modal-handle{width:40px;height:4px;background:var(--bg5);border-radius:2px;margin:0 auto 1.25rem;display:block}
 .modal-title{font-family:var(--font-h);font-size:18px;font-weight:700;margin-bottom:1rem}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-@keyframes slideIn{from{transform:translateX(-100%)}to{transform:translateX(0)}}
-.page{animation:fadeUp .3s ease}
-
-/* BOTTOM NAV (mobile) */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:250;padding:6px 0 calc(6px + env(safe-area-inset-bottom));justify-content:space-around}
 .bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 10px;cursor:pointer;border-radius:var(--radius-sm);transition:all .15s;border:none;background:transparent;color:var(--text2);font-family:var(--font-b);font-size:10px;font-weight:500;flex:1;user-select:none}
 .bn-item:active{transform:scale(.92)}
 .bn-item .bn-ico{font-size:20px}
 .bn-item.active{color:var(--accent)}
-.bn-item .bn-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:1px;opacity:0}
-.bn-item.active .bn-dot{opacity:1}
-
-/* PRINT */
-@media print{
-  .sidebar,.topbar,.filter-bar,.bottom-nav,.sb-overlay,.no-print{display:none!important}
-  .main{margin-left:0!important;padding-bottom:0!important}
-  .content{max-width:100%!important;padding:0!important}
-  body{background:white!important;color:black!important}
-  .card{border:1px solid #ccc!important;background:white!important;break-inside:avoid}
-}
-
-/* ===== TABLET (768px) ===== */
-@media(max-width:900px){
-  :root{--sb:200px}
-  .met-grid{grid-template-columns:repeat(2,1fr)}
-}
-
-/* ===== MOBILE (640px) ===== */
-@media(max-width:640px){
-  .sidebar{transform:translateX(-100%);width:260px;--sb:0}
-  .sidebar.open{transform:translateX(0);box-shadow:var(--shadow)}
-  .sb-overlay.show{display:block}
-  .main{margin-left:0;padding-bottom:72px}
-  .bottom-nav{display:flex}
-  .topbar{padding:0 1rem;height:52px}
-  .content{padding:1rem .9rem}
-  .met-grid{grid-template-columns:repeat(2,1fr);gap:9px}
-  .met-val{font-size:22px}
-  .modal-ov{align-items:flex-end}
-  .modal-box{border-radius:22px 22px 0 0;max-height:90vh}
-  .filter-bar{gap:6px}
-  .filter-bar select{font-size:13px;padding:8px 28px 8px 10px}
-  .row-2{grid-template-columns:1fr}
-  .tb-right .sync-info{display:none}
-  .opt-row{padding:12px}
-  .sc-btn{min-width:44px;height:44px}
-  .card{padding:1rem}
-}
-@media(max-width:380px){
-  .met-grid{grid-template-columns:1fr 1fr}
-  .met-val{font-size:20px}
-}
-
+.score-box{text-align:center;padding:1.5rem;background:var(--bg3);border-radius:var(--radius);border:2px solid var(--border2);margin-bottom:12px}
+.score-big{font-family:var(--font-h);font-size:52px;font-weight:800;line-height:1}
+.rpt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.rpt-tab{padding:8px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:13px;cursor:pointer;font-family:var(--font-b);transition:all .15s}
+.rpt-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;padding:9px 8px;color:var(--text2);font-weight:500;border-bottom:1px solid var(--border2)}
+.tbl td{padding:9px 8px;border-bottom:1px solid var(--border)}
+.tbl tr:last-child td{border-bottom:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.page{animation:fadeUp .3s ease}
+@media print{.sidebar,.topbar,.filter-bar,.bottom-nav,.sb-overlay,.no-print{display:none!important}.main{margin-left:0!important;padding-bottom:0!important}.content{max-width:100%!important;padding:0!important}body{background:white!important;color:black!important}.card{border:1px solid #ccc!important;background:white!important;break-inside:avoid}}
+@media(max-width:900px){:root{--sb:200px}.met-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.sidebar{transform:translateX(-100%);width:260px;--sb:0}.sidebar.open{transform:translateX(0);box-shadow:var(--shadow)}.sb-overlay.show{display:block}.main{margin-left:0;padding-bottom:72px}.bottom-nav{display:flex}.topbar{padding:0 1rem;height:52px}.content{padding:1rem .9rem}.met-grid{grid-template-columns:repeat(2,1fr);gap:9px}.met-val{font-size:22px}.modal-box{border-radius:22px 22px 0 0;max-height:90vh}.filter-bar{gap:6px}.row-2{grid-template-columns:1fr}.opt-row{padding:12px}.card{padding:1rem}}
 .hidden{display:none!important}
 </style>
 </head>
 <body>
-
-<!-- ===== LOGIN ===== -->
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">
       <div class="login-ico">🧬</div>
       <h1>EnquêtePro — ARV</h1>
-      <p>Étude sur les facteurs de l'inobservance<br>du traitement ARV · Mémoire 2026</p>
+      <p>Facteurs de l'inobservance du traitement ARV<br>Mémoire de recherche 2026</p>
     </div>
-    <div class="fg">
-      <label>Identifiant</label>
-      <input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/>
-    </div>
-    <div class="fg">
-      <label>Mot de passe</label>
-      <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/>
-    </div>
+    <div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
+    <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
     <div id="login-err" style="display:none;padding:9px 12px;background:rgba(245,101,101,.1);border:1px solid rgba(245,101,101,.25);border-radius:var(--radius-sm);font-size:13px;color:var(--danger);margin-bottom:10px;text-align:center"></div>
     <button class="btn-login" onclick="doLogin()">Se connecter →</button>
-    <div class="login-hint">Contactez l'administrateur si vous avez oublié vos identifiants.</div>
+    <div class="login-hint">Contactez l'administrateur pour vos identifiants.</div>
   </div>
 </div>
 
-<!-- ===== APP ===== -->
 <div id="app">
   <div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
-
-  <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <div class="sb-head">
       <div class="sb-logo">
         <div class="ico">🧬</div>
-        <div class="sb-logo-txt">
-          <span>EnquêtePro</span>
-          <div class="sb-sub">Inobservance ARV<br>Mémoire 2026</div>
-        </div>
+        <div class="sb-logo-txt"><span>EnquêtePro</span><div class="sb-sub">Inobservance ARV · 2026</div></div>
       </div>
     </div>
     <nav class="sb-nav">
@@ -300,26 +186,22 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
       <div class="nav-item active" onclick="go('dashboard')" id="nav-dashboard"><span class="ni">🏠</span>Tableau de bord</div>
       <div class="nav-item" onclick="go('fill')" id="nav-fill"><span class="ni">📝</span>Nouvelle enquête</div>
       <div class="nav-item" onclick="go('report')" id="nav-report" data-admin><span class="ni">📊</span>Rapport & Stats</div>
-      <div class="nav-sec" data-admin>Admin</div>
+      <div class="nav-sec" data-admin>Administration</div>
+      <div class="nav-item" onclick="go('editq')" id="nav-editq" data-admin><span class="ni">✏️</span>Modifier questionnaire</div>
       <div class="nav-item" onclick="go('agents')" id="nav-agents" data-admin><span class="ni">👥</span>Enquêteurs</div>
       <div class="nav-item" onclick="go('settings')" id="nav-settings" data-admin><span class="ni">⚙️</span>Paramètres</div>
     </nav>
     <div class="sb-foot">
       <div class="user-chip">
         <div class="avatar" id="ua">?</div>
-        <div class="user-info" style="flex:1;min-width:0">
-          <div class="u-name" id="un">—</div>
-          <div class="u-role" id="ur">—</div>
-        </div>
+        <div class="user-info" style="flex:1;min-width:0"><div class="u-name" id="un">—</div><div class="u-role" id="ur">—</div></div>
       </div>
       <div class="sb-btns">
-        <button class="btn btn-danger btn-sm" style="flex:1" id="logout-btn" onclick="doLogout()">🚪 Déconnecter</button>
-        <button class="btn btn-sm btn-icon" onclick="toggleTheme()" id="thbtn" title="Thème">🌙</button>
+        <button class="btn btn-danger btn-sm" style="flex:1" onclick="doLogout()">🚪 Déconnecter</button>
+        <button class="btn btn-sm btn-icon" onclick="toggleTheme()" id="thbtn">🌙</button>
       </div>
     </div>
   </div>
-
-  <!-- MAIN -->
   <div class="main">
     <div class="topbar">
       <div class="tb-left">
@@ -327,7 +209,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
         <div class="page-title" id="page-title">Tableau de bord</div>
       </div>
       <div class="tb-right">
-        <span class="sync-info" style="display:flex;align-items:center;gap:5px">
+        <span style="display:flex;align-items:center;gap:5px">
           <span class="sync-dot s-pend" id="sdot"></span>
           <span id="slbl" style="font-size:12px;color:var(--text2)">Sync...</span>
         </span>
@@ -336,138 +218,112 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
     </div>
     <div class="content" id="content"></div>
   </div>
-
-  <!-- BOTTOM NAV (mobile) -->
   <div class="bottom-nav" id="bottom-nav">
-    <button class="bn-item active" id="bn-dashboard" onclick="go('dashboard')">
-      <span class="bn-ico">🏠</span><span>Accueil</span><span class="bn-dot"></span>
-    </button>
-    <button class="bn-item" id="bn-fill" onclick="go('fill')">
-      <span class="bn-ico">📝</span><span>Enquête</span><span class="bn-dot"></span>
-    </button>
-    <button class="bn-item bn-admin" id="bn-report" onclick="go('report')">
-      <span class="bn-ico">📊</span><span>Rapport</span><span class="bn-dot"></span>
-    </button>
-    <button class="bn-item bn-admin" id="bn-agents" onclick="go('agents')">
-      <span class="bn-ico">👥</span><span>Équipe</span><span class="bn-dot"></span>
-    </button>
-    <button class="bn-item" onclick="toggleSidebar()">
-      <span class="bn-ico">☰</span><span>Menu</span><span class="bn-dot"></span>
-    </button>
+    <button class="bn-item active" id="bn-dashboard" onclick="go('dashboard')"><span class="bn-ico">🏠</span><span>Accueil</span></button>
+    <button class="bn-item" id="bn-fill" onclick="go('fill')"><span class="bn-ico">📝</span><span>Enquête</span></button>
+    <button class="bn-item bn-admin" id="bn-report" onclick="go('report')"><span class="bn-ico">📊</span><span>Rapport</span></button>
+    <button class="bn-item bn-admin" id="bn-agents" onclick="go('agents')"><span class="bn-ico">👥</span><span>Équipe</span></button>
+    <button class="bn-item" onclick="toggleSidebar()"><span class="bn-ico">☰</span><span>Menu</span></button>
   </div>
 </div>
-
 <div id="toast"></div>
 
 <script>
-// ============================================================
-// STATE
-// ============================================================
-let CU = null;
-let isDark = true;
-let responses = [];
-let users = []; // {id, name, login, password, role, createdAt, active}
-let syncInt = null;
-let charts = {};
-let curPage = 'dashboard';
-
-const PAGE_TITLES = {
-  dashboard:'Tableau de bord', fill:'Nouvelle enquête',
-  report:'Rapport & Statistiques', agents:'Enquêteurs de terrain',
-  settings:'Paramètres & Synchronisation'
-};
-
-// ============================================================
-// QUESTIONNAIRE
-// ============================================================
-const SECTIONS = {
-  demo:{label:'Caractéristiques démographiques',icon:'👤',cls:'s1'},
-  s21:{label:'2.1 — Facteurs individuels',icon:'🧠',cls:'s2'},
-  s22:{label:'2.2 — Système de santé',icon:'🏥',cls:'s3'},
-  s23:{label:'2.3 — Facteurs psychosociaux',icon:'💬',cls:'s4'},
-  s24:{label:'2.4 — Facteurs économiques',icon:'💰',cls:'s5'},
-  s3:{label:'3 — Évaluation de l\'inobservance',icon:'📋',cls:'s1'},
-  morisky:{label:'Questionnaire de Morisky (MMAS-4)',icon:'💊',cls:'s2'},
-};
-
-// Questions de base (fixes)
-const Q_BASE = [
-  // DEMO — q_num auto-généré, non affiché dans le formulaire
-  {id:'q_num',sec:'demo',label:'Numéro unique identifiant',type:'auto',req:false},
-  {id:'q_date_dep',sec:'demo',label:'Date de dépistage',type:'date',req:false},
-  {id:'q_date_trt',sec:'demo',label:'Date de mise sous traitement',type:'date',req:false},
-  {id:'q_delai',sec:'demo',label:'Délai de mise sous traitement',type:'choice',req:true,opts:['Immédiat','< 1 mois','+ 3 mois']},
-  {id:'q_sexe',sec:'demo',label:'Sexe',type:'choice',req:true,opts:['Masculin','Féminin']},
-  {id:'q_age',sec:'demo',label:'Tranche d\'âge',type:'choice',req:true,opts:['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +']},
-  {id:'q_matri',sec:'demo',label:'Situation matrimoniale',type:'choice',req:true,opts:['Concubinage','Mariage traditionnel','Mariage civil','Mariage religieux']},
-  {id:'q_instruct',sec:'demo',label:'Niveau d\'instruction',type:'choice',req:true,opts:['Aucun','Primaire','Secondaire','Universitaire']},
-  {id:'q_residence',sec:'demo',label:'Lieu de résidence',type:'choice',req:true,opts:['Dans le département','Hors du département']},
-  {id:'q_population',sec:'demo',label:'Type de population',type:'choice',req:true,opts:['Générale','TS','MSM']},
-  {id:'q_conjoint_statut',sec:'demo',label:'Statut du conjoint connu ?',type:'yesno',req:true},
-  {id:'q_conjoint_result',sec:'demo',label:'Résultat du dépistage du conjoint',type:'choice',req:false,opts:['Négatif','Positif']},
-  // S2.1
-  {id:'q_partage_statut',sec:'s21',label:'Avez-vous partagé votre statut avec votre conjoint ?',type:'yesno',req:true},
-  {id:'q_delai_partage',sec:'s21',label:'Délai de partage de votre statut à votre conjoint(e)',type:'choice',req:false,opts:['< 3 mois','3–6 mois','6–12 mois','+ de 12 mois']},
-  {id:'q_connais_benef',sec:'s21',label:'Avez-vous connaissance des bénéfices du traitement ARV ?',type:'yesno',req:true},
-  {id:'q_benef_cite',sec:'s21',label:'Citez deux bénéfices du traitement ARV',type:'text',ph:'Bénéfice 1 / Bénéfice 2...',req:false},
-  {id:'q_connais_effets',sec:'s21',label:'Avez-vous connaissance des effets secondaires du traitement ARV ?',type:'yesno',req:true},
-  // S2.2
-  {id:'q_soins_diff',sec:'s22',label:'Connaissez-vous les soins différenciés ?',type:'yesno',req:true},
-  {id:'q_choix_impose',sec:'s22',label:'Le choix vous a-t-il été imposé par l\'agent de santé ?',type:'yesno',req:true},
-  {id:'q_personnel_dispo',sec:'s22',label:'Le personnel de santé est-il disponible lors de vos RDV ?',type:'yesno',req:true},
-  {id:'q_relation_soignant',sec:'s22',label:'Comment qualifiez-vous votre relation avec le personnel soignant ?',type:'choice',req:true,opts:['Très bonne','Bonne','Insuffisante','Mauvaise']},
-  {id:'q_rupture_meds',sec:'s22',label:'Avez-vous connu des ruptures de médicaments lors de vos RDV ARV ?',type:'yesno',req:true},
-  // S2.3
-  {id:'q_soutien_conjoint',sec:'s23',label:'Avez-vous le soutien de votre conjoint dans le suivi du traitement ?',type:'yesno',req:true},
-  {id:'q_soutien_type',sec:'s23',label:'À quel niveau le soutien de votre conjoint vous rassure le plus ?',type:'multi',req:false,opts:['Rappel de l\'heure des médicaments','Accompagnement RDV médicament','Accompagnement RDV prélèvement CV','Soutien affectif et psychologique']},
-  {id:'q_conflits',sec:'s23',label:'Avez-vous des conflits conjugaux ?',type:'yesno',req:true},
-  {id:'q_conflits_type',sec:'s23',label:'Vos conflits sont de quel ordre ?',type:'multi',req:false,opts:['Acception de votre statut','Financier','Éducation des enfants','Sexuel','Autres']},
-  {id:'q_stigma',sec:'s23',label:'Êtes-vous objet de stigmatisation au centre de santé ?',type:'yesno',req:true},
-  // S2.4
-  {id:'q_transport',sec:'s24',label:'Avez-vous un souci de frais de transport pour vos RDV ?',type:'yesno',req:true},
-  {id:'q_aide_financiere',sec:'s24',label:'Bénéficiez-vous d\'une aide financière pour vos soins ?',type:'yesno',req:true},
-  // S3
-  {id:'q_horaire_meds',sec:'s3',label:'Respectez-vous les heures de prise de vos médicaments ?',type:'yesno',req:true},
-  {id:'q_cv_m6',sec:'s3',label:'Charge virale M6',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
-  {id:'q_cv_m12',sec:'s3',label:'Charge virale M12',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
-  {id:'q_cv_m18_24',sec:'s3',label:'Charge virale M18-24',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
-  {id:'q_raisons_inobs',sec:'s3',label:'Deux raisons qui vous empêchent de prendre correctement vos médicaments',type:'text',ph:'Raison 1 / Raison 2...',req:false},
-  // MORISKY MMAS-4 — scoring: Oui=0pt, Non=1pt (sauf Q4 inversé: Oui=1, Non=0)
-  {id:'q_m1',sec:'morisky',label:'Vous arrive-t-il d\'oublier de prendre votre traitement ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
-  {id:'q_m2',sec:'morisky',label:'Avez-vous parfois du mal à vous rappeler de prendre votre traitement ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
-  {id:'q_m3',sec:'morisky',label:'Quand vous vous sentez mieux, vous arrive-t-il d\'arrêter de prendre votre traitement ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
-  {id:'q_m4',sec:'morisky',label:'Si vous vous sentez moins bien lorsque vous prenez votre traitement, arrêtez-vous parfois de le prendre ?',type:'yesno',req:true,morisky:true,morisky_oui:0,morisky_non:1},
-  // Score calculé automatiquement — affiché en lecture seule
-  {id:'q_morisky_score',sec:'morisky',label:'Score MMAS-4 (calculé automatiquement)',type:'morisky_result',req:false},
-];
-
-// Questions personnalisées ajoutées par l'admin (stockées en localStorage)
-let customQuestions = [];
-
-// Q actif = base + custom
-function getQ() { return [...Q_BASE, ...customQuestions]; }
-// Pour compatibilité ancien code
-const Q = Q_BASE; // référence directe encore utilisée dans report/csv
-
-// Génère un numéro unique ex: 042/2026
-function genNumero() {
-  const n = responses.length + 1;
-  const year = new Date().getFullYear();
-  return String(n).padStart(3,'0') + '/' + year;
-}
+// =====================================================================
+// ÉTAT GLOBAL
+// =====================================================================
+let CU = null, isDark = true, responses = [], users = [], customQ = [], syncInt = null, charts = {}, curPage = 'dashboard', activeTab = 'global';
 
 const PAL = ['#5b8df6','#10d9a0','#f6ad55','#f56565','#8b5cf6','#63b3ed','#fc8181','#48bb78','#ed8936','#9f7aea'];
+const PAGE_TITLES = {dashboard:'Tableau de bord',fill:'Nouvelle enquête',report:'Rapport & Statistiques',editq:'Modifier le questionnaire',agents:'Enquêteurs de terrain',settings:'Paramètres & Synchronisation'};
 
-// ============================================================
+// =====================================================================
+// SECTIONS FIXES
+// =====================================================================
+const SECTIONS = {
+  demo:    {label:'Caractéristiques démographiques', icon:'👤', cls:'s1'},
+  s21:     {label:'2.1 — Facteurs individuels',       icon:'🧠', cls:'s2'},
+  s22:     {label:'2.2 — Système de santé',           icon:'🏥', cls:'s3'},
+  s23:     {label:'2.3 — Facteurs psychosociaux',     icon:'💬', cls:'s4'},
+  s24:     {label:'2.4 — Facteurs économiques',       icon:'💰', cls:'s5'},
+  s3:      {label:'3 — Évaluation de l\'inobservance',icon:'📋', cls:'s1'},
+  morisky: {label:'Questionnaire MMAS-4 (Morisky)',   icon:'💊', cls:'s2'},
+};
+
+// =====================================================================
+// QUESTIONS FIXES (Q_BASE)
+// =====================================================================
+const Q_BASE = [
+  // DEMO
+  {id:'q_num',      sec:'demo', label:'N° identifiant (auto)', type:'auto', req:false},
+  {id:'q_date_dep', sec:'demo', label:'Date de dépistage',     type:'date', req:false},
+  {id:'q_date_trt', sec:'demo', label:'Date de mise sous traitement', type:'date', req:false},
+  {id:'q_delai',    sec:'demo', label:'Délai de mise sous traitement', type:'choice', req:true, opts:['Immédiat','< 1 mois','+ 3 mois']},
+  {id:'q_sexe',     sec:'demo', label:'Sexe', type:'choice', req:true, opts:['Masculin','Féminin']},
+  {id:'q_age',      sec:'demo', label:'Tranche d\'âge', type:'choice', req:true, opts:['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +']},
+  {id:'q_matri',    sec:'demo', label:'Situation matrimoniale', type:'choice', req:true, opts:['Concubinage','Mariage traditionnel','Mariage civil','Mariage religieux']},
+  {id:'q_instruct', sec:'demo', label:'Niveau d\'instruction', type:'choice', req:true, opts:['Aucun','Primaire','Secondaire','Universitaire']},
+  {id:'q_residence',sec:'demo', label:'Lieu de résidence', type:'choice', req:true, opts:['Dans le département','Hors du département']},
+  {id:'q_population',sec:'demo',label:'Type de population', type:'choice', req:true, opts:['Générale','TS','MSM']},
+  {id:'q_conjoint_statut', sec:'demo', label:'Statut du conjoint connu ?', type:'yesno', req:true},
+  {id:'q_conjoint_result', sec:'demo', label:'Résultat dépistage du conjoint', type:'choice', req:false, opts:['Négatif','Positif']},
+  // S2.1
+  {id:'q_partage_statut', sec:'s21', label:'Avez-vous partagé votre statut avec votre conjoint ?', type:'yesno', req:true},
+  {id:'q_delai_partage',  sec:'s21', label:'Délai de partage du statut', type:'choice', req:false, opts:['< 3 mois','3–6 mois','6–12 mois','+ de 12 mois']},
+  {id:'q_connais_benef',  sec:'s21', label:'Connaissez-vous les bénéfices du traitement ARV ?', type:'yesno', req:true},
+  {id:'q_benef_cite',     sec:'s21', label:'Citez deux bénéfices du traitement ARV', type:'text', ph:'Bénéfice 1 / Bénéfice 2...', req:false},
+  {id:'q_connais_effets', sec:'s21', label:'Connaissez-vous les effets secondaires du traitement ARV ?', type:'yesno', req:true},
+  // S2.2
+  {id:'q_soins_diff',       sec:'s22', label:'Connaissez-vous les soins différenciés ?', type:'yesno', req:true},
+  {id:'q_choix_impose',     sec:'s22', label:'Le choix vous a-t-il été imposé par l\'agent de santé ?', type:'yesno', req:true},
+  {id:'q_personnel_dispo',  sec:'s22', label:'Le personnel de santé est-il disponible lors de vos RDV ?', type:'yesno', req:true},
+  {id:'q_relation_soignant',sec:'s22', label:'Relation avec le personnel soignant', type:'choice', req:true, opts:['Très bonne','Bonne','Insuffisante','Mauvaise']},
+  {id:'q_rupture_meds',     sec:'s22', label:'Avez-vous connu des ruptures de médicaments ARV ?', type:'yesno', req:true},
+  // S2.3
+  {id:'q_soutien_conjoint',sec:'s23', label:'Avez-vous le soutien de votre conjoint pour le traitement ?', type:'yesno', req:true},
+  {id:'q_soutien_type',    sec:'s23', label:'À quel niveau ce soutien vous rassure le plus ?', type:'multi', req:false, opts:['Rappel prise médicaments','Accompagnement RDV médicament','Accompagnement RDV prélèvement CV','Soutien affectif et psychologique']},
+  {id:'q_conflits',        sec:'s23', label:'Avez-vous des conflits conjugaux ?', type:'yesno', req:true},
+  {id:'q_conflits_type',   sec:'s23', label:'Nature des conflits', type:'multi', req:false, opts:['Acception du statut','Financier','Éducation des enfants','Sexuel','Autres']},
+  {id:'q_stigma',          sec:'s23', label:'Êtes-vous stigmatisé(e) au centre de santé ?', type:'yesno', req:true},
+  // S2.4
+  {id:'q_transport',      sec:'s24', label:'Avez-vous des difficultés de frais de transport pour vos RDV ?', type:'yesno', req:true},
+  {id:'q_aide_financiere',sec:'s24', label:'Bénéficiez-vous d\'une aide financière pour vos soins ?', type:'yesno', req:true},
+  // S3
+  {id:'q_horaire_meds',sec:'s3', label:'Respectez-vous les heures de prise de vos médicaments ?', type:'yesno', req:true},
+  {id:'q_cv_m6',       sec:'s3', label:'Charge virale M6',    type:'choice', req:false, opts:['Supprimée','Non supprimée']},
+  {id:'q_cv_m12',      sec:'s3', label:'Charge virale M12',   type:'choice', req:false, opts:['Supprimée','Non supprimée']},
+  {id:'q_cv_m18_24',   sec:'s3', label:'Charge virale M18-24',type:'choice', req:false, opts:['Supprimée','Non supprimée']},
+  {id:'q_raisons_inobs',sec:'s3',label:'Deux raisons qui vous empêchent de prendre vos médicaments', type:'text', ph:'Raison 1 / Raison 2...', req:false},
+  // MORISKY MMAS-4 : Oui = 0 pt, Non = 1 pt (barème MMAS-4)
+  {id:'q_m1', sec:'morisky', label:'Vous arrive-t-il d\'oublier de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  {id:'q_m2', sec:'morisky', label:'Avez-vous parfois du mal à vous rappeler de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  {id:'q_m3', sec:'morisky', label:'Quand vous vous sentez mieux, vous arrive-t-il d\'arrêter de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  {id:'q_m4', sec:'morisky', label:'Si vous vous sentez moins bien, arrêtez-vous parfois de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  // Score calculé auto
+  {id:'q_morisky_score', sec:'morisky', label:'Score MMAS-4 (calculé automatiquement)', type:'morisky_result', req:false},
+];
+
+function allQ() { return [...Q_BASE, ...customQ]; }
+function genNum() { return String(responses.length + 1).padStart(3,'0') + '/' + new Date().getFullYear(); }
+
+// MMAS-4 : Oui=0, Non=1 => score = nombre de "Non"
+function calcMorisky(ans) {
+  let score = 0;
+  ['q_m1','q_m2','q_m3','q_m4'].forEach(id => { if (ans[id] === 'Non') score++; });
+  return score;
+}
+function morLevel(s) {
+  if (s === 4) return {label:'Haute observance', cls:'badge-green', color:'var(--accent3)'};
+  if (s === 3) return {label:'Observance moyenne', cls:'badge-warn', color:'var(--warn)'};
+  return {label:'Faible observance', cls:'badge-danger', color:'var(--danger)'};
+}
+
+// =====================================================================
 // LOGIN / LOGOUT
-// ============================================================
-function initDefaultUsers() {
-  if (users.length === 0) {
-    users = [{
-      id: 'admin-001', name: 'Administrateur', login: 'admin',
-      password: 'admin2026', role: 'admin',
-      createdAt: new Date().toLocaleDateString('fr-FR'), active: true
-    }];
+// =====================================================================
+function initUsers() {
+  if (!users.length) {
+    users = [{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true}];
     saveLocal();
   }
 }
@@ -477,12 +333,9 @@ function doLogin() {
   const pass  = document.getElementById('lp').value;
   const errEl = document.getElementById('login-err');
   errEl.style.display = 'none';
-
-  if (!login || !pass) { showLoginErr('Veuillez remplir tous les champs.'); return; }
-
+  if (!login || !pass) { showErr('Remplissez tous les champs.'); return; }
   const user = users.find(u => u.active && u.login.toLowerCase() === login && u.password === pass);
-  if (!user) { showLoginErr('Identifiant ou mot de passe incorrect.'); return; }
-
+  if (!user) { showErr('Identifiant ou mot de passe incorrect.'); return; }
   CU = user;
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
@@ -490,31 +343,18 @@ function doLogin() {
   document.getElementById('un').textContent = user.name;
   document.getElementById('ur').textContent = user.role === 'admin' ? '👑 Chercheur principal' : '🧭 Enquêteur terrain';
   document.getElementById('menu-btn').style.display = 'flex';
-
-  // Hide admin items for agents
   if (user.role !== 'admin') {
     document.querySelectorAll('[data-admin]').forEach(e => e.style.display = 'none');
     document.querySelectorAll('.bn-admin').forEach(e => e.style.display = 'none');
   }
-
-  // Load theme
   const t = gs('theme'); if (t === 'light') { isDark = false; document.body.classList.add('light'); document.getElementById('thbtn').textContent = '☀️'; }
-
-  startSync();
-  go('dashboard');
+  startSync(); go('dashboard');
 }
-
-function showLoginErr(msg) {
-  const el = document.getElementById('login-err');
-  el.textContent = msg; el.style.display = 'block';
-}
+function showErr(m) { const e = document.getElementById('login-err'); e.textContent = m; e.style.display = 'block'; }
 
 function doLogout() {
   if (!confirm('Se déconnecter ?')) return;
-  clearInterval(syncInt); syncInt = null;
-  saveLocal();
-  CU = null;
-  // Reset UI fully
+  clearInterval(syncInt); syncInt = null; saveLocal(); CU = null;
   document.getElementById('app').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('ln').value = '';
@@ -523,53 +363,36 @@ function doLogout() {
   document.querySelectorAll('[data-admin]').forEach(e => e.style.display = '');
   document.querySelectorAll('.bn-admin').forEach(e => e.style.display = '');
   closeSidebar();
-  Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} });
-  charts = {};
+  Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} }); charts = {};
 }
 
-// ============================================================
+// =====================================================================
 // NAVIGATION
-// ============================================================
+// =====================================================================
 function go(page) {
-  curPage = page;
-  closeSidebar();
+  curPage = page; closeSidebar();
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
-  const navEl = document.getElementById('nav-' + page);
-  if (navEl) navEl.classList.add('active');
-  const bnEl = document.getElementById('bn-' + page);
-  if (bnEl) bnEl.classList.add('active');
+  const ne = document.getElementById('nav-'+page); if (ne) ne.classList.add('active');
+  const be = document.getElementById('bn-'+page);  if (be) be.classList.add('active');
   document.getElementById('page-title').textContent = PAGE_TITLES[page] || page;
   Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} }); charts = {};
-  const R = { dashboard: renderDash, fill: renderFill, report: renderReport, agents: renderAgents, settings: renderSettings };
+  const R = {dashboard:renderDash, fill:renderFill, report:renderReport, editq:renderEditQ, agents:renderAgents, settings:renderSettings};
   if (R[page]) R[page]();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0, behavior:'smooth'});
 }
+function toggleSidebar() { const sb = document.getElementById('sidebar'); sb.classList.contains('open') ? closeSidebar() : (sb.classList.add('open'), document.getElementById('sb-overlay').classList.add('show')); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sb-overlay').classList.remove('show'); }
 
-// ============================================================
-// SIDEBAR
-// ============================================================
-function toggleSidebar() {
-  const sb = document.getElementById('sidebar');
-  const ov = document.getElementById('sb-overlay');
-  if (sb.classList.contains('open')) { closeSidebar(); }
-  else { sb.classList.add('open'); ov.classList.add('show'); }
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sb-overlay').classList.remove('show');
-}
-
-// ============================================================
+// =====================================================================
 // DASHBOARD
-// ============================================================
+// =====================================================================
 function renderDash() {
   const n = responses.length;
   const today = responses.filter(r => new Date(r.ts).toDateString() === new Date().toDateString()).length;
   const women = responses.filter(r => r.answers.q_sexe === 'Féminin').length;
   const men   = responses.filter(r => r.answers.q_sexe === 'Masculin').length;
-  const agentSet = [...new Set(responses.map(r => r.agentName))];
-
+  const agSet = [...new Set(responses.map(r => r.agentName))];
   document.getElementById('content').innerHTML = `<div class="page">
     <div class="met-grid">
       <div class="met-card"><div class="met-val">${n}</div><div class="met-lbl">📋 Enquêtes totales</div></div>
@@ -577,98 +400,148 @@ function renderDash() {
       <div class="met-card m3"><div class="met-val">${women}</div><div class="met-lbl">♀ Femmes</div></div>
       <div class="met-card m4"><div class="met-val">${men}</div><div class="met-lbl">♂ Hommes</div></div>
     </div>
-    ${CU.role==='admin' ? `<div class="card no-print">
-      <div class="card-header"><div class="card-title">⚡ Actions rapides</div></div>
+    ${CU.role==='admin' ? `<div class="card no-print"><div class="card-header"><div class="card-title">⚡ Actions rapides</div></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="go('fill')">📝 Nouvelle enquête</button>
         <button class="btn btn-success" onclick="go('report')">📊 Rapport</button>
-        <button class="btn" onclick="exportCSV()">📥 Export CSV</button>
+        <button class="btn" onclick="dlCSV(buildAllCsvRows(),'Rapport_ARV')">📥 Export CSV</button>
         <button class="btn" onclick="showShareModal()">🔗 Partager</button>
-      </div>
-    </div>` : `<div class="card" style="border-left:3px solid var(--accent)">
-      <div class="card-title" style="margin-bottom:6px">👋 Bienvenue, ${esc(CU.name)} !</div>
-      <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Appuyez sur le bouton ci-dessous pour commencer une nouvelle enquête.</p>
-      <button class="btn btn-primary btn-full" onclick="go('fill')">📝 Commencer une enquête</button>
-    </div>`}
+      </div></div>` :
+      `<div class="card" style="border-left:3px solid var(--accent)">
+        <div class="card-title" style="margin-bottom:6px">👋 Bienvenue, ${esc(CU.name)} !</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Appuyez ci-dessous pour commencer une enquête.</p>
+        <button class="btn btn-primary btn-full" onclick="go('fill')">📝 Commencer une enquête</button>
+      </div>`}
     <div class="card">
       <div class="card-header"><div class="card-title">📈 Activité par enquêteur</div></div>
-      ${agentSet.length === 0 ? '<p style="color:var(--text2);font-size:13px">Aucune donnée encore.</p>' :
-        agentSet.map(a => { const c = responses.filter(r => r.agentName===a).length; const p = Math.round(c/n*100);
+      ${agSet.length===0 ? '<p style="color:var(--text2);font-size:13px">Aucune donnée encore.</p>' :
+        agSet.map(a => { const c=responses.filter(r=>r.agentName===a).length; const p=pct(c,n);
           return `<div class="prog-wrap"><div class="prog-info"><span>👤 ${esc(a)}</span><span style="font-weight:500">${c} (${p}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:var(--accent)"></div></div></div>`;
         }).join('')}
     </div>
     <div class="card">
       <div class="card-header"><div class="card-title">🕐 Dernières enquêtes</div></div>
-      ${responses.slice().reverse().slice(0,6).map(r => `
-        <div class="agent-row">
+      ${responses.slice().reverse().slice(0,6).map(r => {
+        const ms = r.answers.q_morisky_score;
+        const ml = ms !== undefined && ms !== null ? morLevel(ms) : null;
+        return `<div class="agent-row">
           <div class="avatar" style="width:30px;height:30px;font-size:11px">${r.agentName.charAt(0)}</div>
           <div style="flex:1;min-width:0">
-            <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.agentName)} <span style="color:var(--text2);font-weight:400">· ${esc(r.answers.q_age||'—')}</span></div>
-            <div style="font-size:11px;color:var(--text3)">${r.date}</div>
+            <div style="font-size:13px;font-weight:500">${esc(r.agentName)} · <span style="color:var(--text2);font-weight:400">${esc(r.answers.q_age||'—')}</span></div>
+            <div style="font-size:11px;color:var(--text3)">${r.date} · N° ${esc(r.answers.q_num||'#'+r.id)}</div>
           </div>
-          <span class="badge ${r.answers.q_sexe==='Féminin'?'badge-purple':'badge-blue'}">${r.answers.q_sexe||'—'}</span>
-        </div>`).join('') || '<p style="color:var(--text2);font-size:13px">Aucune enquête pour l\'instant.</p>'}
+          ${ml ? `<span class="badge ${ml.cls}">Morisky ${ms}/4</span>` : ''}
+        </div>`;
+      }).join('') || '<p style="color:var(--text2);font-size:13px">Aucune enquête pour l\'instant.</p>'}
     </div>
   </div>`;
 }
 
-// ============================================================
-// FILL QUESTIONNAIRE
-// ============================================================
+// =====================================================================
+// REMPLIR QUESTIONNAIRE
+// =====================================================================
 let FA = {};
 
 function renderFill() {
   FA = {};
-  let html = `<div class="page">`;
+  const allQs = allQ();
   const secs = Object.keys(SECTIONS);
-  html += `<div class="prog-tracker">` + secs.map((s,i) => `<div class="pt-step" id="pt-${s}" onclick="scrollToSec('${s}')">${i+1} ${SECTIONS[s].icon}</div>`).join('') + `</div>`;
-  html += `<div class="card" style="border-left:3px solid var(--accent);margin-bottom:16px">
-    <div style="font-family:var(--font-h);font-size:17px;font-weight:700;margin-bottom:4px">📋 Questionnaire — Inobservance ARV</div>
-    <div style="font-size:12.5px;color:var(--text2)">${new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
-  </div>`;
+  let html = `<div class="page">
+    <div class="prog-tracker">${secs.map((s,i) => `<div class="pt-step" onclick="scrollToSec('${s}')">${i+1} ${SECTIONS[s].icon}</div>`).join('')}</div>
+    <div class="card" style="border-left:3px solid var(--accent);margin-bottom:16px">
+      <div style="font-family:var(--font-h);font-size:17px;font-weight:700;margin-bottom:4px">📋 Questionnaire — Inobservance ARV</div>
+      <div style="font-size:12.5px;color:var(--text2)">${new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
+    </div>`;
 
-  Object.entries(SECTIONS).forEach(([secId, sec]) => {
-    const qs = Q.filter(q => q.sec === secId);
+  secs.forEach(secId => {
+    const sec = SECTIONS[secId];
+    const qs = allQs.filter(q => q.sec === secId && q.type !== 'auto' && q.type !== 'morisky_result');
     if (!qs.length) return;
-    html += `<div id="sec-${secId}">
-      <div class="sec-head ${sec.cls}">
-        <span class="sec-icon">${sec.icon}</span>
-        <div><div class="sec-title">${esc(sec.label)}</div><div class="sec-sub">${qs.length} question(s)</div></div>
+
+    if (secId === 'morisky') {
+      html += `<div id="sec-morisky">
+        <div class="sec-head s2"><span class="sec-icon">💊</span>
+          <div><div class="sec-title">${sec.label}</div>
+          <div class="sec-sub" style="margin-top:2px">Cochez une seule réponse par question · Score calculé automatiquement</div></div>
+        </div>
+        <div class="card" style="background:rgba(139,92,246,.06);border-color:rgba(139,92,246,.2);margin-bottom:12px">
+          <div style="font-size:13px;color:var(--text2);line-height:1.7">
+            <strong>Barème MMAS-4 :</strong> Oui = 0 point · Non = 1 point<br>
+            Score 4/4 → Haute observance &nbsp;|&nbsp; Score 3/4 → Observance moyenne &nbsp;|&nbsp; Score ≤ 2/4 → Faible observance
+          </div>
+        </div>`;
+      qs.forEach((q, i) => {
+        html += `<div class="card fq" id="fq-${q.id}">
+          <div class="fq-label"><span class="qn" style="background:var(--accent2)">${i+1}</span>${esc(q.label)}</div>
+          <div class="opt-row" onclick="selOptMorisky(this,'${q.id}','Oui')"><input type="radio" name="r-${q.id}" /> Oui <span style="margin-left:auto;font-size:11px;color:var(--text3)">0 pt</span></div>
+          <div class="opt-row" onclick="selOptMorisky(this,'${q.id}','Non')"><input type="radio" name="r-${q.id}" /> Non <span style="margin-left:auto;font-size:11px;color:var(--text3)">1 pt</span></div>
+        </div>`;
+      });
+      // Score affiché en temps réel
+      html += `<div class="card" id="morisky-score-card" style="border:2px dashed var(--border2)">
+        <div style="text-align:center;padding:.5rem">
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Score MMAS-4</div>
+          <div id="morisky-live" style="font-family:var(--font-h);font-size:48px;font-weight:800;color:var(--text3)">—/4</div>
+          <div id="morisky-level" style="font-size:13px;color:var(--text2);margin-top:4px">Répondez aux 4 questions</div>
+        </div>
       </div>`;
-
-    qs.forEach(q => {
-      html += `<div class="card fq" id="fq-${q.id}"><div class="fq-label">`;
-      if (q.req) html += `<span class="qn">●</span>`;
-      html += `${esc(q.label)}</div>`;
-
-      if (q.type === 'text') {
-        html += `<textarea class="ta-f" id="fa-${q.id}" rows="3" placeholder="${esc(q.ph||'')}" oninput="FA['${q.id}']=this.value" style="margin-bottom:0"></textarea>`;
-      } else if (q.type === 'date') {
-        html += `<input class="input-f" type="date" id="fa-${q.id}" oninput="FA['${q.id}']=this.value" style="margin-bottom:0" />`;
-      } else if (q.type === 'yesno') {
-        html += `<div class="opt-row" onclick="selOpt(this,'${q.id}','Oui')"><input type="radio" name="r-${q.id}" /> Oui</div>
-                 <div class="opt-row" onclick="selOpt(this,'${q.id}','Non')"><input type="radio" name="r-${q.id}" /> Non</div>`;
-      } else if (q.type === 'choice') {
-        html += q.opts.map(o => `<div class="opt-row" onclick="selOpt(this,'${q.id}','${esc(o)}')"><input type="radio" name="r-${q.id}" />${esc(o)}</div>`).join('');
-      } else if (q.type === 'multi') {
-        html += q.opts.map(o => `<div class="opt-row" onclick="togOpt(this,'${q.id}','${esc(o)}')"><input type="checkbox" />${esc(o)}</div>`).join('');
-      }
       html += `</div>`;
-    });
-    html += `</div>`;
+    } else {
+      html += `<div id="sec-${secId}"><div class="sec-head ${sec.cls}"><span class="sec-icon">${sec.icon}</span><div><div class="sec-title">${esc(sec.label)}</div><div class="sec-sub">${qs.length} question(s)</div></div></div>`;
+      qs.forEach(q => {
+        html += `<div class="card fq" id="fq-${q.id}"><div class="fq-label">`;
+        if (q.req) html += `<span class="qn">●</span>`;
+        html += `${esc(q.label)}</div>`;
+        if (q.type === 'text') {
+          html += `<textarea class="ta-f" id="fa-${q.id}" rows="3" placeholder="${esc(q.ph||'')}" oninput="FA['${q.id}']=this.value" style="margin-bottom:0"></textarea>`;
+        } else if (q.type === 'date') {
+          html += `<input class="input-f" type="date" id="fa-${q.id}" oninput="FA['${q.id}']=this.value" style="margin-bottom:0"/>`;
+        } else if (q.type === 'yesno') {
+          html += `<div class="opt-row" onclick="selOpt(this,'${q.id}','Oui')"><input type="radio" name="r-${q.id}"/> Oui</div>
+                   <div class="opt-row" onclick="selOpt(this,'${q.id}','Non')"><input type="radio" name="r-${q.id}"/> Non</div>`;
+        } else if (q.type === 'choice') {
+          html += q.opts.map(o => `<div class="opt-row" onclick="selOpt(this,'${q.id}','${esc(o)}')"><input type="radio" name="r-${q.id}"/>${esc(o)}</div>`).join('');
+        } else if (q.type === 'multi') {
+          html += q.opts.map(o => `<div class="opt-row" onclick="togOpt(this,'${q.id}','${esc(o)}')"><input type="checkbox"/>${esc(o)}</div>`).join('');
+        }
+        html += `</div>`;
+      });
+      html += `</div>`;
+    }
   });
 
   html += `<button class="btn btn-primary btn-full no-print" onclick="submitResp()" style="margin-bottom:1rem">📤 Soumettre l'enquête</button></div>`;
   document.getElementById('content').innerHTML = html;
 }
 
-function scrollToSec(s) { const el = document.getElementById('sec-'+s); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+function scrollToSec(s) { const el = document.getElementById('sec-'+s); if (el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
 
 function selOpt(el, qid, val) {
   el.closest('.card').querySelectorAll('.opt-row').forEach(r => { r.classList.remove('sel'); r.querySelector('input').checked = false; });
   el.classList.add('sel'); el.querySelector('input').checked = true;
   FA[qid] = val;
-  const fq = document.getElementById('fq-'+qid); if(fq) fq.classList.remove('err-border');
+  const fq = document.getElementById('fq-'+qid); if (fq) fq.classList.remove('err-border');
+}
+
+function selOptMorisky(el, qid, val) {
+  el.closest('.card').querySelectorAll('.opt-row').forEach(r => { r.classList.remove('sel'); r.querySelector('input').checked = false; });
+  el.classList.add('sel'); el.querySelector('input').checked = true;
+  FA[qid] = val;
+  const fq = document.getElementById('fq-'+qid); if (fq) fq.classList.remove('err-border');
+  updateMoriskyLive();
+}
+
+function updateMoriskyLive() {
+  const answered = ['q_m1','q_m2','q_m3','q_m4'].filter(id => FA[id]);
+  if (answered.length === 0) return;
+  const score = calcMorisky(FA);
+  const lv = morLevel(score);
+  const liveEl = document.getElementById('morisky-live');
+  const lvlEl  = document.getElementById('morisky-level');
+  const card    = document.getElementById('morisky-score-card');
+  if (liveEl) { liveEl.textContent = score + '/4'; liveEl.style.color = lv.color; }
+  if (lvlEl)  lvlEl.textContent = lv.label + (answered.length < 4 ? ` (${answered.length}/4 réponses)` : ' ✓');
+  if (card)   card.style.borderColor = lv.color;
 }
 
 function togOpt(el, qid, val) {
@@ -680,33 +553,76 @@ function togOpt(el, qid, val) {
 
 function submitResp() {
   let errs = [];
-  Q.filter(q => q.req).forEach(q => {
+  allQ().filter(q => q.req && q.type !== 'auto' && q.type !== 'morisky_result').forEach(q => {
     const a = FA[q.id];
     if (!a || (Array.isArray(a) && !a.length) || (typeof a === 'string' && !a.trim())) {
       errs.push(q.id);
-      const fq = document.getElementById('fq-'+q.id);
-      if (fq) fq.classList.add('err-border');
+      const fq = document.getElementById('fq-'+q.id); if (fq) fq.classList.add('err-border');
     }
   });
   if (errs.length) {
-    const first = document.getElementById('fq-'+errs[0]);
-    if (first) first.scrollIntoView({behavior:'smooth',block:'center'});
-    toast(`⚠️ ${errs.length} champ(s) obligatoire(s) à remplir.`, 'w'); return;
+    document.getElementById('fq-'+errs[0])?.scrollIntoView({behavior:'smooth',block:'center'});
+    toast('⚠️ ' + errs.length + ' champ(s) obligatoire(s) manquant(s).', 'w'); return;
   }
-  const r = { id: responses.length + 1, agentId: CU.id, agentName: CU.name, date: new Date().toLocaleString('fr-FR'), ts: Date.now(), answers: {...FA} };
+  FA.q_num = genNum();
+  FA.q_morisky_score = calcMorisky(FA);
+  const r = {id: responses.length + 1, agentId: CU.id, agentName: CU.name, date: new Date().toLocaleString('fr-FR'), ts: Date.now(), answers: {...FA}};
   responses.push(r);
   saveLocal(); syncNow();
-  toast('✅ Enquête enregistrée et synchronisée !', 's');
+  const lv = morLevel(FA.q_morisky_score);
+  toast('✅ Enquête N° ' + FA.q_num + ' enregistrée ! Score Morisky : ' + FA.q_morisky_score + '/4 (' + lv.label + ')', 's');
   renderFill();
 }
 
-// ============================================================
-// REPORT
-// ============================================================
-function getFiltered() {
-  const fs = document.getElementById('f-sexe')?.value || '';
-  const fa = document.getElementById('f-age')?.value  || '';
-  const fe = document.getElementById('f-enq')?.value  || '';
+// =====================================================================
+// RAPPORT — 5 ONGLETS
+// =====================================================================
+function renderReport() {
+  if (CU.role !== 'admin') { toast('Accès réservé.', 'd'); return; }
+  const agList = [...new Set(responses.map(r => r.agentName))];
+  const ages   = ['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
+  document.getElementById('content').innerHTML = `<div class="page">
+    <div class="rpt-tabs no-print">
+      <button class="rpt-tab active" data-tab="global"     onclick="swTab('global')">📊 Global</button>
+      <button class="rpt-tab"        data-tab="morisky"    onclick="swTab('morisky')">💊 Morisky</button>
+      <button class="rpt-tab"        data-tab="croises"    onclick="swTab('croises')">📐 Analyses croisées</button>
+      <button class="rpt-tab"        data-tab="classement" onclick="swTab('classement')">🏆 Classement</button>
+      <button class="rpt-tab"        data-tab="individuel" onclick="swTab('individuel')">👥 Fiches</button>
+    </div>
+    <div class="filter-bar no-print" id="filter-zone">
+      <span class="filter-label">🔍 Filtres :</span>
+      <select id="f-sexe" onchange="refreshRpt()"><option value="">Genre (tous)</option><option>Masculin</option><option>Féminin</option></select>
+      <select id="f-age"  onchange="refreshRpt()"><option value="">Âge (tous)</option>${ages.map(a=>`<option>${esc(a)}</option>`).join('')}</select>
+      <select id="f-enq"  onchange="refreshRpt()"><option value="">Enquêteur (tous)</option>${agList.map(a=>`<option>${esc(a)}</option>`).join('')}</select>
+      <button class="btn btn-sm" onclick="resetF()">✕ Reset</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" class="no-print" id="export-btns">
+      <button class="btn btn-primary" onclick="exportTabCsv()">📥 Exporter cet onglet (CSV)</button>
+      <button class="btn btn-success" onclick="dlCSV(buildAllCsvRows(),'Rapport_Complet_ARV')">📥 Export complet (CSV)</button>
+      <button class="btn" onclick="window.print()">🖨️ Imprimer / PDF</button>
+    </div>
+    <div id="rpt-body"></div>
+  </div>`;
+  activeTab = 'global';
+  buildRpt();
+}
+
+function swTab(t) {
+  activeTab = t;
+  document.querySelectorAll('.rpt-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
+  const fz = document.getElementById('filter-zone');
+  if (fz) fz.style.display = t === 'classement' ? 'none' : 'flex';
+  Object.values(charts).forEach(c => { try{c.destroy();}catch(e){} }); charts = {};
+  buildRpt();
+}
+
+function resetF() { ['f-sexe','f-age','f-enq'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';}); refreshRpt(); }
+function refreshRpt() { Object.values(charts).forEach(c=>{try{c.destroy();}catch(e){}});charts={};buildRpt(); }
+
+function getFilt() {
+  const fs = document.getElementById('f-sexe')?.value||'';
+  const fa = document.getElementById('f-age')?.value||'';
+  const fe = document.getElementById('f-enq')?.value||'';
   return responses.filter(r => {
     if (fs && r.answers.q_sexe !== fs) return false;
     if (fa && r.answers.q_age  !== fa) return false;
@@ -715,242 +631,469 @@ function getFiltered() {
   });
 }
 
-function renderReport() {
-  if (CU.role !== 'admin') { toast('Accès réservé à l\'administrateur.', 'd'); return; }
-  const agList = [...new Set(responses.map(r => r.agentName))];
-  const ages = ['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
-  document.getElementById('content').innerHTML = `<div class="page">
-    <div class="filter-bar no-print">
-      <span class="filter-label">🔍 Filtres :</span>
-      <select id="f-sexe" onchange="refreshReport()">
-        <option value="">Genre (tous)</option><option>Masculin</option><option>Féminin</option>
-      </select>
-      <select id="f-age" onchange="refreshReport()">
-        <option value="">Âge (tous)</option>${ages.map(a=>`<option>${esc(a)}</option>`).join('')}
-      </select>
-      <select id="f-enq" onchange="refreshReport()">
-        <option value="">Enquêteur (tous)</option>${agList.map(a=>`<option>${esc(a)}</option>`).join('')}
-      </select>
-      <button class="btn btn-sm" onclick="resetFilters()">✕ Reset</button>
-    </div>
-    <div id="report-body"></div>
+function buildRpt() {
+  const rb = document.getElementById('rpt-body'); if (!rb) return;
+  if      (activeTab==='global')     tabGlobal(rb);
+  else if (activeTab==='morisky')    tabMorisky(rb);
+  else if (activeTab==='croises')    tabCroises(rb);
+  else if (activeTab==='classement') tabClassement(rb);
+  else if (activeTab==='individuel') tabIndividuel(rb);
+}
+
+function mkChart(id, type, labels, datasets, opts) {
+  const ctx = document.getElementById(id); if (!ctx) return;
+  const leg = opts && opts.leg !== undefined ? opts.leg : true;
+  const legPos = (opts && opts.legPos) || 'top';
+  charts[id] = new Chart(ctx, {
+    type, data:{labels, datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:leg, position:legPos, labels:{color:'#7b82a0',font:{size:11},padding:10}}},
+      scales: (type==='doughnut'||type==='pie') ? {} : {
+        y:{beginAtZero:true,ticks:{color:'#7b82a0',stepSize:1},grid:{color:'rgba(255,255,255,0.04)'}},
+        x:{ticks:{color:'#7b82a0',font:{size:11}},grid:{display:false}}
+      }
+    }
+  });
+}
+
+function barBlock(q, data) {
+  const opts = q.type==='yesno' ? ['Oui','Non'] : (q.opts||[]);
+  const counts = {}; opts.forEach(o=>counts[o]=0);
+  data.forEach(r => {
+    const a = r.answers[q.id];
+    if (Array.isArray(a)) a.forEach(v=>{if(counts[v]!=null)counts[v]++;});
+    else if (a && counts[a]!=null) counts[a]++;
+  });
+  const tot = Object.values(counts).reduce((a,b)=>a+b,0)||1;
+  let html = `<div class="card"><div style="font-size:14px;font-weight:500;display:flex;gap:8px;align-items:flex-start;margin-bottom:10px"><span class="qn" style="background:var(--accent2)">Q</span>${esc(q.label)}</div>`;
+  opts.forEach((o,i) => {
+    const c=counts[o]||0; const p=pct(c,tot);
+    html += `<div class="prog-wrap"><div class="prog-info"><span>${esc(o)}</span><span style="font-weight:500">${c} (${p}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:${PAL[i%PAL.length]}"></div></div></div>`;
+  });
+  const h = q.type==='yesno' ? 160 : Math.max(160, opts.length*38);
+  html += `<div class="ch-wrap" style="height:${h}px"><canvas id="c-${q.id}"></canvas></div></div>`;
+  return { html, draw:()=>mkChart('c-'+q.id, q.type==='yesno'?'doughnut':'bar', opts, [{data:opts.map(o=>counts[o]||0),backgroundColor:opts.map((_,i)=>PAL[i%PAL.length]),borderWidth:0,borderRadius:4}], {leg:q.type==='yesno',legPos:'right'}) };
+}
+
+// --- ONGLET GLOBAL ---
+function tabGlobal(rb) {
+  const data=getFilt(); const n=data.length;
+  if (!n) { rb.innerHTML=noData(); return; }
+  const women=data.filter(r=>r.answers.q_sexe==='Féminin').length;
+  const men=data.filter(r=>r.answers.q_sexe==='Masculin').length;
+  const draws = [];
+  let html = `<div class="met-grid">
+    <div class="met-card"><div class="met-val">${n}</div><div class="met-lbl">📋 Enquêtes</div></div>
+    <div class="met-card m2"><div class="met-val">${new Set(data.map(r=>r.agentName)).size}</div><div class="met-lbl">👥 Enquêteurs</div></div>
+    <div class="met-card m3"><div class="met-val">${women}</div><div class="met-lbl">♀ Femmes (${pct(women,n)}%)</div></div>
+    <div class="met-card m4"><div class="met-val">${men}</div><div class="met-lbl">♂ Hommes (${pct(men,n)}%)</div></div>
   </div>`;
-  buildReportBody();
-}
-
-function resetFilters() {
-  ['f-sexe','f-age','f-enq'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
-  refreshReport();
-}
-
-function refreshReport() {
-  Object.values(charts).forEach(c => { try{c.destroy()}catch(e){} }); charts = {};
-  buildReportBody();
-}
-
-function buildReportBody() {
-  const data = getFiltered();
-  const n = data.length;
-  const rb = document.getElementById('report-body');
-  if (!rb) return;
-
-  if (!n) {
-    rb.innerHTML = `<div class="card" style="text-align:center;padding:2rem"><div style="font-size:36px;margin-bottom:12px">🔍</div><p style="color:var(--text2)">Aucune donnée pour ces filtres.</p></div>`;
-    return;
+  Object.entries(SECTIONS).filter(([s])=>s!=='morisky').forEach(([secId,sec]) => {
+    const qs = Q_BASE.filter(q=>q.sec===secId&&['choice','yesno','multi'].includes(q.type)&&!q.isMorisky&&q.type!=='morisky_result');
+    const tqs = Q_BASE.filter(q=>q.sec===secId&&q.type==='text');
+    if (!qs.length && !tqs.length) return;
+    html += `<div class="sec-head ${sec.cls}"><span class="sec-icon">${sec.icon}</span><div class="sec-title">${esc(sec.label)}</div></div>`;
+    qs.forEach(q => { const b=barBlock(q,data); html+=b.html; draws.push(b.draw); });
+    tqs.forEach(q => {
+      const ans=data.filter(r=>r.answers[q.id]?.trim()); if(!ans.length)return;
+      html+=`<div class="card"><div class="card-header"><div class="card-title">${esc(q.label)}</div><span class="badge badge-green">${ans.length}</span></div>`;
+      ans.slice(0,8).forEach(r=>html+=`<div class="resp-card"><div class="resp-meta">👤 ${esc(r.agentName)} · ${r.date}</div><div style="font-size:14px">${esc(r.answers[q.id])}</div></div>`);
+      if(ans.length>8)html+=`<p style="font-size:12px;color:var(--text3);text-align:center;margin-top:6px">…et ${ans.length-8} autre(s)</p>`;
+      html+=`</div>`;
+    });
+  });
+  // Custom questions
+  const cqs = customQ.filter(q=>['choice','yesno','multi'].includes(q.type));
+  if (cqs.length) {
+    html+=`<div class="sec-head s4"><span class="sec-icon">✏️</span><div class="sec-title">Questions personnalisées</div></div>`;
+    cqs.forEach(q=>{ const b=barBlock(q,data); html+=b.html; draws.push(b.draw); });
   }
+  rb.innerHTML=html;
+  setTimeout(()=>draws.forEach(fn=>fn()),200);
+}
 
-  const women = data.filter(r => r.answers.q_sexe === 'Féminin').length;
-  const men   = data.filter(r => r.answers.q_sexe === 'Masculin').length;
-  const today = data.filter(r => new Date(r.ts).toDateString() === new Date().toDateString()).length;
-  const agCount = new Set(data.map(r => r.agentName)).size;
+// --- ONGLET MORISKY ---
+function tabMorisky(rb) {
+  const data=getFilt(); const n=data.length;
+  if (!n) { rb.innerHTML=noData(); return; }
+  const scored=data.filter(r=>r.answers.q_morisky_score!==undefined&&r.answers.q_morisky_score!==null);
+  const ns=scored.length;
+  const counts={0:0,1:0,2:0,3:0,4:0};
+  scored.forEach(r=>{const s=parseInt(r.answers.q_morisky_score);if(!isNaN(s)&&counts[s]!=null)counts[s]++;});
+  const somme=scored.reduce((a,r)=>a+parseInt(r.answers.q_morisky_score),0);
+  const moy=ns?(somme/ns).toFixed(2):0;
+  const haute=scored.filter(r=>parseInt(r.answers.q_morisky_score)===4).length;
+  const moyenne_obs=scored.filter(r=>parseInt(r.answers.q_morisky_score)===3).length;
+  const faible=scored.filter(r=>parseInt(r.answers.q_morisky_score)<=2).length;
+  const draws=[];
 
-  let html = `
-    <div style="display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap" class="no-print">
-      <button class="btn btn-primary" onclick="exportCSV()">📥 Export CSV</button>
-      <button class="btn btn-success" onclick="window.print()">🖨️ Imprimer / PDF</button>
+  let html=`<div class="sec-head s2"><span class="sec-icon">💊</span>
+    <div><div class="sec-title">Questionnaire de Morisky — MMAS-4</div>
+    <div class="sec-sub">${ns} patient(s) évalué(s) sur ${n}</div></div></div>
+
+  <div class="met-grid">
+    <div class="met-card"><div class="met-val">${ns}</div><div class="met-lbl">🧾 Évalués</div></div>
+    <div class="met-card m3"><div class="met-val" style="color:var(--accent3)">${haute}</div><div class="met-lbl">✅ Haute obs. (4/4)</div></div>
+    <div class="met-card m4"><div class="met-val" style="color:var(--warn)">${moyenne_obs}</div><div class="met-lbl">⚠️ Moy. obs. (3/4)</div></div>
+    <div class="met-card m2"><div class="met-val" style="color:var(--danger)">${faible}</div><div class="met-lbl">❌ Faible obs. (≤2/4)</div></div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--accent)">
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Score moyen</div>
+        <div style="font-family:var(--font-h);font-size:50px;font-weight:800;color:var(--accent);line-height:1">${moy}<span style="font-size:18px;color:var(--text2)">/4</span></div>
+      </div>
+      <div style="flex:1;min-width:180px">
+        <div style="font-size:13px;color:var(--text2);margin-bottom:8px">Interprétation MMAS-4 :</div>
+        <div style="font-size:13px;line-height:2">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent3);margin-right:6px"></span>Score = 4/4 → <strong>Haute observance</strong><br>
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--warn);margin-right:6px"></span>Score = 3/4 → <strong>Observance moyenne</strong><br>
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--danger);margin-right:6px"></span>Score ≤ 2/4 → <strong>Faible observance</strong>
+        </div>
+      </div>
     </div>
-    <div class="met-grid">
-      <div class="met-card"><div class="met-val">${n}</div><div class="met-lbl">📋 Enquêtes</div></div>
-      <div class="met-card m2"><div class="met-val">${agCount}</div><div class="met-lbl">👥 Enquêteurs</div></div>
-      <div class="met-card m3"><div class="met-val">${women}</div><div class="met-lbl">♀ Femmes (${n?Math.round(women/n*100):0}%)</div></div>
-      <div class="met-card m4"><div class="met-val">${men}</div><div class="met-lbl">♂ Hommes (${n?Math.round(men/n*100):0}%)</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">📊 Distribution des scores</div></div>`;
+  const scColors={0:'#f56565',1:'#f56565',2:'#f6ad55',3:'#f6ad55',4:'#10d9a0'};
+  const scLabel={0:'Très faible',1:'Faible',2:'Faible',3:'Moyenne',4:'Haute'};
+  [0,1,2,3,4].forEach(s=>{
+    const c=counts[s]||0; const p=pct(c,ns||1);
+    html+=`<div class="prog-wrap"><div class="prog-info">
+      <span><strong>${s}/4</strong> <span style="font-size:12px;color:var(--text2)">${scLabel[s]}</span></span>
+      <span style="font-weight:500">${c} (${p}%)</span>
+    </div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:${scColors[s]}"></div></div></div>`;
+  });
+  html+=`<div class="ch-wrap" style="height:220px"><canvas id="c-mor-dist"></canvas></div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">🍩 Répartition par niveau d'observance</div></div>
+    <div class="ch-wrap" style="height:220px"><canvas id="c-mor-niv"></canvas></div>
+  </div>
+
+  <div class="sec-head s2" style="margin-top:4px"><span class="sec-icon">❓</span><div class="sec-title">Détail par question MMAS-4</div></div>`;
+
+  Q_BASE.filter(q=>q.isMorisky).forEach((q,i)=>{
+    const oui=data.filter(r=>r.answers[q.id]==='Oui').length;
+    const non=data.filter(r=>r.answers[q.id]==='Non').length;
+    const tot=oui+non||1;
+    html+=`<div class="card"><div style="font-size:14px;font-weight:500;display:flex;gap:8px;align-items:flex-start;margin-bottom:10px">
+      <span class="qn" style="background:var(--accent2)">Q${i+1}</span>${esc(q.label)}</div>
+      <div class="prog-wrap"><div class="prog-info"><span>Oui (0 pt)</span><span style="font-weight:500;color:var(--danger)">${oui} (${pct(oui,tot)}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${pct(oui,tot)}%;background:var(--danger)"></div></div></div>
+      <div class="prog-wrap"><div class="prog-info"><span>Non (1 pt)</span><span style="font-weight:500;color:var(--accent3)">${non} (${pct(non,tot)}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${pct(non,tot)}%;background:var(--accent3)"></div></div></div>
+      <div class="ch-wrap" style="height:140px"><canvas id="cmq${i}"></canvas></div>
     </div>`;
-
-  // Per section
-  Object.entries(SECTIONS).forEach(([secId, sec]) => {
-    const closedQs = Q.filter(q => q.sec === secId && ['choice','yesno','multi'].includes(q.type));
-    const textQs   = Q.filter(q => q.sec === secId && q.type === 'text');
-    if (!closedQs.length && !textQs.length) return;
-
-    html += `<div><div class="sec-head ${sec.cls}"><span class="sec-icon">${sec.icon}</span><div><div class="sec-title">${esc(sec.label)}</div></div></div>`;
-
-    closedQs.forEach(q => {
-      const opts = q.type === 'yesno' ? ['Oui','Non'] : (q.opts || []);
-      const counts = {}; opts.forEach(o => counts[o] = 0);
-      data.forEach(r => {
-        const a = r.answers[q.id];
-        if (Array.isArray(a)) a.forEach(v => { if(counts[v]!=null) counts[v]++; });
-        else if (a && counts[a] != null) counts[a]++;
-      });
-      const tot = Object.values(counts).reduce((a,b)=>a+b,0) || 1;
-
-      html += `<div class="card"><div class="card-header" style="margin-bottom:8px">
-        <div style="font-size:14px;font-weight:500;display:flex;gap:8px;align-items:flex-start">
-          <span class="qn" style="background:var(--accent2)">Q</span>${esc(q.label)}
-        </div></div>`;
-      opts.forEach((o,i) => {
-        const c = counts[o]||0; const p = Math.round(c/tot*100);
-        html += `<div class="prog-wrap"><div class="prog-info"><span>${esc(o)}</span><span style="font-weight:500">${c} (${p}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:${PAL[i%PAL.length]}"></div></div></div>`;
-      });
-      html += `<div class="ch-wrap" style="height:${q.type==='yesno'?160:Math.max(160,opts.length*38)}px"><canvas id="c-${q.id}"></canvas></div></div>`;
-    });
-
-    textQs.forEach(q => {
-      const ans = data.filter(r => r.answers[q.id]?.trim());
-      if (!ans.length) return;
-      html += `<div class="card"><div class="card-header"><div class="card-title">${esc(q.label)}</div><span class="badge badge-green">${ans.length}</span></div>`;
-      ans.slice(0,10).forEach(r => html += `<div class="resp-card"><div class="resp-meta">👤 ${esc(r.agentName)} · ${r.date}</div><div style="font-size:14px">${esc(r.answers[q.id])}</div></div>`);
-      if (ans.length > 10) html += `<p style="font-size:12px;color:var(--text3);text-align:center;margin-top:6px">…et ${ans.length-10} autre(s)</p>`;
-      html += `</div>`;
-    });
-    html += `</div>`;
+    draws.push(()=>mkChart('cmq'+i,'doughnut',['Oui (0pt)','Non (1pt)'],[{data:[oui,non],backgroundColor:['#f56565','#10d9a0'],borderWidth:0}],{leg:true,legPos:'right'}));
   });
 
-  // Cross analysis
-  if (n >= 3) {
-    // Age x inobservance
-    html += `<div class="card"><div class="card-header"><div class="card-title">📐 Âge × Respect des horaires</div></div>`;
-    const ages = ['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
-    const hasAge = ages.some(a => data.some(r => r.answers.q_age === a));
-    html += hasAge ? `<div class="ch-wrap" style="height:240px"><canvas id="c-cross-age"></canvas></div>` : `<p style="color:var(--text2);font-size:13px">Pas assez de données.</p>`;
-    html += `</div>`;
-    // Genre x inobservance
-    html += `<div class="card"><div class="card-header"><div class="card-title">📐 Genre × Respect des horaires</div></div>
-      <div class="ch-wrap" style="height:200px"><canvas id="c-cross-genre"></canvas></div></div>`;
-  }
+  // Tableau patients
+  html+=`<div class="card"><div class="card-header"><div class="card-title">📋 Détail par patient</div><span class="badge badge-blue">${ns}</span></div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr>
+        <th>N°</th><th>Âge</th><th>Genre</th>
+        <th style="text-align:center">Q1</th><th style="text-align:center">Q2</th><th style="text-align:center">Q3</th><th style="text-align:center">Q4</th>
+        <th style="text-align:center">Score</th><th>Niveau</th>
+      </tr></thead><tbody>`;
+  scored.forEach(r=>{
+    const s=parseInt(r.answers.q_morisky_score);
+    const lv=morLevel(s);
+    const pt=v=>v==='Non'?`<span style="color:var(--accent3);font-weight:700">1</span>`:`<span style="color:var(--danger)">0</span>`;
+    html+=`<tr>
+      <td>${esc(r.answers.q_num||'#'+r.id)}</td>
+      <td style="color:var(--text2)">${esc(r.answers.q_age||'—')}</td>
+      <td style="color:var(--text2)">${esc(r.answers.q_sexe||'—')}</td>
+      <td style="text-align:center">${pt(r.answers.q_m1)}</td>
+      <td style="text-align:center">${pt(r.answers.q_m2)}</td>
+      <td style="text-align:center">${pt(r.answers.q_m3)}</td>
+      <td style="text-align:center">${pt(r.answers.q_m4)}</td>
+      <td style="text-align:center;font-family:var(--font-h);font-size:17px;font-weight:800;color:${lv.color}">${s}/4</td>
+      <td><span class="badge ${lv.cls}">${lv.label}</span></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div></div>`;
 
-  // Individual responses
-  html += `<div class="card"><div class="card-header"><div class="card-title">👥 Réponses individuelles</div>
-    <span class="badge badge-blue">${n}</span></div><div id="all-resp">`;
-  data.slice().reverse().forEach(r => {
-    html += `<div class="resp-card"><div class="resp-meta">
+  rb.innerHTML=html;
+  setTimeout(()=>{
+    draws.forEach(fn=>fn());
+    mkChart('c-mor-dist','bar',['0/4','1/4','2/4','3/4','4/4'],
+      [{data:[counts[0],counts[1],counts[2],counts[3],counts[4]],backgroundColor:['#f56565','#f56565','#f6ad55','#f6ad55','#10d9a0'],borderWidth:0,borderRadius:5}],
+      {leg:false});
+    mkChart('c-mor-niv','doughnut',
+      ['Haute (4/4)','Moyenne (3/4)','Faible (≤2/4)'],
+      [{data:[haute,moyenne_obs,faible],backgroundColor:['#10d9a0','#f6ad55','#f56565'],borderWidth:0}],
+      {leg:true,legPos:'right'});
+  },200);
+}
+
+// --- ONGLET ANALYSES CROISÉES ---
+function tabCroises(rb) {
+  const data=getFilt(); const n=data.length;
+  if (n<2){rb.innerHTML=noData('Pas assez de données (minimum 2 enquêtes).');return;}
+  const AGES=['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
+  const ageLbls=AGES.filter(a=>data.some(r=>r.answers.q_age===a));
+  const genLbls=['Masculin','Féminin'].filter(g=>data.some(r=>r.answers.q_sexe===g));
+
+  let html=`<div class="sec-head s1"><span class="sec-icon">📐</span><div class="sec-title">Analyses croisées · ${n} enquête(s)</div></div>
+    <div class="card"><div class="card-header"><div class="card-title">🕐 Tranche d'âge × Respect des horaires ARV</div></div><div class="ch-wrap" style="height:240px"><canvas id="cx1"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">👫 Genre × Respect des horaires ARV</div></div><div class="ch-wrap" style="height:200px"><canvas id="cx2"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">💊 Tranche d'âge × Score Morisky moyen</div></div><div class="ch-wrap" style="height:230px"><canvas id="cx3"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">💊 Genre × Score Morisky moyen</div></div><div class="ch-wrap" style="height:200px"><canvas id="cx4"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">📚 Niveau d'instruction × Respect des horaires</div></div><div class="ch-wrap" style="height:220px"><canvas id="cx5"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">⚠️ Stigmatisation × Respect des horaires</div></div><div class="ch-wrap" style="height:190px"><canvas id="cx6"></canvas></div></div>`;
+  rb.innerHTML=html;
+
+  const ds2=(lbls,fn1,fn2)=>[{label:'Observant ✓',data:lbls.map(fn1),backgroundColor:'#10d9a0',borderRadius:4,borderWidth:0},{label:'Non observant ✗',data:lbls.map(fn2),backgroundColor:'#f56565',borderRadius:4,borderWidth:0}];
+  setTimeout(()=>{
+    mkChart('cx1','bar',ageLbls.map(a=>a.replace(' ans','')),ds2(ageLbls,a=>data.filter(r=>r.answers.q_age===a&&r.answers.q_horaire_meds==='Oui').length,a=>data.filter(r=>r.answers.q_age===a&&r.answers.q_horaire_meds==='Non').length));
+    mkChart('cx2','bar',genLbls,ds2(genLbls,g=>data.filter(r=>r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Oui').length,g=>data.filter(r=>r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Non').length));
+    mkChart('cx3','bar',ageLbls.map(a=>a.replace(' ans','')),
+      [{label:'Score moy /4',data:ageLbls.map(a=>{const s=data.filter(r=>r.answers.q_age===a&&r.answers.q_morisky_score!=null);return s.length?+(s.reduce((acc,r)=>acc+parseFloat(r.answers.q_morisky_score),0)/s.length).toFixed(2):0;}),backgroundColor:'#8b5cf6',borderRadius:4,borderWidth:0}],{leg:false});
+    mkChart('cx4','bar',genLbls,
+      [{label:'Score moy /4',data:genLbls.map(g=>{const s=data.filter(r=>r.answers.q_sexe===g&&r.answers.q_morisky_score!=null);return s.length?+(s.reduce((acc,r)=>acc+parseFloat(r.answers.q_morisky_score),0)/s.length).toFixed(2):0;}),backgroundColor:['#5b8df6','#f75d9d'],borderRadius:4,borderWidth:0}],{leg:false});
+    const ins=['Aucun','Primaire','Secondaire','Universitaire'].filter(v=>data.some(r=>r.answers.q_instruct===v));
+    mkChart('cx5','bar',ins,ds2(ins,v=>data.filter(r=>r.answers.q_instruct===v&&r.answers.q_horaire_meds==='Oui').length,v=>data.filter(r=>r.answers.q_instruct===v&&r.answers.q_horaire_meds==='Non').length));
+    mkChart('cx6','bar',['Stigmatisé: Oui','Stigmatisé: Non'],ds2(['Oui','Non'],v=>data.filter(r=>r.answers.q_stigma===v&&r.answers.q_horaire_meds==='Oui').length,v=>data.filter(r=>r.answers.q_stigma===v&&r.answers.q_horaire_meds==='Non').length));
+  },200);
+}
+
+// --- ONGLET CLASSEMENT ---
+function tabClassement(rb) {
+  const total=responses.length;
+  if (!total){rb.innerHTML=noData();return;}
+  const map={};
+  responses.forEach(r=>{
+    if(!map[r.agentName])map[r.agentName]={name:r.agentName,count:0,ms:0,msn:0,dates:[]};
+    map[r.agentName].count++;
+    map[r.agentName].dates.push(r.ts);
+    const ms=parseFloat(r.answers.q_morisky_score);
+    if(!isNaN(ms)){map[r.agentName].ms+=ms;map[r.agentName].msn++;}
+  });
+  const list=Object.values(map).sort((a,b)=>b.count-a.count);
+  const maxC=list[0]?.count||1;
+  const medals=['🥇','🥈','🥉'];
+
+  let html=`<div class="sec-head s3"><span class="sec-icon">🏆</span><div><div class="sec-title">Classement des enquêteurs</div><div class="sec-sub">${list.length} enquêteur(s) · ${total} enquête(s)</div></div></div>`;
+
+  // Podium
+  html+=`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px">`;
+  list.slice(0,3).forEach((ag,i)=>{
+    const p=pct(ag.count,total);
+    const avg=ag.msn?(ag.ms/ag.msn).toFixed(1):'—';
+    const lv=ag.msn?morLevel(Math.round(ag.ms/ag.msn)):null;
+    html+=`<div class="card" style="border-top:3px solid ${i===0?'#f6ad55':i===1?'#8b92b0':'#cd7f32'};text-align:center;padding:1.25rem">
+      <div style="font-size:36px;margin-bottom:6px">${medals[i]||'👤'}</div>
+      <div class="avatar" style="margin:0 auto 8px;width:44px;height:44px;font-size:17px">${ag.name.charAt(0)}</div>
+      <div style="font-family:var(--font-h);font-size:14px;font-weight:700;margin-bottom:4px">${esc(ag.name)}</div>
+      <div style="font-size:28px;font-weight:700;color:${i===0?'var(--warn)':'var(--accent)'};font-family:var(--font-h)">${ag.count}</div>
+      <div style="font-size:11px;color:var(--text2)">${p}% des enquêtes</div>
+      ${lv?`<div style="margin-top:6px"><span class="badge ${lv.cls}">${avg}/4</span></div>`:''}
+    </div>`;
+  });
+  html+=`</div>`;
+
+  // Tableau
+  html+=`<div class="card"><div class="card-header"><div class="card-title">📋 Classement complet</div></div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Rang</th><th>Enquêteur</th><th style="text-align:center">Enquêtes</th><th style="text-align:center">Part</th><th style="text-align:center">Morisky moy.</th><th style="min-width:120px">Progression</th></tr></thead>
+      <tbody>`;
+  list.forEach((ag,i)=>{
+    const p=pct(ag.count,total);
+    const avg=ag.msn?(ag.ms/ag.msn).toFixed(1):'—';
+    const lv=ag.msn?morLevel(Math.round(ag.ms/ag.msn)):null;
+    const bw=pct(ag.count,maxC);
+    html+=`<tr>
+      <td style="font-size:18px">${medals[i]||('#'+(i+1))}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0">${ag.name.charAt(0)}</div><span style="font-weight:500">${esc(ag.name)}</span></div></td>
+      <td style="text-align:center;font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--accent)">${ag.count}</td>
+      <td style="text-align:center"><span class="badge badge-blue">${p}%</span></td>
+      <td style="text-align:center">${lv?`<span class="badge ${lv.cls}">${avg}/4</span>`:'<span class="badge">—</span>'}</td>
+      <td><div class="prog-bar-bg" style="height:8px"><div class="prog-bar" style="width:${bw}%;background:${i===0?'var(--warn)':'var(--accent)'}"></div></div></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div></div>
+  <div class="card"><div class="card-header"><div class="card-title">📊 Enquêtes par enquêteur</div></div>
+    <div class="ch-wrap" style="height:${Math.max(220,list.length*45)}px"><canvas id="c-rank"></canvas></div></div>`;
+  rb.innerHTML=html;
+  setTimeout(()=>{
+    mkChart('c-rank','bar',list.map(a=>esc(a.name)),
+      [{label:'Enquêtes',data:list.map(a=>a.count),backgroundColor:list.map((_,i)=>PAL[i%PAL.length]),borderRadius:5,borderWidth:0}],{leg:false});
+  },200);
+}
+
+// --- ONGLET FICHES INDIVIDUELLES ---
+function tabIndividuel(rb) {
+  const data=getFilt(); const n=data.length;
+  if(!n){rb.innerHTML=noData();return;}
+  let html=`<div class="sec-head s4"><span class="sec-icon">👥</span><div><div class="sec-title">Réponses individuelles</div><div class="sec-sub">${n} fiche(s)</div></div></div>`;
+  data.slice().reverse().forEach(r=>{
+    const ms=r.answers.q_morisky_score;
+    const lv=ms!==undefined&&ms!==null?morLevel(parseInt(ms)):null;
+    html+=`<div class="resp-card"><div class="resp-meta">
       <div class="avatar" style="width:26px;height:26px;font-size:10px;display:inline-flex">${r.agentName.charAt(0)}</div>
       <strong>${esc(r.agentName)}</strong> · ${r.date}
-      <span class="badge badge-blue">#${r.id}</span>
+      <span class="badge badge-blue">N° ${esc(r.answers.q_num||'#'+r.id)}</span>
       <span class="badge ${r.answers.q_sexe==='Féminin'?'badge-purple':'badge-blue'}">${r.answers.q_sexe||'—'}</span>
       <span class="badge badge-warn">${r.answers.q_age||'—'}</span>
+      ${lv?`<span class="badge ${lv.cls}">Morisky ${ms}/4</span>`:''}
     </div>`;
-    Q.filter(q => q.type !== 'text' && r.answers[q.id]).forEach(q => {
-      const a = r.answers[q.id];
-      html += `<div class="resp-ans"><div class="ra-q">${esc(q.label)}</div><div>${Array.isArray(a)?a.join(', '):esc(String(a))}</div></div>`;
+    Q_BASE.filter(q=>!['auto','morisky_result'].includes(q.type)&&r.answers[q.id]).forEach(q=>{
+      const a=r.answers[q.id];
+      html+=`<div class="resp-ans"><div class="ra-q">${esc(q.label)}</div><div>${Array.isArray(a)?a.join(', '):esc(String(a))}</div></div>`;
     });
-    html += `</div>`;
+    html+=`</div>`;
   });
-  html += `</div></div>`;
-
-  rb.innerHTML = html;
-
-  // Render charts
-  setTimeout(() => {
-    Object.entries(SECTIONS).forEach(([secId]) => {
-      Q.filter(q => q.sec===secId && ['choice','yesno','multi'].includes(q.type)).forEach(q => {
-        const opts = q.type === 'yesno' ? ['Oui','Non'] : (q.opts || []);
-        const counts = {}; opts.forEach(o => counts[o] = 0);
-        data.forEach(r => {
-          const a = r.answers[q.id];
-          if (Array.isArray(a)) a.forEach(v => { if(counts[v]!=null) counts[v]++; });
-          else if (a && counts[a]!=null) counts[a]++;
-        });
-        const ctx = document.getElementById('c-'+q.id); if (!ctx) return;
-        charts[q.id] = new Chart(ctx, {
-          type: q.type === 'yesno' ? 'doughnut' : 'bar',
-          data: { labels: opts, datasets: [{ data: opts.map(o=>counts[o]||0), backgroundColor: opts.map((_,i)=>PAL[i%PAL.length]), borderWidth:0, borderRadius:4 }] },
-          options: { responsive:true, maintainAspectRatio:false,
-            plugins: { legend: { display: q.type==='yesno', position:'right', labels:{color:'#7b82a0',font:{size:11},padding:8} }},
-            scales: q.type==='yesno' ? {} : { y:{beginAtZero:true,ticks:{stepSize:1,color:'#7b82a0'},grid:{color:'rgba(255,255,255,0.04)'}}, x:{ticks:{color:'#7b82a0',font:{size:11}},grid:{display:false}} }
-          }
-        });
-      });
-    });
-
-    // Cross age chart
-    const ctxA = document.getElementById('c-cross-age');
-    if (ctxA) {
-      const ages = ['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
-      const lbls = ages.filter(a => data.some(r => r.answers.q_age===a));
-      charts['ca'] = new Chart(ctxA, {
-        type:'bar',
-        data:{ labels: lbls.map(a=>a.replace(' ans','')), datasets:[
-          {label:'Observant ✓', data:lbls.map(a=>data.filter(r=>r.answers.q_age===a&&r.answers.q_horaire_meds==='Oui').length), backgroundColor:'#10d9a0',borderRadius:4,borderWidth:0},
-          {label:'Non observant ✗', data:lbls.map(a=>data.filter(r=>r.answers.q_age===a&&r.answers.q_horaire_meds==='Non').length), backgroundColor:'#f56565',borderRadius:4,borderWidth:0}
-        ]},
-        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#7b82a0',font:{size:12}}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,color:'#7b82a0'},grid:{color:'rgba(255,255,255,0.04)'}},x:{ticks:{color:'#7b82a0'},grid:{display:false}}}}
-      });
-    }
-
-    // Cross genre chart
-    const ctxG = document.getElementById('c-cross-genre');
-    if (ctxG) {
-      const genres = ['Masculin','Féminin'].filter(g=>data.some(r=>r.answers.q_sexe===g));
-      charts['cg'] = new Chart(ctxG, {
-        type:'bar',
-        data:{ labels:genres, datasets:[
-          {label:'Observant ✓',  data:genres.map(g=>data.filter(r=>r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Oui').length), backgroundColor:'#10d9a0',borderRadius:4,borderWidth:0},
-          {label:'Non observant ✗',data:genres.map(g=>data.filter(r=>r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Non').length),backgroundColor:'#f56565',borderRadius:4,borderWidth:0}
-        ]},
-        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#7b82a0',font:{size:12}}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,color:'#7b82a0'},grid:{color:'rgba(255,255,255,0.04)'}},x:{ticks:{color:'#7b82a0'},grid:{display:false}}}}
-      });
-    }
-  }, 200);
+  rb.innerHTML=html;
 }
 
-// ============================================================
-// AGENTS — Gestion des enquêteurs
-// ============================================================
-function renderAgents() {
-  if (CU.role !== 'admin') { toast('Accès réservé.', 'd'); return; }
-  const agents = users.filter(u => u.role === 'agent');
-  document.getElementById('content').innerHTML = `<div class="page">
+// =====================================================================
+// MODIFIER QUESTIONNAIRE
+// =====================================================================
+function renderEditQ() {
+  if (CU.role!=='admin'){toast('Accès réservé.','d');return;}
+  let html=`<div class="page">
     <div class="card">
-      <div class="card-header">
-        <div><div class="card-title">➕ Créer un enquêteur</div></div>
+      <div class="card-header"><div class="card-title">➕ Ajouter une question personnalisée</div></div>
+      <label class="fl">Texte de la question</label>
+      <input class="input-f" id="cq-text" placeholder="Ex: Avez-vous accès à une pharmacie proche ?"/>
+      <label class="fl">Section</label>
+      <select class="select-f" id="cq-sec">
+        ${Object.entries(SECTIONS).map(([k,v])=>`<option value="${k}">${v.icon} ${esc(v.label)}</option>`).join('')}
+      </select>
+      <label class="fl">Type de réponse</label>
+      <select class="select-f" id="cq-type" onchange="toggleCqOpts()">
+        <option value="yesno">Oui / Non</option>
+        <option value="choice">Choix unique</option>
+        <option value="multi">Choix multiple</option>
+        <option value="text">Texte libre</option>
+      </select>
+      <div id="cq-opts-zone" style="display:none">
+        <label class="fl">Options (une par ligne)</label>
+        <textarea class="ta-f" id="cq-opts" placeholder="Option 1&#10;Option 2&#10;Option 3" rows="4"></textarea>
       </div>
-      <div class="row-2">
-        <div>
-          <label class="fl">Nom complet</label>
-          <input class="input-f" id="ag-name" placeholder="Ex: Kouadio Jean" />
-        </div>
-        <div>
-          <label class="fl">Identifiant de connexion</label>
-          <input class="input-f" id="ag-login" placeholder="Ex: kjean" autocapitalize="none"/>
-        </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input type="checkbox" id="cq-req" style="width:18px;height:18px;accent-color:var(--accent)"/>
+        <label for="cq-req" style="font-size:13.5px">Question obligatoire</label>
       </div>
-      <label class="fl">Mot de passe</label>
-      <input class="input-f" id="ag-pass" type="password" placeholder="Mot de passe..." />
-      <button class="btn btn-primary" onclick="createAgent()" style="width:100%">✅ Créer l'enquêteur</button>
+      <button class="btn btn-primary" onclick="addCQ()" style="margin-top:12px;width:100%">✅ Ajouter la question</button>
     </div>
 
     <div class="card">
-      <div class="card-header">
-        <div class="card-title">👥 Enquêteurs (${agents.length})</div>
-        <span class="badge badge-blue">${agents.filter(a=>a.active).length} actif(s)</span>
+      <div class="card-header"><div class="card-title">📋 Questions de base (fixes — non modifiables)</div><span class="badge badge-blue">${Q_BASE.filter(q=>q.type!=='auto'&&q.type!=='morisky_result').length}</span></div>`;
+  Object.entries(SECTIONS).forEach(([secId,sec])=>{
+    const qs=Q_BASE.filter(q=>q.sec===secId&&q.type!=='auto'&&q.type!=='morisky_result'&&!q.isMorisky);
+    if(!qs.length)return;
+    html+=`<div style="margin-bottom:12px"><div class="sec-head ${sec.cls}" style="margin-bottom:8px"><span class="sec-icon" style="font-size:14px">${sec.icon}</span><div class="sec-title" style="font-size:12px">${esc(sec.label)}</div></div>`;
+    qs.forEach((q,i)=>{
+      html+=`<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--radius-sm);background:var(--bg3);margin-bottom:5px;font-size:13px">
+        <span style="color:var(--text3);font-size:11px;flex-shrink:0">Q${i+1}</span>
+        <span style="flex:1">${esc(q.label)}</span>
+        <span class="badge badge-blue" style="flex-shrink:0">${q.type}</span>
+        ${q.req?'<span class="badge badge-danger" style="flex-shrink:0">Obligatoire</span>':''}
+      </div>`;
+    });
+    html+=`</div>`;
+  });
+  html+=`</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">✏️ Questions personnalisées</div><span class="badge badge-green">${customQ.length}</span></div>
+      ${customQ.length===0?'<p style="color:var(--text2);font-size:13px">Aucune question personnalisée ajoutée.</p>':
+        customQ.map((q,i)=>`
+          <div style="display:flex;align-items:flex-start;gap:8px;padding:10px;border-radius:var(--radius-sm);background:var(--bg3);margin-bottom:8px;border:1px solid var(--border)">
+            <div style="flex:1">
+              <div style="font-size:13.5px;font-weight:500;margin-bottom:4px">${esc(q.label)}</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap">
+                <span class="badge badge-blue">${SECTIONS[q.sec]?.icon||''} ${esc(SECTIONS[q.sec]?.label||q.sec)}</span>
+                <span class="badge badge-purple">${q.type}</span>
+                ${q.req?'<span class="badge badge-danger">Obligatoire</span>':''}
+              </div>
+              ${q.opts?.length?`<div style="font-size:11px;color:var(--text3);margin-top:4px">Options : ${q.opts.map(o=>esc(o)).join(' · ')}</div>`:''}
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="delCQ('${q.id}')">🗑</button>
+          </div>`).join('')}
+    </div>
+
+    <div class="card" style="border-color:rgba(245,101,101,.3)">
+      <div class="card-title" style="margin-bottom:8px;color:var(--danger)">⚠️ Zone dangereuse</div>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:10px">Supprimer les questions personnalisées supprime aussi leurs données dans les rapports.</p>
+      <button class="btn btn-danger" onclick="clearCQ()">🗑 Supprimer toutes les questions personnalisées</button>
+    </div>
+  </div>`;
+  document.getElementById('content').innerHTML=html;
+}
+
+function toggleCqOpts(){
+  const t=document.getElementById('cq-type').value;
+  document.getElementById('cq-opts-zone').style.display=['choice','multi'].includes(t)?'block':'none';
+}
+
+function addCQ(){
+  const text=document.getElementById('cq-text').value.trim();
+  const sec=document.getElementById('cq-sec').value;
+  const type=document.getElementById('cq-type').value;
+  const req=document.getElementById('cq-req').checked;
+  if(!text){toast('Saisis le texte de la question.','w');return;}
+  let opts=[];
+  if(['choice','multi'].includes(type)){
+    opts=document.getElementById('cq-opts').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    if(opts.length<2){toast('Ajoute au moins 2 options.','w');return;}
+  }
+  customQ.push({id:'cq'+Date.now(),sec,label:text,type,opts,req,custom:true});
+  saveLocal();syncNow();
+  toast('✅ Question ajoutée !','s');
+  renderEditQ();
+}
+
+function delCQ(id){
+  if(!confirm('Supprimer cette question ?'))return;
+  customQ=customQ.filter(q=>q.id!==id);
+  saveLocal();syncNow();
+  toast('Question supprimée.','w');
+  renderEditQ();
+}
+
+function clearCQ(){
+  if(!confirm('Supprimer TOUTES les questions personnalisées ?'))return;
+  customQ=[];saveLocal();syncNow();
+  toast('Questions personnalisées supprimées.','w');
+  renderEditQ();
+}
+
+// =====================================================================
+// AGENTS
+// =====================================================================
+function renderAgents(){
+  if(CU.role!=='admin'){toast('Accès réservé.','d');return;}
+  const agents=users.filter(u=>u.role==='agent');
+  document.getElementById('content').innerHTML=`<div class="page">
+    <div class="card">
+      <div class="card-header"><div class="card-title">➕ Créer un enquêteur</div></div>
+      <div class="row-2">
+        <div><label class="fl">Nom complet</label><input class="input-f" id="ag-name" placeholder="Ex: Kouadio Jean"/></div>
+        <div><label class="fl">Identifiant de connexion</label><input class="input-f" id="ag-login" placeholder="Ex: kjean" autocapitalize="none"/></div>
       </div>
-      ${agents.length === 0 ? '<p style="color:var(--text2);font-size:13px">Aucun enquêteur créé. Utilisez le formulaire ci-dessus.</p>' :
-        agents.map(a => {
-          const cnt = responses.filter(r => r.agentName === a.name).length;
-          return `<div class="agent-row">
+      <label class="fl">Mot de passe</label>
+      <input class="input-f" type="password" id="ag-pass" placeholder="Mot de passe (min. 4 caractères)"/>
+      <button class="btn btn-primary btn-full" onclick="createAgent()">✅ Créer l'enquêteur</button>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">👥 Enquêteurs (${agents.length})</div><span class="badge badge-blue">${agents.filter(a=>a.active).length} actif(s)</span></div>
+      ${agents.length===0?'<p style="color:var(--text2);font-size:13px">Aucun enquêteur créé.</p>':
+        agents.map(a=>{const cnt=responses.filter(r=>r.agentName===a.name).length;
+          return`<div class="agent-row">
             <div class="avatar" style="${!a.active?'opacity:.4':''}">${a.name.charAt(0)}</div>
             <div style="flex:1;min-width:0">
               <div style="font-size:13.5px;font-weight:500">${esc(a.name)} ${!a.active?'<span class="badge badge-danger">Désactivé</span>':''}</div>
               <div style="font-size:11px;color:var(--text3)">@${esc(a.login)} · Créé le ${a.createdAt}</div>
             </div>
-            <span class="badge badge-green" style="margin-right:6px">${cnt} enquête(s)</span>
-            <button class="btn btn-sm ${a.active?'btn-danger':''}" onclick="toggleAgent('${a.id}')">${a.active?'🔒 Désact.':'✅ Réact.'}</button>
-            <button class="btn btn-sm btn-danger" onclick="resetPass('${a.id}')" style="margin-left:4px">🔑</button>
-          </div>`;
-        }).join('')}
+            <span class="badge badge-green" style="margin-right:6px">${cnt}</span>
+            <button class="btn btn-sm ${a.active?'btn-danger':''}" onclick="toggleAgent('${a.id}')" style="margin-right:4px">${a.active?'🔒':'✅'}</button>
+            <button class="btn btn-sm" onclick="resetPass('${a.id}')">🔑</button>
+          </div>`;}).join('')}
     </div>
-
     <div class="card">
       <div class="card-title" style="margin-bottom:10px">📋 Instructions pour les enquêteurs</div>
       <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:13px;font-size:13.5px;color:var(--text2);line-height:1.7">
@@ -959,222 +1102,232 @@ function renderAgents() {
         3. Remplir et soumettre les enquêtes<br>
         4. Synchronisation automatique toutes les 15 secondes 🔄
       </div>
-      <button class="btn btn-primary" style="margin-top:12px;width:100%" onclick="showShareModal()">🔗 Partager les infos de connexion</button>
+      <button class="btn btn-primary" style="margin-top:12px;width:100%" onclick="showShareModal()">🔗 Partager</button>
     </div>
   </div>`;
 }
 
-function createAgent() {
-  const name  = document.getElementById('ag-name').value.trim();
-  const login = document.getElementById('ag-login').value.trim().toLowerCase();
-  const pass  = document.getElementById('ag-pass').value;
-  if (!name || !login || !pass) { toast('Remplissez tous les champs.', 'w'); return; }
-  if (users.find(u => u.login === login)) { toast('Cet identifiant existe déjà.', 'd'); return; }
-  if (pass.length < 4) { toast('Mot de passe trop court (min. 4 caractères).', 'w'); return; }
-  users.push({ id: 'u'+Date.now(), name, login, password: pass, role:'agent', createdAt: new Date().toLocaleDateString('fr-FR'), active: true });
-  saveLocal(); syncNow();
-  toast(`✅ Enquêteur "${name}" créé ! Identifiant : ${login}`, 's');
+function createAgent(){
+  const name=document.getElementById('ag-name').value.trim();
+  const login=document.getElementById('ag-login').value.trim().toLowerCase();
+  const pass=document.getElementById('ag-pass').value;
+  if(!name||!login||!pass){toast('Remplissez tous les champs.','w');return;}
+  if(users.find(u=>u.login===login)){toast('Cet identifiant existe déjà.','d');return;}
+  if(pass.length<4){toast('Mot de passe trop court (min. 4 car.).','w');return;}
+  users.push({id:'u'+Date.now(),name,login,password:pass,role:'agent',createdAt:new Date().toLocaleDateString('fr-FR'),active:true});
+  saveLocal();syncNow();
+  toast('✅ Enquêteur "'+name+'" créé ! Login : '+login,'s');
   renderAgents();
 }
 
-function toggleAgent(id) {
-  const u = users.find(u => u.id === id);
-  if (!u) return;
-  if (u.id === CU.id) { toast('Vous ne pouvez pas vous désactiver vous-même.', 'w'); return; }
-  u.active = !u.active;
-  saveLocal(); syncNow();
-  toast(`${u.active ? '✅ Réactivé' : '🔒 Désactivé'} : ${u.name}`, u.active?'s':'w');
+function toggleAgent(id){
+  const u=users.find(u=>u.id===id);if(!u)return;
+  if(u.id===CU.id){toast('Impossible de vous désactiver vous-même.','w');return;}
+  u.active=!u.active;saveLocal();syncNow();
+  toast((u.active?'✅ Réactivé':'🔒 Désactivé')+' : '+u.name,u.active?'s':'w');
   renderAgents();
 }
 
-function resetPass(id) {
-  const u = users.find(x => x.id === id);
-  if (!u) return;
-  const np = prompt(`Nouveau mot de passe pour ${u.name} :`);
-  if (!np || np.length < 4) { toast('Mot de passe invalide (min. 4 caractères).', 'w'); return; }
-  u.password = np;
-  saveLocal(); syncNow();
-  toast(`🔑 Mot de passe modifié pour ${u.name}.`, 's');
+function resetPass(id){
+  const u=users.find(x=>x.id===id);if(!u)return;
+  const np=prompt('Nouveau mot de passe pour '+u.name+' :');
+  if(!np||np.length<4){toast('Mot de passe invalide.','w');return;}
+  u.password=np;saveLocal();syncNow();
+  toast('🔑 Mot de passe modifié pour '+u.name+'.','s');
 }
 
-// ============================================================
-// SETTINGS
-// ============================================================
-function renderSettings() {
-  if (CU.role !== 'admin') { toast('Accès réservé.', 'd'); return; }
-  document.getElementById('content').innerHTML = `<div class="page">
+// =====================================================================
+// PARAMÈTRES
+// =====================================================================
+function renderSettings(){
+  if(CU.role!=='admin'){toast('Accès réservé.','d');return;}
+  document.getElementById('content').innerHTML=`<div class="page">
     <div class="card">
       <div class="card-header"><div class="card-title">🔗 Synchronisation JSONBin.io</div></div>
-      <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Configurez JSONBin pour synchroniser les données entre tous les enquêteurs en temps réel. Gratuit sur <a href="https://jsonbin.io" style="color:var(--accent)">jsonbin.io</a>.</p>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Configurez JSONBin pour synchroniser les données entre tous vos enquêteurs. Gratuit sur <a href="https://jsonbin.io" style="color:var(--accent)">jsonbin.io</a>.</p>
       <label class="fl">Clé API Master</label>
-      <input class="input-f" id="s-key" placeholder="$2a$10$..." value="${esc(gs('apikey'))}" />
+      <input class="input-f" id="s-key" placeholder="$2a$10$..." value="${esc(gs('apikey'))}"/>
       <label class="fl">Bin ID (vide = créé automatiquement)</label>
-      <input class="input-f" id="s-bin" placeholder="ID du bin..." value="${esc(gs('binid'))}" />
+      <input class="input-f" id="s-bin" placeholder="ID du bin..." value="${esc(gs('binid'))}"/>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="saveApiConf()">💾 Enregistrer</button>
-        <button class="btn" onclick="syncNow()">🔄 Tester la sync</button>
+        <button class="btn" onclick="syncNow()">🔄 Tester</button>
       </div>
     </div>
     <div class="card">
       <div class="card-title" style="margin-bottom:10px">🎨 Apparence</div>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <button class="btn" onclick="toggleTheme()">🌙/☀️ Basculer le thème</button>
-        <span style="font-size:13px;color:var(--text2)">Thème actuel : <strong>${isDark?'Sombre':'Clair'}</strong></span>
+        <span style="font-size:13px;color:var(--text2)">Actuel : <strong>${isDark?'Sombre':'Clair'}</strong></span>
       </div>
     </div>
-    <div class="card">
-      <div class="card-title" style="margin-bottom:10px">⚠️ Gestion des données</div>
+    <div class="card" style="border-color:rgba(245,101,101,.3)">
+      <div class="card-title" style="margin-bottom:10px;color:var(--danger)">⚠️ Données</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn" onclick="exportCSV()">📥 Export CSV complet</button>
-        <button class="btn btn-danger" onclick="clearAll()">🗑 Effacer les enquêtes</button>
+        <button class="btn btn-success" onclick="dlCSV(buildAllCsvRows(),'Rapport_ARV')">📥 Export CSV complet</button>
+        <button class="btn btn-danger" onclick="clearAll()">🗑 Effacer toutes les enquêtes</button>
       </div>
     </div>
   </div>`;
 }
 
-function saveApiConf() {
-  ss('apikey', document.getElementById('s-key').value.trim());
-  ss('binid',  document.getElementById('s-bin').value.trim());
-  toast('✅ Clés enregistrées ! Test en cours...', 's'); syncNow();
+function saveApiConf(){
+  ss('apikey',document.getElementById('s-key').value.trim());
+  ss('binid',document.getElementById('s-bin').value.trim());
+  toast('✅ Clés enregistrées ! Test en cours...','s');syncNow();
 }
 
-// ============================================================
-// SYNC
-// ============================================================
-function startSync() { syncNow(); syncInt = setInterval(syncNow, 15000); }
+// =====================================================================
+// SYNC JSONBIN
+// =====================================================================
+function startSync(){syncNow();syncInt=setInterval(syncNow,15000);}
 
-async function syncNow() {
+async function syncNow(){
   setSS('pend');
-  const apiKey = gs('apikey');
-  if (!apiKey) { setSS('local'); return; }
-  try {
-    let binId = gs('binid');
-    const payload = { responses, users, updated: Date.now() };
-    if (!binId) {
-      const res = await fetch('https://api.jsonbin.io/v3/b', { method:'POST', headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'EnquetePro-ARV-Memoire','X-Bin-Private':'false'}, body: JSON.stringify(payload) });
-      const d = await res.json();
-      if (d.metadata?.id) { ss('binid', d.metadata.id); toast('✅ Bin créé : '+d.metadata.id, 's'); }
+  const apiKey=gs('apikey');
+  if(!apiKey){setSS('local');return;}
+  try{
+    let binId=gs('binid');
+    const payload={responses,users,customQ,updated:Date.now()};
+    if(!binId){
+      const res=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'EnquetePro-ARV-Memoire','X-Bin-Private':'false'},body:JSON.stringify(payload)});
+      const d=await res.json();
+      if(d.metadata?.id){ss('binid',d.metadata.id);toast('✅ Bin créé : '+d.metadata.id,'s');}
     } else {
-      await fetch(`https://api.jsonbin.io/v3/b/${binId}`, { method:'PUT', headers:{'Content-Type':'application/json','X-Master-Key':apiKey}, body: JSON.stringify(payload) });
-      const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, { headers:{'X-Master-Key':apiKey} });
-      const d = await res.json();
-      if (d.record) {
-        const existIds = new Set(responses.map(r => r.id));
-        (d.record.responses||[]).forEach(r => { if (!existIds.has(r.id)) responses.push(r); });
-        // Merge users (admin keeps control)
-        if (CU.role === 'admin' && d.record.users?.length) {
-          d.record.users.forEach(u => { if (!users.find(x => x.id === u.id)) users.push(u); });
-        }
+      await fetch('https://api.jsonbin.io/v3/b/'+binId,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':apiKey},body:JSON.stringify(payload)});
+      const res=await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{headers:{'X-Master-Key':apiKey}});
+      const d=await res.json();
+      if(d.record){
+        const eIds=new Set(responses.map(r=>r.id));
+        (d.record.responses||[]).forEach(r=>{if(!eIds.has(r.id))responses.push(r);});
+        if(CU.role==='admin'&&d.record.users?.length)
+          d.record.users.forEach(u=>{if(!users.find(x=>x.id===u.id))users.push(u);});
+        if(d.record.customQ)customQ=d.record.customQ;
         saveLocal();
-        if (curPage === 'dashboard') renderDash();
+        if(curPage==='dashboard')renderDash();
       }
     }
     setSS('ok');
-  } catch(e) { setSS('err'); console.error(e); }
+  }catch(e){setSS('err');console.error(e);}
 }
 
-function setSS(s) {
-  const d = document.getElementById('sdot'), l = document.getElementById('slbl');
-  if (!d) return;
-  d.className = 'sync-dot';
-  if (s==='ok')   { d.classList.add('s-ok');   if(l) l.textContent = 'Synchronisé'; }
-  else if(s==='pend') { d.classList.add('s-pend'); if(l) l.textContent = 'Synchro...'; }
-  else if(s==='err')  { d.classList.add('s-err');  if(l) l.textContent = 'Erreur sync'; }
-  else                { d.classList.add('s-pend'); if(l) l.textContent = 'Local'; }
+function setSS(s){
+  const d=document.getElementById('sdot'),l=document.getElementById('slbl');
+  if(!d)return;
+  d.className='sync-dot';
+  if(s==='ok'){d.classList.add('s-ok');if(l)l.textContent='Synchronisé';}
+  else if(s==='pend'){d.classList.add('s-pend');if(l)l.textContent='Synchro...';}
+  else if(s==='err'){d.classList.add('s-err');if(l)l.textContent='Erreur sync';}
+  else{d.classList.add('s-pend');if(l)l.textContent='Local';}
 }
 
-// ============================================================
-// LOCAL STORAGE
-// ============================================================
-function saveLocal() {
-  localStorage.setItem('arv_data', JSON.stringify({ responses, users }));
+// =====================================================================
+// STORAGE
+// =====================================================================
+function saveLocal(){localStorage.setItem('arv_v3',JSON.stringify({responses,users,customQ}));}
+function loadLocal(){
+  try{
+    const d=JSON.parse(localStorage.getItem('arv_v3')||'{}');
+    if(d.responses)responses=d.responses;
+    if(d.users&&d.users.length)users=d.users;
+    if(d.customQ)customQ=d.customQ;
+  }catch(e){}
 }
-function loadLocal() {
-  try {
-    const d = JSON.parse(localStorage.getItem('arv_data') || '{}');
-    if (d.responses) responses = d.responses;
-    if (d.users && d.users.length) users = d.users;
-  } catch(e) {}
-}
-function gs(k) { return localStorage.getItem('arv_cfg_'+k) || ''; }
-function ss(k, v) { localStorage.setItem('arv_cfg_'+k, v); }
+function gs(k){return localStorage.getItem('arv_cfg_'+k)||'';}
+function ss(k,v){localStorage.setItem('arv_cfg_'+k,v);}
 
-// ============================================================
+// =====================================================================
 // EXPORT CSV
-// ============================================================
-function exportCSV() {
-  if (!responses.length) { toast('Aucune donnée à exporter.', 'w'); return; }
-  const data = getFiltered && typeof getFiltered === 'function' ? getFiltered() : responses;
-  const headers = ['#','Enquêteur','Date', ...Q.map((q,i) => `Q${i+1}: ${q.label}`)];
-  const rows = data.map(r => [r.id, r.agentName, r.date, ...Q.map(q => { const a=r.answers[q.id]; return Array.isArray(a)?a.join('|'):(a||''); })]);
-  const csv = [headers,...rows].map(r => r.map(c => `"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
-  const blob = new Blob(['\ufeff'+csv], {type:'text/csv;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download=`Memoire_ARV_${new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')}.csv`; a.click();
+// =====================================================================
+function buildAllCsvRows(){
+  const Qall=Q_BASE.filter(q=>!['auto','morisky_result'].includes(q.type));
+  const cust=customQ;
+  const headers=['N°','Enquêteur','Date',...Qall.map((q,i)=>'Q'+(i+1)+': '+q.label),...cust.map((q,i)=>'CQ'+(i+1)+': '+q.label),'Score Morisky','Niveau observance'];
+  const rows=responses.map(r=>{
+    const ms=r.answers.q_morisky_score;
+    const lv=ms!==undefined&&ms!==null?morLevel(parseInt(ms)).label:'—';
+    return[r.answers.q_num||r.id, r.agentName, r.date,
+      ...Qall.map(q=>{const a=r.answers[q.id];return Array.isArray(a)?a.join('|'):(a||'');}),
+      ...cust.map(q=>{const a=r.answers[q.id];return Array.isArray(a)?a.join('|'):(a||'');}),
+      ms!==undefined&&ms!==null?ms+'/4':'—', lv];
+  });
+  return[headers,...rows];
+}
+
+function exportTabCsv(){
+  if(activeTab==='classement'){
+    const map={};
+    responses.forEach(r=>{
+      if(!map[r.agentName])map[r.agentName]={name:r.agentName,count:0,ms:0,msn:0};
+      map[r.agentName].count++;
+      const ms=parseFloat(r.answers.q_morisky_score);
+      if(!isNaN(ms)){map[r.agentName].ms+=ms;map[r.agentName].msn++;}
+    });
+    const list=Object.values(map).sort((a,b)=>b.count-a.count);
+    const rows=list.map((ag,i)=>[i+1,ag.name,ag.count,pct(ag.count,responses.length)+'%',ag.msn?(ag.ms/ag.msn).toFixed(1)+'/4':'—']);
+    dlCSV([['Rang','Enquêteur','Enquêtes','Part','Morisky moy.'],...rows],'Classement_Enqueteurs');
+  } else {
+    dlCSV(buildAllCsvRows(),'Rapport_ARV_'+activeTab);
+  }
+}
+
+function dlCSV(rows, name){
+  if(!rows||rows.length<2){toast('Aucune donnée.','w');return;}
+  const csv=rows.map(r=>r.map(c=>`"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=name+'_'+new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')+'.csv';a.click();
   URL.revokeObjectURL(url);
-  toast('📥 Export CSV réussi !', 's');
+  toast('📥 Export réussi !','s');
 }
 
-// ============================================================
+// =====================================================================
 // SHARE MODAL
-// ============================================================
-function showShareModal() {
-  const binId = gs('binid');
-  const html = `<div class="modal-ov" onclick="if(event.target===this)this.remove()">
-    <div class="modal-box">
-      <span class="modal-handle"></span>
-      <div class="modal-title">🔗 Partager avec les enquêteurs</div>
-      <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Distribuez ce fichier HTML à vos enquêteurs, avec leurs identifiants personnels créés dans <strong>Enquêteurs</strong>.</p>
-      ${binId ? `<div style="margin-bottom:12px">
-        <label class="fl">Bin ID JSONBin</label>
-        <div style="display:flex;gap:8px"><input class="input-f" style="margin:0" value="${esc(binId)}" readonly /><button class="btn btn-sm" onclick="navigator.clipboard.writeText('${esc(binId)}').then(()=>toast('📋 Copié !','s'))">📋</button></div>
-      </div>` : `<div style="padding:10px;background:rgba(246,173,85,.1);border:1px solid rgba(246,173,85,.2);border-radius:var(--radius-sm);font-size:13px;color:var(--warn);margin-bottom:12px">⚠️ Configurez JSONBin dans Paramètres pour la sync multi-appareils.</div>`}
-      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:13px;font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px">
-        <strong>Instructions pour les enquêteurs :</strong><br>
-        1. Ouvrir <strong>EnquetePro_Memoire.html</strong><br>
-        2. Saisir son identifiant personnel<br>
-        3. Saisir son mot de passe personnel<br>
-        4. Remplir et soumettre les enquêtes ✅
-      </div>
-      <button class="btn btn-primary btn-full" onclick="document.querySelector('.modal-ov').remove()">Fermer</button>
-    </div></div>`;
-  document.body.insertAdjacentHTML('beforeend', html);
+// =====================================================================
+function showShareModal(){
+  const binId=gs('binid');
+  const m=document.createElement('div');m.className='modal-ov';
+  m.onclick=e=>{if(e.target===m)m.remove();};
+  m.innerHTML=`<div class="modal-box">
+    <span class="modal-handle"></span>
+    <div class="modal-title">🔗 Partager avec les enquêteurs</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Distribuez ce fichier HTML avec leurs identifiants créés dans <strong>Enquêteurs</strong>.</p>
+    ${binId?`<div style="margin-bottom:12px"><label class="fl">Bin ID JSONBin</label>
+      <div style="display:flex;gap:8px"><input class="input-f" style="margin:0" value="${esc(binId)}" readonly/>
+      <button class="btn btn-sm" onclick="navigator.clipboard.writeText('${esc(binId)}').then(()=>toast('📋 Copié !','s'))">📋</button></div></div>`
+    :`<div style="padding:10px;background:rgba(246,173,85,.1);border:1px solid rgba(246,173,85,.2);border-radius:var(--radius-sm);font-size:13px;color:var(--warn);margin-bottom:12px">⚠️ Configurez JSONBin dans Paramètres pour la sync multi-appareils.</div>`}
+    <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:13px;font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px">
+      <strong>Instructions enquêteurs :</strong><br>
+      1. Ouvrir <strong>EnquetePro_Memoire.html</strong><br>
+      2. Saisir son identifiant personnel<br>
+      3. Saisir son mot de passe personnel<br>
+      4. Remplir et soumettre ✅
+    </div>
+    <button class="btn btn-primary btn-full" onclick="this.closest('.modal-ov').remove()">Fermer</button>
+  </div>`;
+  document.body.appendChild(m);
 }
 
-// ============================================================
-// UTILS
-// ============================================================
-function clearAll() {
-  if (!confirm('⚠️ Supprimer toutes les enquêtes ? Les comptes utilisateurs seront conservés.')) return;
-  responses = []; saveLocal(); syncNow();
-  toast('🗑 Enquêtes effacées.', 'w'); go('dashboard');
+// =====================================================================
+// UTILITAIRES
+// =====================================================================
+function clearAll(){if(!confirm('⚠️ Supprimer toutes les enquêtes ?'))return;responses=[];saveLocal();syncNow();toast('🗑 Enquêtes effacées.','w');go('dashboard');}
+function toggleTheme(){isDark=!isDark;document.body.classList.toggle('light',!isDark);document.getElementById('thbtn').textContent=isDark?'🌙':'☀️';ss('theme',isDark?'dark':'light');}
+function pct(a,b){return b?Math.round(a/b*100):0;}
+function noData(msg){return `<div class="card" style="text-align:center;padding:2.5rem"><div style="font-size:40px;margin-bottom:12px">🔍</div><p style="color:var(--text2)">${msg||'Aucune donnée pour ces filtres.'}</p></div>`;}
+function toast(msg,t){
+  const el=document.getElementById('toast');el.textContent=msg;
+  el.style.borderColor=t==='d'?'var(--danger)':t==='s'?'var(--accent3)':t==='w'?'var(--warn)':'var(--border2)';
+  el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),3800);
 }
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 
-function toggleTheme() {
-  isDark = !isDark;
-  document.body.classList.toggle('light', !isDark);
-  document.getElementById('thbtn').textContent = isDark ? '🌙' : '☀️';
-  ss('theme', isDark ? 'dark' : 'light');
-}
-
-function toast(msg, t='') {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.style.borderColor = t==='d'?'var(--danger)':t==='s'?'var(--accent3)':t==='w'?'var(--warn)':'var(--border2)';
-  el.classList.add('show'); clearTimeout(el._t);
-  el._t = setTimeout(() => el.classList.remove('show'), 3500);
-}
-
-function esc(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-
-// ============================================================
+// =====================================================================
 // INIT
-// ============================================================
+// =====================================================================
 loadLocal();
-initDefaultUsers();
-const _t = gs('theme'); if (_t === 'light') { isDark = false; document.body.classList.add('light'); }
+initUsers();
+const _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
 </script>
 </body>
 </html>
