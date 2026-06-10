@@ -328,12 +328,30 @@ function initUsers() {
   }
 }
 
-function doLogin() {
+
+async function loadUsersFromCloud(){
+  try{
+    const apiKey=gs('apikey');
+    const binId=gs('binid');
+    if(!apiKey || !binId) return;
+    const res=await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{
+      headers:{'X-Master-Key':apiKey}
+    });
+    const data=await res.json();
+    if(data.record?.users){
+      users=data.record.users;
+      saveLocal();
+    }
+  }catch(e){console.error(e);}
+}
+
+async function doLogin() {
   const login = document.getElementById('ln').value.trim().toLowerCase();
   const pass  = document.getElementById('lp').value;
   const errEl = document.getElementById('login-err');
   errEl.style.display = 'none';
   if (!login || !pass) { showErr('Remplissez tous les champs.'); return; }
+  await loadUsersFromCloud();
   const user = users.find(u => u.active && u.login.toLowerCase() === login && u.password === pass);
   if (!user) { showErr('Identifiant ou mot de passe incorrect.'); return; }
   CU = user;
@@ -1188,7 +1206,20 @@ async function syncNow(){
   if(!apiKey){setSS('local');return;}
   try{
     let binId=gs('binid');
-    const payload={responses,users,customQ,updated:Date.now()};
+    let payload={responses,users,customQ,updated:Date.now()};
+    try{
+      if(binId){
+        const rr=await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{headers:{'X-Master-Key':apiKey}});
+        const remote=await rr.json();
+        const rec=remote.record||{};
+        const remoteResponses=rec.responses||[];
+        const remoteUsers=rec.users||[];
+        payload.responses=[...remoteResponses];
+        responses.forEach(r=>{ if(!payload.responses.some(x=>x.id===r.id)) payload.responses.push(r); });
+        payload.users=[...remoteUsers];
+        users.forEach(u=>{ if(!payload.users.some(x=>x.login===u.login)) payload.users.push(u); });
+      }
+    }catch(e){console.error(e);}
     if(!binId){
       const res=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'EnquetePro-ARV-Memoire','X-Bin-Private':'false'},body:JSON.stringify(payload)});
       const d=await res.json();
