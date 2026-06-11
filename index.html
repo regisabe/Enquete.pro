@@ -12,22 +12,56 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height:100vh;transition:background .25s,color .25s;font-size:15px}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bg5);border-radius:2px}
-#login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;position:relative;overflow:hidden}
-#login-screen::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(91,141,246,.12) 0%,transparent 65%);top:-150px;left:-150px;pointer-events:none}
-#login-screen::after{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.09) 0%,transparent 65%);bottom:-80px;right:-80px;pointer-events:none}
-.login-box{background:var(--bg2);border:1px solid var(--border2);border-radius:22px;padding:2.25rem;width:100%;max-width:420px;box-shadow:var(--shadow);position:relative;z-index:1;animation:fadeUp .5s ease}
-.login-ico{width:62px;height:62px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 12px}
-.login-logo{text-align:center;margin-bottom:1.75rem}
-.login-logo h1{font-family:var(--font-h);font-size:21px;font-weight:700}
-.login-logo p{font-size:12.5px;color:var(--text2);margin-top:5px;line-height:1.55}
+/* LOGIN SPLIT */
+#login-screen{min-height:100vh;display:flex;align-items:stretch;overflow:hidden}
+.login-left{flex:0 0 400px;background:linear-gradient(145deg,#1a4fcf 0%,#2563eb 40%,#3b82f6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2.5rem;position:relative;overflow:hidden}
+.login-left::before{content:'';position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.07);top:-80px;left:-80px}
+.login-left::after{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05);bottom:-50px;right:-60px}
+.login-left-inner{position:relative;z-index:1;text-align:center}
+.login-app-icon{width:90px;height:90px;background:rgba(255,255,255,.18);backdrop-filter:blur(12px);border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 28px;border:1.5px solid rgba(255,255,255,.25);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.login-app-name{font-family:var(--font-h);font-size:30px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.login-app-name span{color:rgba(255,255,255,.55);font-weight:400}
+.login-app-sub{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:2px;text-transform:uppercase;margin-top:10px}
+.login-app-version{position:absolute;bottom:1.5rem;left:0;right:0;text-align:center;font-size:11px;color:rgba(255,255,255,.35)}
+.login-right{flex:1;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem}
+.login-panel{width:100%;max-width:400px;animation:fadeUp .4s ease}
+.login-panel h2{font-family:var(--font-h);font-size:22px;font-weight:700;color:#1a1e30;margin-bottom:5px}
+.lp-sub{font-size:13.5px;color:#6b7280;margin-bottom:1.75rem}
+.login-tabs{display:flex;gap:0;background:#f3f4f6;border-radius:10px;padding:4px;margin-bottom:1.75rem}
+.login-tab{flex:1;padding:9px;text-align:center;font-size:13.5px;font-weight:500;color:#6b7280;border-radius:7px;cursor:pointer;transition:all .2s;border:none;background:transparent;font-family:var(--font-b)}
+.login-tab.active{background:#fff;color:#1a1e30;box-shadow:0 1px 5px rgba(0,0,0,.12)}
+.space-card{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #e5e7eb;border-radius:12px;margin-bottom:10px;cursor:pointer;transition:all .2s;background:#fff}
+.space-card:hover,.space-card.selected{border-color:#3b82f6;background:#eff6ff}
+.space-avatar{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0;font-weight:700;font-family:var(--font-h)}
+.space-name{font-size:14px;font-weight:600;color:#1a1e30}
+.space-sub{font-size:11.5px;color:#6b7280;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.space-sync-badge{display:flex;align-items:center;gap:4px;font-size:11px;color:#2563eb;background:#dbeafe;padding:3px 9px;border-radius:20px;font-weight:600;flex-shrink:0;margin-left:auto}
+.space-arrow{color:#9ca3af;font-size:18px;margin-left:8px}
+.login-footer-links{display:flex;justify-content:center;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid #f3f4f6;gap:0}
+.lfl-btn{display:flex;align-items:center;gap:5px;padding:7px 16px;color:#6b7280;font-size:13px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);border-right:1px solid #e5e7eb;transition:color .2s}
+.lfl-btn:last-child{border-right:none}
+.lfl-btn:hover{color:#2563eb}
 .fg{margin-bottom:13px}
-.fg label{display:block;font-size:11px;font-weight:600;color:var(--text2);margin-bottom:5px;letter-spacing:.6px;text-transform:uppercase}
-.fg input,.fg select{width:100%;padding:13px 14px;background:var(--bg3);border:1.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-b);font-size:15px;transition:border-color .2s;-webkit-appearance:none}
-.fg input:focus,.fg select:focus{outline:none;border-color:var(--accent);background:var(--bg4)}
-.fg select option{background:var(--bg2)}
-.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font-h);font-size:15px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:6px}
+.fg label{display:block;font-size:11px;font-weight:600;color:#6b7280;margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase}
+.fg input{width:100%;padding:13px 14px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:10px;color:#1a1e30;font-family:var(--font-b);font-size:15px;transition:border-color .2s}
+.fg input:focus{outline:none;border-color:#3b82f6;background:#fff}
+.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;border-radius:10px;font-family:var(--font-h);font-size:15px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:4px;box-shadow:0 4px 14px rgba(37,99,235,.3)}
 .btn-login:active{transform:scale(.98);opacity:.9}
-.login-hint{font-size:12px;color:var(--text3);text-align:center;margin-top:12px;padding:8px 12px;background:var(--bg3);border-radius:var(--radius-sm);line-height:1.6}
+.btn-login:disabled{opacity:.6;cursor:not-allowed}
+.login-hint{font-size:12px;color:#9ca3af;text-align:center;margin-top:12px;line-height:1.6}
+.recover-input-row{display:flex;gap:8px;margin-bottom:12px}
+.recover-input-row input{flex:1;padding:12px 14px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:10px;color:#1a1e30;font-family:var(--font-b);font-size:14px;transition:border-color .2s}
+.recover-input-row input:focus{outline:none;border-color:#3b82f6;background:#fff}
+.btn-recover{padding:12px 18px;background:#2563eb;color:#fff;border:none;border-radius:10px;font-family:var(--font-h);font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn-recover:hover{opacity:.9}
+@media(max-width:700px){
+  #login-screen{flex-direction:column}
+  .login-left{flex:0 0 auto;padding:2rem 1.5rem;min-height:200px}
+  .login-app-icon{width:64px;height:64px;font-size:28px;margin-bottom:14px}
+  .login-app-name{font-size:22px}
+  .login-app-version{display:none}
+  .login-right{padding:1.75rem 1.25rem}
+}
 #app{display:none;min-height:100vh}
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sb);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:300;transition:transform .28s cubic-bezier(.4,0,.2,1)}
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:299;backdrop-filter:blur(2px)}
@@ -158,17 +192,71 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 </head>
 <body>
 <div id="login-screen">
-  <div class="login-box">
-    <div class="login-logo">
-      <div class="login-ico">🧬</div>
-      <h1>EnquêtePro — ARV</h1>
-      <p>Facteurs de l'inobservance du traitement ARV<br>Mémoire de recherche 2026</p>
+  <!-- LEFT -->
+  <div class="login-left">
+    <div class="login-left-inner">
+      <div class="login-app-icon">🧬</div>
+      <div class="login-app-name">Enquête<span>Pro.</span></div>
+      <div class="login-app-sub">Gestion d'enquêtes · ARV</div>
     </div>
-    <div class="fg"><label>Identifiant</label><input type="text" id="ln" placeholder="Votre identifiant..." autocomplete="username" autocapitalize="none"/></div>
-    <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"/></div>
-    <div id="login-err" style="display:none;padding:9px 12px;background:rgba(245,101,101,.1);border:1px solid rgba(245,101,101,.25);border-radius:var(--radius-sm);font-size:13px;color:var(--danger);margin-bottom:10px;text-align:center"></div>
-    <button class="btn-login" onclick="doLogin()">Se connecter →</button>
-    <div class="login-hint">Contactez l'administrateur pour vos identifiants.</div>
+    <div class="login-app-version">v3.0 · Mémoire de recherche · Abidjan CI</div>
+  </div>
+  <!-- RIGHT -->
+  <div class="login-right">
+    <div class="login-panel">
+
+      <!-- TABS -->
+      <div id="ls-tabs" class="login-tabs">
+        <button class="login-tab active" onclick="switchLoginTab('connect')">Se connecter</button>
+        <button class="login-tab" onclick="switchLoginTab('recover')">☁️ Récupérer</button>
+        <button class="login-tab" onclick="switchLoginTab('sync')">⚙️ Sync</button>
+      </div>
+
+      <!-- PANEL CONNEXION -->
+      <div id="ls-connect">
+        <h2>Choisir un espace</h2>
+        <p class="lp-sub" id="ls-space-count">Chargement...</p>
+        <div id="ls-spaces"></div>
+        <div id="ls-login-form" style="display:none;margin-top:16px">
+          <div class="fg"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+          <div id="login-err" style="display:none;padding:9px 12px;background:#fee2e2;border:1.5px solid #fca5a5;border-radius:10px;font-size:13px;color:#dc2626;margin-bottom:10px;text-align:center"></div>
+          <button class="btn-login" id="btn-login-do" onclick="doLogin()">Accéder →</button>
+          <div style="text-align:center;margin-top:10px"><button style="font-size:13px;color:#6b7280;background:none;border:none;cursor:pointer;font-family:var(--font-b)" onclick="cancelLogin()">← Retour</button></div>
+        </div>
+      </div>
+
+      <!-- PANEL RÉCUPÉRER -->
+      <div id="ls-recover" style="display:none">
+        <h2>Récupérer les données</h2>
+        <p class="lp-sub">Entrez votre clé API JSONBin et votre Bin ID pour charger les données synchronisées depuis le cloud.</p>
+        <div class="fg"><label>Clé API JSONBin (Master Key)</label>
+          <input type="text" id="rec-key" placeholder="$2a$10$..." autocapitalize="none"/></div>
+        <div class="fg"><label>Bin ID</label>
+          <input type="text" id="rec-bin" placeholder="686a3e..." autocapitalize="none"/></div>
+        <div id="rec-status" style="display:none;padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;text-align:center"></div>
+        <button class="btn-login" onclick="recoverFromCloud()" id="btn-recover">☁️ Récupérer les données</button>
+        <div class="login-hint">Les données seront fusionnées avec celles déjà présentes localement.</div>
+      </div>
+
+      <!-- PANEL SYNC CONFIG -->
+      <div id="ls-sync" style="display:none">
+        <h2>Configuration Sync</h2>
+        <p class="lp-sub">Configurez JSONBin pour la synchronisation automatique entre appareils.</p>
+        <div class="fg"><label>Clé API Master (JSONBin)</label>
+          <input type="text" id="sync-key" placeholder="$2a$10$..." autocapitalize="none"/></div>
+        <div class="fg"><label>Bin ID (vide = créé automatiquement)</label>
+          <input type="text" id="sync-bin" placeholder="ID du bin..." autocapitalize="none"/></div>
+        <button class="btn-login" onclick="saveSyncConf()">💾 Enregistrer la configuration</button>
+        <div class="login-hint">Après configuration, utilisez "Récupérer" pour charger vos données.</div>
+      </div>
+
+      <!-- FOOTER LINKS -->
+      <div class="login-footer-links">
+        <button class="lfl-btn" onclick="switchLoginTab('connect')">🔑 Connexion</button>
+        <button class="lfl-btn" onclick="switchLoginTab('recover')">☁️ Récupérer</button>
+        <button class="lfl-btn" onclick="switchLoginTab('sync')">⚙️ Sync</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -321,6 +409,9 @@ function morLevel(s) {
 // =====================================================================
 // LOGIN / LOGOUT
 // =====================================================================
+// ---- Login tab management ----
+let selectedUser = null;
+
 function initUsers() {
   if (!users.length) {
     users = [{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true}];
@@ -328,14 +419,72 @@ function initUsers() {
   }
 }
 
+function switchLoginTab(tab) {
+  ['connect','recover','sync'].forEach(t => {
+    document.getElementById('ls-'+t).style.display = t===tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('.login-tab').forEach((b,i) => {
+    b.classList.toggle('active', ['connect','recover','sync'][i]===tab);
+  });
+  selectedUser = null;
+  const lf = document.getElementById('ls-login-form');
+  if (lf) lf.style.display = 'none';
+}
+
+function renderSpaces() {
+  const sc = document.getElementById('ls-spaces');
+  const cnt = document.getElementById('ls-space-count');
+  if (!sc) return;
+  const activeUsers = users.filter(u => u.active);
+  cnt.textContent = activeUsers.length + ' espace(s) disponible(s)';
+  if (!activeUsers.length) {
+    sc.innerHTML = '<p style="color:#6b7280;font-size:13px;text-align:center;padding:1rem">Aucun compte. Récupérez vos données depuis le cloud ☁️</p>';
+    return;
+  }
+  sc.innerHTML = activeUsers.map(u => {
+    const cnt2 = responses.filter(r => r.agentName === u.name).length;
+    return `<div class="space-card" onclick="selectSpace('${u.id}')">
+      <div class="space-avatar">${u.name.charAt(0).toUpperCase()}</div>
+      <div style="flex:1;min-width:0">
+        <div class="space-name">${u.name}</div>
+        <div class="space-sub">${u.role==='admin'?'Chercheur principal':'Enquêteur terrain'} · ${cnt2} enquête(s)</div>
+      </div>
+      <span class="space-sync-badge">☁️ sync</span>
+      <span class="space-arrow">›</span>
+    </div>`;
+  }).join('');
+}
+
+function selectSpace(uid) {
+  selectedUser = users.find(u => u.id === uid);
+  if (!selectedUser) return;
+  document.querySelectorAll('.space-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  const lf = document.getElementById('ls-login-form');
+  lf.style.display = 'block';
+  document.getElementById('lp').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  document.getElementById('btn-login-do').textContent = 'Accéder en tant que ' + selectedUser.name + ' →';
+  setTimeout(() => document.getElementById('lp').focus(), 100);
+}
+
+function cancelLogin() {
+  selectedUser = null;
+  document.getElementById('ls-login-form').style.display = 'none';
+  document.querySelectorAll('.space-card').forEach(c => c.classList.remove('selected'));
+}
+
 function doLogin() {
-  const login = document.getElementById('ln').value.trim().toLowerCase();
-  const pass  = document.getElementById('lp').value;
-  const errEl = document.getElementById('login-err');
-  errEl.style.display = 'none';
-  if (!login || !pass) { showErr('Remplissez tous les champs.'); return; }
-  const user = users.find(u => u.active && u.login.toLowerCase() === login && u.password === pass);
-  if (!user) { showErr('Identifiant ou mot de passe incorrect.'); return; }
+  if (!selectedUser) { showErr('Sélectionnez un espace.'); return; }
+  const pass = document.getElementById('lp').value;
+  document.getElementById('login-err').style.display = 'none';
+  if (!pass) { showErr('Saisissez le mot de passe.'); return; }
+  if (!selectedUser.active) { showErr('Ce compte est désactivé.'); return; }
+  if (selectedUser.password !== pass) { showErr('Mot de passe incorrect.'); return; }
+  launchApp(selectedUser);
+}
+
+function launchApp(user) {
   CU = user;
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
@@ -350,20 +499,70 @@ function doLogin() {
   const t = gs('theme'); if (t === 'light') { isDark = false; document.body.classList.add('light'); document.getElementById('thbtn').textContent = '☀️'; }
   startSync(); go('dashboard');
 }
+
 function showErr(m) { const e = document.getElementById('login-err'); e.textContent = m; e.style.display = 'block'; }
+
+// ---- Recover from cloud ----
+async function recoverFromCloud() {
+  const key = document.getElementById('rec-key').value.trim();
+  const bin = document.getElementById('rec-bin').value.trim();
+  const st  = document.getElementById('rec-status');
+  if (!key || !bin) { st.style.display='block';st.style.background='#fee2e2';st.style.color='#dc2626';st.textContent='Entrez la clé API et le Bin ID.';return; }
+  const btn = document.getElementById('btn-recover');
+  btn.disabled = true; btn.textContent = '⏳ Récupération en cours...';
+  st.style.display='block';st.style.background='#dbeafe';st.style.color='#1d4ed8';st.textContent='Connexion à JSONBin...';
+  try {
+    const res = await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest', {headers:{'X-Master-Key':key}});
+    if (!res.ok) throw new Error('Erreur HTTP '+res.status);
+    const d = await res.json();
+    if (!d.record) throw new Error('Données introuvables dans ce bin.');
+    const rec = d.record;
+    // Save keys
+    ss('apikey', key); ss('binid', bin);
+    // Merge data
+    let added = 0;
+    const eIds = new Set(responses.map(r=>r.id));
+    (rec.responses||[]).forEach(r=>{ if(!eIds.has(r.id)){responses.push(r);added++;} });
+    (rec.users||[]).forEach(u=>{ if(!users.find(x=>x.id===u.id)) users.push(u); });
+    if (rec.customQ) customQ = rec.customQ;
+    saveLocal();
+    st.style.background='#dcfce7';st.style.color='#166534';
+    st.textContent='✅ Récupération réussie ! ' + added + ' enquête(s) chargée(s). ' + users.length + ' compte(s) trouvé(s).';
+    btn.textContent='☁️ Récupérer à nouveau';
+    // Refresh spaces
+    renderSpaces();
+    setTimeout(()=>switchLoginTab('connect'), 1500);
+  } catch(e) {
+    st.style.background='#fee2e2';st.style.color='#dc2626';
+    st.textContent='❌ Erreur : ' + e.message;
+    btn.textContent='☁️ Récupérer les données';
+  }
+  btn.disabled = false;
+}
+
+// ---- Save sync config from login ----
+function saveSyncConf() {
+  const key = document.getElementById('sync-key').value.trim();
+  const bin = document.getElementById('sync-bin').value.trim();
+  if (!key) { toast('Saisissez la clé API.','w'); return; }
+  ss('apikey', key); if (bin) ss('binid', bin);
+  toast('✅ Configuration enregistrée !','s');
+  setTimeout(()=>switchLoginTab('recover'), 600);
+}
 
 function doLogout() {
   if (!confirm('Se déconnecter ?')) return;
-  clearInterval(syncInt); syncInt = null; saveLocal(); CU = null;
+  clearInterval(syncInt); syncInt = null; saveLocal(); CU = null; selectedUser = null;
   document.getElementById('app').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('ln').value = '';
   document.getElementById('lp').value = '';
   document.getElementById('login-err').style.display = 'none';
   document.querySelectorAll('[data-admin]').forEach(e => e.style.display = '');
   document.querySelectorAll('.bn-admin').forEach(e => e.style.display = '');
   closeSidebar();
   Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} }); charts = {};
+  switchLoginTab('connect');
+  renderSpaces();
 }
 
 // =====================================================================
@@ -1188,6 +1387,23 @@ async function syncNow(){
   if(!apiKey){setSS('local');return;}
   try{
     let binId=gs('binid');
+    // Step 1 — Pull remote first to merge
+    if(binId){
+      const res=await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{headers:{'X-Master-Key':apiKey}});
+      if(res.ok){
+        const d=await res.json();
+        if(d.record){
+          let changed=false;
+          const eIds=new Set(responses.map(r=>r.id));
+          (d.record.responses||[]).forEach(r=>{if(!eIds.has(r.id)){responses.push(r);changed=true;}});
+          if(CU&&CU.role==='admin'&&d.record.users?.length)
+            d.record.users.forEach(u=>{if(!users.find(x=>x.id===u.id)){users.push(u);changed=true;}});
+          if(d.record.customQ){customQ=d.record.customQ;changed=true;}
+          if(changed){saveLocal();if(curPage==='dashboard')renderDash();}
+        }
+      }
+    }
+    // Step 2 — Push merged data
     const payload={responses,users,customQ,updated:Date.now()};
     if(!binId){
       const res=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'EnquetePro-ARV-Memoire','X-Bin-Private':'false'},body:JSON.stringify(payload)});
@@ -1195,17 +1411,6 @@ async function syncNow(){
       if(d.metadata?.id){ss('binid',d.metadata.id);toast('✅ Bin créé : '+d.metadata.id,'s');}
     } else {
       await fetch('https://api.jsonbin.io/v3/b/'+binId,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':apiKey},body:JSON.stringify(payload)});
-      const res=await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{headers:{'X-Master-Key':apiKey}});
-      const d=await res.json();
-      if(d.record){
-        const eIds=new Set(responses.map(r=>r.id));
-        (d.record.responses||[]).forEach(r=>{if(!eIds.has(r.id))responses.push(r);});
-        if(CU.role==='admin'&&d.record.users?.length)
-          d.record.users.forEach(u=>{if(!users.find(x=>x.id===u.id))users.push(u);});
-        if(d.record.customQ)customQ=d.record.customQ;
-        saveLocal();
-        if(curPage==='dashboard')renderDash();
-      }
     }
     setSS('ok');
   }catch(e){setSS('err');console.error(e);}
@@ -1328,6 +1533,13 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 loadLocal();
 initUsers();
 const _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
+// Pre-fill sync fields with saved keys
+const _key=gs('apikey'); const _bin=gs('binid');
+if(_key){const sk=document.getElementById('sync-key');if(sk)sk.value=_key;}
+if(_bin){const sb=document.getElementById('sync-bin');if(sb)sb.value=_bin;}
+if(_key&&_bin){const rk=document.getElementById('rec-key');if(rk)rk.value=_key;const rb2=document.getElementById('rec-bin');if(rb2)rb2.value=_bin;}
+switchLoginTab('connect');
+renderSpaces();
 </script>
 </body>
 </html>
