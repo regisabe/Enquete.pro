@@ -209,7 +209,8 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
     <div class="login-left-inner">
       <div class="login-app-icon">🧬</div>
       <div class="login-app-name">Enquête<span>Pro.</span></div>
-      <div class="login-app-sub">Gestion d'enquêtes · ARV</div>
+      <div id="ll-survey-name" class="login-app-sub" style="font-size:13px;font-weight:600;letter-spacing:0;margin-top:8px;opacity:.9"></div>
+      <div class="login-app-sub" style="margin-top:4px">Gestion d'enquêtes · ARV</div>
     </div>
     <div class="login-app-version">v3.0 · Mémoire de recherche · Abidjan CI</div>
   </div>
@@ -249,10 +250,11 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
             <input type="text" id="rec-bin" placeholder="686a3e..." autocapitalize="none"/></div>
           <div id="rec-status" style="display:none;padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;text-align:center"></div>
           <!-- Aperçu enquête après récup -->
-          <div id="rec-preview" style="display:none;background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:12px;padding:14px;margin-bottom:12px">
-            <div style="font-family:var(--font-h);font-size:13px;font-weight:700;color:#0369a1;margin-bottom:8px">📋 Données chargées</div>
-            <div id="rec-preview-body" style="font-size:13px;color:#0369a1;line-height:1.8"></div>
-            <button class="btn-login" onclick="goToStep2()" style="margin-top:10px">Se connecter →</button>
+          <div id="rec-preview" style="display:none;background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:12px;padding:16px;margin-bottom:12px">
+            <div style="font-family:var(--font-h);font-size:11px;font-weight:700;color:#0369a1;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Enquête trouvée</div>
+            <div id="rec-survey-name" style="font-family:var(--font-h);font-size:20px;font-weight:800;color:#0c4a6e;margin-bottom:10px;line-height:1.2"></div>
+            <div id="rec-preview-body" style="font-size:12.5px;color:#0369a1;line-height:1.8;margin-bottom:12px"></div>
+            <button class="btn-login" onclick="goToStep2()" style="margin-top:0">Se connecter à cette enquête →</button>
           </div>
           <button class="btn-login" onclick="recoverFromCloud()" id="btn-recover">☁️ Récupérer les données</button>
           <div class="login-hint">Les données seront fusionnées avec celles déjà présentes localement.</div>
@@ -261,16 +263,19 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
         <!-- Onglet Nouvelle enquête -->
         <div id="ls-new" style="display:none">
           <h2 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:#1a1e30;margin-bottom:4px">Démarrer une nouvelle enquête</h2>
-          <p class="lp-sub">Commencez directement sans synchronisation cloud. Vous pourrez configurer la sync plus tard.</p>
+          <p class="lp-sub">Donnez un nom à votre enquête et connectez-vous en tant qu'administrateur.</p>
+          <div class="fg" style="margin-bottom:14px">
+            <label>Nom de l'enquête</label>
+            <input type="text" id="new-survey-name" placeholder="Ex: Étude inobservance ARV 2026..." autocomplete="off" style="width:100%;padding:13px 14px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:10px;color:#1a1e30;font-family:var(--font-b);font-size:15px;transition:border-color .2s"/>
+          </div>
           <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;padding:14px;margin-bottom:16px">
             <div style="font-size:13px;color:#166534;line-height:1.7">
-              ✅ <strong>Un compte admin est déjà prêt</strong><br>
-              Identifiant : <strong>admin</strong><br>
-              Mot de passe : <strong>admin2026</strong><br>
-              <span style="font-size:11px;opacity:.8">Changez le mot de passe dans Paramètres après la connexion.</span>
+              ✅ <strong>Compte admin par défaut</strong><br>
+              Identifiant : <strong>admin</strong> · Mot de passe : <strong>admin2026</strong><br>
+              <span style="font-size:11px;opacity:.8">Vous devrez choisir un nouveau mot de passe à la première connexion.</span>
             </div>
           </div>
-          <button class="btn-login" onclick="goToStep2()">Continuer → Se connecter</button>
+          <button class="btn-login" onclick="createNewSurvey()">Créer l'enquête →</button>
           <div class="login-hint">Pas de cloud requis. Données sauvegardées localement.</div>
         </div>
 
@@ -303,6 +308,10 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
         </div>
 
         <h2 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:#1a1e30;margin-bottom:4px">Se connecter</h2>
+        <div id="step2-survey-badge" style="display:none;background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#1e40af">
+          <span style="font-size:11px;display:block;font-weight:600;opacity:.7;margin-bottom:2px">ENQUÊTE</span>
+          <span id="step2-survey-label" style="font-weight:700;font-size:14px"></span>
+        </div>
         <p class="lp-sub">Saisissez vos identifiants pour accéder à l'enquête.</p>
         <div class="fg"><label>Identifiant</label>
           <input type="text" id="lp-login" placeholder="Votre identifiant..." autocapitalize="none" autocomplete="username"
@@ -328,7 +337,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
     <div class="sb-head">
       <div class="sb-logo">
         <div class="ico">🧬</div>
-        <div class="sb-logo-txt"><span>EnquêtePro</span><div class="sb-sub">Inobservance ARV · 2026</div></div>
+        <div class="sb-logo-txt"><span>EnquêtePro</span><div class="sb-sub" id="sb-survey-name">Inobservance ARV · 2026</div></div>
       </div>
     </div>
     <nav class="sb-nav">
@@ -356,7 +365,10 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
     <div class="topbar">
       <div class="tb-left">
         <button class="btn btn-sm btn-icon" id="menu-btn" onclick="toggleSidebar()">☰</button>
-        <div class="page-title" id="page-title">Tableau de bord</div>
+        <div style="min-width:0">
+          <div class="page-title" id="page-title">Tableau de bord</div>
+          <div id="topbar-survey" style="font-size:10px;color:var(--text3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+        </div>
       </div>
       <div class="tb-right">
         <span style="display:flex;align-items:center;gap:5px">
@@ -382,7 +394,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 // =====================================================================
 // ÉTAT GLOBAL
 // =====================================================================
-let CU = null, isDark = true, responses = [], users = [], customQ = [], syncInt = null, charts = {}, curPage = 'dashboard', activeTab = 'global';
+let CU = null, isDark = true, responses = [], users = [], customQ = [], syncInt = null, charts = {}, curPage = 'dashboard', activeTab = 'global', surveyName = '';
 // Q_EDITS: overrides for base questions {qid: {label, opts, req, disabled}}
 let Q_EDITS = {};
 
@@ -487,9 +499,41 @@ let selectedUser = null;
 
 function initUsers() {
   if (!users.length) {
-    users = [{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true}];
+    users = [{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true,mustChangePass:true}];
     saveLocal();
   }
+}
+
+// Helper: update survey name everywhere in UI
+function updateSurveyNameUI() {
+  const name = surveyName || '';
+  const llName = document.getElementById('ll-survey-name');
+  if (llName) llName.textContent = name ? name : '';
+  const topbar = document.getElementById('topbar-survey');
+  if (topbar) topbar.textContent = name ? '📋 ' + name : '';
+  const sbName = document.getElementById('sb-survey-name');
+  if (sbName) sbName.textContent = name ? name : 'Inobservance ARV · 2026';
+}
+
+// Create a brand new survey (from "Nouvelle enquête" tab)
+function createNewSurvey() {
+  const nameInput = document.getElementById('new-survey-name');
+  const name = nameInput ? nameInput.value.trim() : '';
+  if (!name) {
+    nameInput && (nameInput.style.borderColor = '#f87171');
+    nameInput && nameInput.focus();
+    toast('Donnez un nom à votre enquête.', 'w');
+    return;
+  }
+  surveyName = name;
+  saveLocal();
+  updateSurveyNameUI();
+  // Show survey name badge in step2
+  const badge = document.getElementById('step2-survey-badge');
+  const label = document.getElementById('step2-survey-label');
+  if (badge) badge.style.display = 'block';
+  if (label) label.textContent = surveyName;
+  goToStep2();
 }
 
 // Step 1 tab switcher
@@ -514,6 +558,11 @@ function goToStep2() {
   if (li) { li.value = ''; setTimeout(() => li.focus(), 100); }
   const lp = document.getElementById('lp'); if (lp) lp.value = '';
   const err = document.getElementById('login-err'); if (err) err.style.display = 'none';
+  // Show survey name badge
+  const badge = document.getElementById('step2-survey-badge');
+  const label = document.getElementById('step2-survey-label');
+  if (badge && surveyName) { badge.style.display = 'block'; if(label) label.textContent = surveyName; }
+  else if (badge) badge.style.display = 'none';
 }
 
 // Back to step 1
@@ -532,6 +581,7 @@ function doLogin() {
   const user = users.find(u => u.active && u.login.toLowerCase() === loginVal && u.password === pass);
   if (!user) { showErr('Identifiant ou mot de passe incorrect.'); return; }
   if (!user.active) { showErr('Ce compte est désactivé.'); return; }
+  if (user.mustChangePass) { showForceChangePass(user); return; }
   launchApp(user);
 }
 
@@ -548,10 +598,58 @@ function launchApp(user) {
     document.querySelectorAll('.bn-admin').forEach(e => e.style.display = 'none');
   }
   const t = gs('theme'); if (t === 'light') { isDark = false; document.body.classList.add('light'); document.getElementById('thbtn').textContent = '☀️'; }
+  updateSurveyNameUI();
   startSync(); go('dashboard');
 }
 
 function showErr(m) { const e = document.getElementById('login-err'); e.textContent = m; e.style.display = 'block'; }
+
+function showForceChangePass(user) {
+  // Show inline in login panel instead of a modal for mobile friendliness
+  const panel = document.getElementById('ls-step2');
+  panel.innerHTML = `
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:1.5rem">
+      <div style="display:flex;align-items:center;gap:6px;flex:1">
+        <div style="width:28px;height:28px;border-radius:50%;background:#10d9a0;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">✓</div>
+        <span style="font-size:13px;color:#6b7280">Configuration</span>
+      </div>
+      <div style="flex:1;height:2px;background:#2563eb;margin:0 8px"></div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="width:28px;height:28px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">3</div>
+        <span style="font-size:13px;font-weight:600;color:#2563eb">Sécurité</span>
+      </div>
+    </div>
+    <div style="background:#fef3c7;border:1.5px solid #fcd34d;border-radius:12px;padding:14px;margin-bottom:16px">
+      <div style="font-size:13px;color:#92400e;line-height:1.6">
+        🔐 <strong>Première connexion — Sécurisez votre compte</strong><br>
+        Vous devez choisir un nouveau mot de passe administrateur avant de continuer.
+      </div>
+    </div>
+    <div class="fg"><label>Nouveau mot de passe</label>
+      <input type="password" id="fcp-p1" placeholder="Min. 6 caractères..." autocomplete="new-password"/></div>
+    <div class="fg"><label>Confirmer le mot de passe</label>
+      <input type="password" id="fcp-p2" placeholder="Répétez le mot de passe..." autocomplete="new-password"/></div>
+    <div id="fcp-err" style="display:none;padding:9px 12px;background:#fee2e2;border:1.5px solid #fca5a5;border-radius:10px;font-size:13px;color:#dc2626;margin-bottom:10px;text-align:center"></div>
+    <button class="btn-login" onclick="doForceChangePass('${user.id}')">Enregistrer et accéder →</button>
+    <div class="login-hint">Ce mot de passe remplace "admin2026". Notez-le précieusement.</div>
+  `;
+}
+
+function doForceChangePass(userId) {
+  const p1 = document.getElementById('fcp-p1').value;
+  const p2 = document.getElementById('fcp-p2').value;
+  const err = document.getElementById('fcp-err');
+  err.style.display = 'none';
+  if (p1.length < 6) { err.textContent = 'Mot de passe trop court (min. 6 caractères).'; err.style.display='block'; return; }
+  if (p1 !== p2) { err.textContent = 'Les mots de passe ne correspondent pas.'; err.style.display='block'; return; }
+  const user = users.find(u => u.id === userId);
+  if (!user) { err.textContent = 'Utilisateur introuvable.'; err.style.display='block'; return; }
+  user.password = p1;
+  delete user.mustChangePass;
+  saveLocal(); syncNow();
+  toast('🔐 Mot de passe mis à jour avec succès !', 's');
+  launchApp(user);
+}
 
 // ---- Recover from cloud ----
 async function recoverFromCloud() {
@@ -595,23 +693,25 @@ async function recoverFromCloud() {
     (rec.users||[]).forEach(u=>{ if(!users.find(x=>x.id===u.id)){users.push(u);addedU++;} });
     if (rec.customQ) customQ = rec.customQ;
     if (rec.Q_EDITS) Q_EDITS = rec.Q_EDITS;
+    if (rec.surveyName) surveyName = rec.surveyName;
     saveLocal();
-    showSt('✅ '+addedR+' enquête(s) chargée(s) · '+users.length+' compte(s).','ok');
+    showSt('✅ Données chargées avec succès !','ok');
     btn.textContent = '☁️ Récupérer à nouveau';
     // Pre-fill sync fields
     const sk=document.getElementById('sync-key'); const sb2=document.getElementById('sync-bin');
     if(sk) sk.value=key; if(sb2) sb2.value=bin;
-    // Show preview card
+    // Show preview card with survey name
     const prev = document.getElementById('rec-preview');
     const prevBody = document.getElementById('rec-preview-body');
+    const recSurveyName = document.getElementById('rec-survey-name');
     const women = responses.filter(r=>r.answers&&r.answers.q_sexe==='Féminin').length;
     const men = responses.filter(r=>r.answers&&r.answers.q_sexe==='Masculin').length;
-    const agSet = new Set(responses.map(r=>r.agentName)).size;
+    if (recSurveyName) recSurveyName.textContent = surveyName || 'Enquête sans titre';
     if (prevBody) prevBody.innerHTML =
-      '📋 <strong>'+responses.length+'</strong> enquête(s) au total<br>'
-      +'👥 <strong>'+agSet+'</strong> enquêteur(s) · <strong>'+users.length+'</strong> compte(s)<br>'
-      +'♀ <strong>'+women+'</strong> femmes · ♂ <strong>'+men+'</strong> hommes';
+      '📋 <strong>'+responses.length+'</strong> enquête(s) · '
+      +'♀ <strong>'+women+'</strong> · ♂ <strong>'+men+'</strong>';
     if (prev) prev.style.display = 'block';
+    updateSurveyNameUI();
     // Scroll to preview
     if (prev) prev.scrollIntoView({behavior:'smooth', block:'center'});
   } catch(e) {
@@ -1562,6 +1662,22 @@ function renderSettings(){
   if(CU.role!=='admin'){toast('Accès réservé.','d');return;}
   document.getElementById('content').innerHTML=`<div class="page">
     <div class="card">
+      <div class="card-header"><div class="card-title">📋 Informations de l'enquête</div></div>
+      <label class="fl">Nom de l'enquête</label>
+      <input class="input-f" id="s-survey-name" placeholder="Nom de l'enquête..." value="${esc(surveyName)}"/>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" onclick="saveSurveyName()">💾 Enregistrer</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">🔑 Mon mot de passe</div></div>
+      <label class="fl">Nouveau mot de passe</label>
+      <input class="input-f" type="password" id="s-newpass" placeholder="Min. 6 caractères..."/>
+      <label class="fl">Confirmer</label>
+      <input class="input-f" type="password" id="s-newpass2" placeholder="Répétez..."/>
+      <button class="btn btn-primary" onclick="changeMyPass()">🔐 Changer mon mot de passe</button>
+    </div>
+    <div class="card">
       <div class="card-header"><div class="card-title">🔗 Synchronisation JSONBin.io</div></div>
       <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Configurez JSONBin pour synchroniser les données entre tous vos enquêteurs. Gratuit sur <a href="https://jsonbin.io" style="color:var(--accent)">jsonbin.io</a>.</p>
       <label class="fl">Clé API Master</label>
@@ -1594,6 +1710,27 @@ function saveApiConf(){
   ss('apikey',document.getElementById('s-key').value.trim());
   ss('binid',document.getElementById('s-bin').value.trim());
   toast('✅ Clés enregistrées ! Test en cours...','s');syncNow();
+}
+
+function saveSurveyName(){
+  const v=document.getElementById('s-survey-name').value.trim();
+  if(!v){toast('Saisissez un nom.','w');return;}
+  surveyName=v; saveLocal(); syncNow(); updateSurveyNameUI();
+  toast('Nom mis \u00e0 jour !','s');
+}
+
+function changeMyPass(){
+  const p1=document.getElementById('s-newpass').value;
+  const p2=document.getElementById('s-newpass2').value;
+  if(p1.length<6){toast('Mot de passe trop court (min. 6 car.).','w');return;}
+  if(p1!==p2){toast('Les mots de passe ne correspondent pas.','w');return;}
+  const u=users.find(x=>x.id===CU.id);
+  if(!u){toast('Utilisateur introuvable.','d');return;}
+  u.password=p1; delete u.mustChangePass;
+  saveLocal(); syncNow();
+  toast('🔐 Mot de passe mis à jour !','s');
+  document.getElementById('s-newpass').value='';
+  document.getElementById('s-newpass2').value='';
 }
 
 // =====================================================================
@@ -1630,16 +1767,17 @@ async function syncNow(){
             rec.users.forEach(u=>{if(!users.find(x=>x.id===u.id)){users.push(u);changed=true;}});
           if(rec.customQ && JSON.stringify(rec.customQ)!==JSON.stringify(customQ)){customQ=rec.customQ;changed=true;}
           if(rec.Q_EDITS && JSON.stringify(rec.Q_EDITS)!==JSON.stringify(Q_EDITS)){Q_EDITS=rec.Q_EDITS;changed=true;}
+          if(rec.surveyName && rec.surveyName!==surveyName){surveyName=rec.surveyName;changed=true;}
           if(changed){ saveLocal(); if(curPage==='dashboard') renderDash(); }
         }
       }
       // 2. Push — envoyer les données fusionnées
-      const payload = {responses, users, customQ, Q_EDITS, updated:Date.now()};
+      const payload = {responses, users, customQ, Q_EDITS, surveyName, updated:Date.now()};
       const putRes = await fetch('https://api.jsonbin.io/v3/b/'+binId, {method:'PUT', headers:hdrs, body:JSON.stringify(payload)});
       if(!putRes.ok) throw new Error('PUT failed: '+putRes.status);
     } else {
       // Créer un nouveau bin
-      const payload = {responses, users, customQ, Q_EDITS, updated:Date.now()};
+      const payload = {responses, users, customQ, Q_EDITS, surveyName, updated:Date.now()};
       const res = await fetch('https://api.jsonbin.io/v3/b', {method:'POST', headers:{...hdrs,'X-Bin-Name':'EnquetePro-ARV','X-Bin-Private':'false'}, body:JSON.stringify(payload)});
       if(!res.ok) throw new Error('POST failed: '+res.status);
       const d = await res.json();
@@ -1666,7 +1804,7 @@ function setSS(s){
 // =====================================================================
 // STORAGE
 // =====================================================================
-function saveLocal(){localStorage.setItem('arv_v3',JSON.stringify({responses,users,customQ,Q_EDITS}));}
+function saveLocal(){localStorage.setItem('arv_v3',JSON.stringify({responses,users,customQ,Q_EDITS,surveyName}));}
 function loadLocal(){
   try{
     const d=JSON.parse(localStorage.getItem('arv_v3')||'{}');
@@ -1674,6 +1812,7 @@ function loadLocal(){
     if(d.users&&d.users.length)users=d.users;
     if(d.customQ)customQ=d.customQ;
     if(d.Q_EDITS)Q_EDITS=d.Q_EDITS;
+    if(d.surveyName)surveyName=d.surveyName;
   }catch(e){}
 }
 function gs(k){return localStorage.getItem('arv_cfg_'+k)||'';}
@@ -1781,7 +1920,24 @@ initUsers();
   var s1=document.getElementById('ls-step1'); if(s1)s1.style.display='block';
   var s2=document.getElementById('ls-step2'); if(s2)s2.style.display='none';
   // Default tab: recover if keys configured, else new
-  switchStep1Tab(k ? 'recover' : 'new');
+  // If surveyName already known (local data), show on left panel
+  updateSurveyNameUI();
+  // If we already have a surveyName locally, show it and go directly to step2 option
+  if (surveyName && users.length > 1) {
+    // Known survey + users already set up -> show recover tab with local data hint
+    switchStep1Tab('recover');
+  } else if (k) {
+    switchStep1Tab('recover');
+  } else if (surveyName) {
+    // Survey created but no cloud: go straight to login
+    const badge = document.getElementById('step2-survey-badge');
+    const label = document.getElementById('step2-survey-label');
+    if (badge) { badge.style.display = 'block'; if(label) label.textContent = surveyName; }
+    // Show new tab (survey already named)
+    switchStep1Tab('new');
+  } else {
+    switchStep1Tab('new');
+  }
 })();
 </script>
 </body>
