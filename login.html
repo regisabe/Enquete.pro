@@ -197,6 +197,14 @@ body::before{
 .survey-arrow{
   color:var(--text3);font-size:16px;flex-shrink:0;margin-left:4px;
 }
+.del-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:8px;flex-shrink:0;
+  border:none;background:transparent;cursor:pointer;
+  color:#d1d5db;font-size:15px;transition:all .15s;
+  margin-left:4px;
+}
+.del-btn:hover{background:#fee2e2;color:#dc2626;}
 
 /* Actions du bas */
 .lp-footer-actions{
@@ -495,35 +503,105 @@ body::before{
 
 <script>
 // ============================================================
-// STORAGE
+// STORAGE — MULTI-ENQUÊTES
 // ============================================================
+// arv_surveys = [{id, name, data:{responses,users,customQ,Q_EDITS}, binId, createdAt}]
+// arv_active  = id de l'enquête active (celle chargée dans arv_v3)
+
 function gs(k){return localStorage.getItem('arv_cfg_'+k)||'';}
 function ss(k,v){localStorage.setItem('arv_cfg_'+k,v);}
-function saveLocal(){localStorage.setItem('arv_v3',JSON.stringify({responses,users,customQ,Q_EDITS,surveyName}));}
-function loadLocal(){
-  try{
-    const d=JSON.parse(localStorage.getItem('arv_v3')||'{}');
-    if(d.responses)responses=d.responses;
-    if(d.users&&d.users.length)users=d.users;
-    if(d.customQ)customQ=d.customQ;
-    if(d.Q_EDITS)Q_EDITS=d.Q_EDITS;
-    if(d.surveyName)surveyName=d.surveyName;
-  }catch(e){}
+
+function getAllSurveys(){
+  try{return JSON.parse(localStorage.getItem('arv_surveys')||'[]');}catch(e){return [];}
+}
+function saveAllSurveys(list){
+  localStorage.setItem('arv_surveys',JSON.stringify(list));
+}
+
+// Charger l'enquête active (arv_v3) dans la liste si pas encore dedans
+function syncActiveToList(){
+  const raw=localStorage.getItem('arv_v3');
+  if(!raw)return;
+  let d;
+  try{d=JSON.parse(raw);}catch(e){return;}
+  if(!d.surveyName)return;
+  const list=getAllSurveys();
+  const existing=list.find(s=>s.name===d.surveyName);
+  if(!existing){
+    list.push({
+      id:'s_'+(Date.now()),
+      name:d.surveyName,
+      data:{responses:d.responses||[],users:d.users||[],customQ:d.customQ||[],Q_EDITS:d.Q_EDITS||{}},
+      binId:gs('binid')||'',
+      createdAt:new Date().toLocaleDateString('fr-FR'),
+    });
+    saveAllSurveys(list);
+  } else {
+    // Mettre à jour les données de l'enquête existante
+    existing.data={responses:d.responses||[],users:d.users||[],customQ:d.customQ||[],Q_EDITS:d.Q_EDITS||{}};
+    if(gs('binid'))existing.binId=gs('binid');
+    saveAllSurveys(list);
+  }
+}
+
+// Charger une enquête depuis la liste → arv_v3 (enquête active)
+function loadSurveyById(id){
+  const list=getAllSurveys();
+  const s=list.find(x=>x.id===id);
+  if(!s)return false;
+  const payload={
+    responses:s.data.responses||[],
+    users:s.data.users||[],
+    customQ:s.data.customQ||[],
+    Q_EDITS:s.data.Q_EDITS||{},
+    surveyName:s.name,
+  };
+  localStorage.setItem('arv_v3',JSON.stringify(payload));
+  if(s.binId)ss('binid',s.binId);
+  localStorage.setItem('arv_active_id',id);
+  return true;
+}
+
+// Supprimer une enquête de la liste
+function deleteSurveyById(id){
+  let list=getAllSurveys();
+  list=list.filter(s=>s.id!==id);
+  saveAllSurveys(list);
+  // Si c'était l'enquête active, effacer arv_v3
+  const activeId=localStorage.getItem('arv_active_id');
+  if(activeId===id){
+    localStorage.removeItem('arv_v3');
+    localStorage.removeItem('arv_active_id');
+  }
 }
 
 // ============================================================
 // STATE
 // ============================================================
 let responses=[],users=[],customQ=[],Q_EDITS={},surveyName='';
-let pendingUser=null; // user en attente de changement de pass
+let pendingUser=null;
+let selectedSurveyId=null; // id de l'enquête choisie pour connexion
 
-loadLocal();
-initUsers();
+// Synchroniser l'enquête active vers la liste au chargement
+syncActiveToList();
 
-function initUsers(){
-  if(!users.length){
-    users=[{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true,mustChangePass:true}];
-    saveLocal();
+function initDefaultAdmin(){
+  const list=getAllSurveys();
+  // Si aucune enquête et pas d'arv_v3, rien à faire
+  // Si arv_v3 existe mais users vide → init admin
+  const raw=localStorage.getItem('arv_v3');
+  if(raw){
+    try{
+      const d=JSON.parse(raw);
+      if(d.users&&d.users.length){users=d.users;}
+      if(!users.length){
+        users=[{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true,mustChangePass:true}];
+      }
+      if(d.responses)responses=d.responses;
+      if(d.customQ)customQ=d.customQ;
+      if(d.Q_EDITS)Q_EDITS=d.Q_EDITS;
+      if(d.surveyName)surveyName=d.surveyName;
+    }catch(e){}
   }
 }
 
@@ -567,7 +645,6 @@ function showScreen(name){
   const t=TITLES[name]||['',''];
   document.getElementById('screen-title-label').textContent=t[0];
   document.getElementById('screen-sub-label').textContent=t[1];
-  // Reset errors
   ['login-err','fcp-err','rec-status'].forEach(id=>{
     const e=document.getElementById(id);
     if(e){e.style.display='none';e.textContent='';}
@@ -584,28 +661,15 @@ function showScreen(name){
   if(name==='choose')renderSurveyList();
 }
 
-function showLoginScreen(){
-  showScreen('login');
-}
+function showLoginScreen(){showScreen('login');}
 
 // ============================================================
-// LISTE DES ENQUÊTES (écran principal)
+// LISTE DES ENQUÊTES — MULTI-SURVEY
 // ============================================================
 function renderSurveyList(){
   const list=document.getElementById('surveys-list');
   const count=document.getElementById('surveys-count');
-
-  // Enquêtes locales + cloud (on affiche l'enquête locale si présente)
-  const surveys=[];
-  if(surveyName){
-    surveys.push({
-      name:surveyName,
-      count:responses.length,
-      users:users.filter(u=>u.role!=='admin').length,
-      synced:!!gs('binid'),
-      isLocal:true,
-    });
-  }
+  const surveys=getAllSurveys();
 
   if(!surveys.length){
     count.textContent='Aucune enquête';
@@ -619,23 +683,44 @@ function renderSurveyList(){
   count.textContent=surveys.length+' enquête'+(surveys.length>1?'s':'')+' disponible'+(surveys.length>1?'s':'');
   list.innerHTML=surveys.map((s,i)=>{
     const initiale=s.name.charAt(0).toUpperCase();
-    return `<div class="survey-card" onclick="selectSurvey(${i})" id="scard-${i}">
-      <div class="survey-avatar">${initiale}</div>
+    const nbResp=(s.data&&s.data.responses)?s.data.responses.length:0;
+    const nbUsers=(s.data&&s.data.users)?s.data.users.filter(u=>u.role!=='admin').length:0;
+    const synced=!!s.binId;
+    const colors=['linear-gradient(135deg,#2563eb,#8b5cf6)','linear-gradient(135deg,#0891b2,#2563eb)','linear-gradient(135deg,#059669,#0891b2)','linear-gradient(135deg,#d97706,#dc2626)','linear-gradient(135deg,#7c3aed,#db2777)'];
+    const grad=colors[i%colors.length];
+    return `<div class="survey-card" onclick="selectSurvey('${s.id}')" id="scard-${s.id}">
+      <div class="survey-avatar" style="background:${grad}">${initiale}</div>
       <div class="survey-info">
         <div class="survey-name">${esc(s.name)}</div>
-        <div class="survey-meta">${s.count} enquête(s) · ${s.users} enquêteur(s) de terrain</div>
+        <div class="survey-meta">${nbResp} réponse(s) · ${nbUsers} enquêteur(s) · ${esc(s.createdAt||'')}</div>
       </div>
-      ${s.synced?`<div class="sync-badge"><span class="sync-dot-sm"></span>sync</div>`:`<div class="sync-badge" style="background:#fef3c7;color:#92400e">local</div>`}
-      <div class="survey-arrow">›</div>
+      ${synced
+        ?`<div class="sync-badge"><span class="sync-dot-sm"></span>sync</div>`
+        :`<div class="sync-badge" style="background:#fef3c7;color:#92400e">local</div>`}
+      <button class="del-btn" title="Supprimer cette enquête" onclick="deleteSurvey(event,'${s.id}','${esc(s.name)}')">🗑</button>
     </div>`;
   }).join('');
 }
 
-function selectSurvey(idx){
+function selectSurvey(id){
+  // Charger les données de cette enquête comme enquête active
+  loadSurveyById(id);
+  selectedSurveyId=id;
+  // Recharger les données dans la mémoire courante
+  initDefaultAdmin();
+  // Highlight
   document.querySelectorAll('.survey-card').forEach(c=>c.classList.remove('selected'));
-  const card=document.getElementById('scard-'+idx);
+  const card=document.getElementById('scard-'+id);
   if(card)card.classList.add('selected');
   setTimeout(()=>showScreen('login'),160);
+}
+
+function deleteSurvey(event, id, name){
+  event.stopPropagation(); // Ne pas déclencher selectSurvey
+  if(!confirm('🗑 Supprimer définitivement l\'enquête\n"'+name+'" ?\n\nToutes les données locales seront effacées. Cette action est irréversible.'))return;
+  deleteSurveyById(id);
+  toast('🗑 Enquête "'+name+'" supprimée.');
+  renderSurveyList();
 }
 
 // ============================================================
@@ -650,14 +735,35 @@ function createNewSurvey(){
     toast('⚠️ Donnez un nom à votre enquête.');
     return;
   }
-  if(surveyName&&responses.length>0){
-    if(!confirm('⚠️ Une enquête "'+surveyName+'" existe déjà avec '+responses.length+' réponse(s).\n\nCréer une nouvelle enquête effacera toutes les données locales.\n\nContinuer ?'))return;
+  // Vérifier doublons
+  const list=getAllSurveys();
+  if(list.find(s=>s.name.toLowerCase()===name.toLowerCase())){
+    toast('⚠️ Une enquête avec ce nom existe déjà.');
+    if(nameInput)nameInput.style.borderColor='#f87171';
+    return;
   }
+
+  // Créer la nouvelle entrée dans la liste
+  const newId='s_'+Date.now();
+  const adminUser={id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true,mustChangePass:true};
+  const newSurvey={
+    id:newId,
+    name:name,
+    data:{responses:[],users:[adminUser],customQ:[],Q_EDITS:{}},
+    binId:'',
+    createdAt:new Date().toLocaleDateString('fr-FR'),
+  };
+  list.push(newSurvey);
+  saveAllSurveys(list);
+
+  // Charger cette nouvelle enquête comme active
+  loadSurveyById(newId);
+  selectedSurveyId=newId;
+  initDefaultAdmin();
   surveyName=name;
-  responses=[];customQ=[];Q_EDITS={};
-  users=[{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true,mustChangePass:true}];
-  saveLocal();
-  toast('✅ Enquête "'+name+'" créée !','s');
+
+  toast('✅ Enquête "'+name+'" créée !');
+  if(nameInput)nameInput.value='';
   setTimeout(()=>showScreen('login'),300);
 }
 
@@ -698,18 +804,25 @@ function doForceChangePass(){
   if(!user){err.textContent='Utilisateur introuvable.';err.style.display='block';return;}
   user.password=p1;
   delete user.mustChangePass;
-  saveLocal();
+  // Sauvegarder dans arv_v3 et dans la liste
+  const raw=localStorage.getItem('arv_v3');
+  if(raw){
+    try{
+      const d=JSON.parse(raw);
+      d.users=users;
+      localStorage.setItem('arv_v3',JSON.stringify(d));
+    }catch(e){}
+  }
+  syncActiveToList();
   toast('🔐 Mot de passe mis à jour !');
   launchApp(user);
 }
 
 // ============================================================
-// LANCEMENT DE L'APP (redirection vers index.html)
+// LANCEMENT DE L'APP
 // ============================================================
 function launchApp(user){
-  // Stocker l'utilisateur connecté pour que index.html le récupère
   sessionStorage.setItem('arv_session_user',JSON.stringify({id:user.id,name:user.name,login:user.login,role:user.role}));
-  // Redirection vers l'app principale
   window.location.href='index.html';
 }
 
@@ -744,24 +857,45 @@ async function recoverFromCloud(){
     const rec=d.record||d;
     if(!rec||typeof rec!=='object')throw new Error('Format de données invalide.');
     ss('apikey',key);ss('binid',bin);
-    const eIds=new Set(responses.map(r=>r.id));
-    (rec.responses||[]).forEach(r=>{if(!eIds.has(r.id))responses.push(r);});
-    (rec.users||[]).forEach(u=>{if(!users.find(x=>x.id===u.id))users.push(u);});
-    if(rec.customQ)customQ=rec.customQ;
-    if(rec.Q_EDITS)Q_EDITS=rec.Q_EDITS;
-    if(rec.surveyName)surveyName=rec.surveyName;
-    saveLocal();
+
+    // Charger dans arv_v3 puis sync vers la liste
+    const payload={
+      responses:rec.responses||[],
+      users:rec.users||[],
+      customQ:rec.customQ||[],
+      Q_EDITS:rec.Q_EDITS||{},
+      surveyName:rec.surveyName||'Enquête récupérée',
+    };
+    localStorage.setItem('arv_v3',JSON.stringify(payload));
+
+    // Ajouter/mettre à jour dans la liste multi-enquêtes
+    const list=getAllSurveys();
+    const existing=list.find(s=>s.name===payload.surveyName);
+    if(existing){
+      existing.data={responses:payload.responses,users:payload.users,customQ:payload.customQ,Q_EDITS:payload.Q_EDITS};
+      existing.binId=bin;
+      saveAllSurveys(list);
+      selectedSurveyId=existing.id;
+      localStorage.setItem('arv_active_id',existing.id);
+    } else {
+      const newId='s_'+Date.now();
+      list.push({id:newId,name:payload.surveyName,data:{responses:payload.responses,users:payload.users,customQ:payload.customQ,Q_EDITS:payload.Q_EDITS},binId:bin,createdAt:new Date().toLocaleDateString('fr-FR')});
+      saveAllSurveys(list);
+      selectedSurveyId=newId;
+      localStorage.setItem('arv_active_id',newId);
+    }
+    initDefaultAdmin();
+    surveyName=payload.surveyName;
+
     showSt('✅ Données chargées avec succès !','ok');
     btn.textContent='☁️ Récupérer à nouveau';
     const prev=document.getElementById('rec-preview');
-    document.getElementById('rec-survey-name').textContent=surveyName||'Enquête sans titre';
+    document.getElementById('rec-survey-name').textContent=surveyName;
     const women=responses.filter(r=>r.answers&&r.answers.q_sexe==='Féminin').length;
     const men=responses.filter(r=>r.answers&&r.answers.q_sexe==='Masculin').length;
     document.getElementById('rec-preview-body').innerHTML=
-      '📋 <strong>'+responses.length+'</strong> enquête(s) · ♀ <strong>'+women+'</strong> · ♂ <strong>'+men+'</strong>';
+      '📋 <strong>'+payload.responses.length+'</strong> enquête(s) · ♀ <strong>'+women+'</strong> · ♂ <strong>'+men+'</strong>';
     if(prev)prev.style.display='block';
-    // Pré-remplir les champs sync dans index
-    ss('apikey',key);ss('binid',bin);
   }catch(e){
     showSt('❌ '+e.message,'err');
     btn.textContent='☁️ Réessayer';
@@ -771,18 +905,23 @@ async function recoverFromCloud(){
 
 async function syncNowLogin(){
   const key=gs('apikey');const bin=gs('binid');
-  if(!key||!bin){toast('⚠️ Configurez JSONBin d\'abord.','w');showScreen('sync');return;}
+  if(!key||!bin){toast('⚠️ Configurez JSONBin d\'abord.');showScreen('sync');return;}
   toast('🔄 Synchronisation…');
   try{
     const headers={'Content-Type':'application/json','X-Master-Key':key,'X-Access-Key':key};
     const res=await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest',{headers});
     if(!res.ok)throw new Error('Erreur '+res.status);
     const d=await res.json();const rec=d.record||d;
-    if(rec&&rec.surveyName)surveyName=rec.surveyName;
-    const eIds=new Set(responses.map(r=>r.id));
-    (rec.responses||[]).forEach(r=>{if(!eIds.has(r.id))responses.push(r);});
-    (rec.users||[]).forEach(u=>{if(!users.find(x=>x.id===u.id))users.push(u);});
-    saveLocal();
+    if(rec&&rec.surveyName){
+      const raw=localStorage.getItem('arv_v3');
+      let existing={};try{existing=JSON.parse(raw||'{}');}catch(e){}
+      const eIds=new Set((existing.responses||[]).map(r=>r.id));
+      (rec.responses||[]).forEach(r=>{if(!eIds.has(r.id))(existing.responses=existing.responses||[]).push(r);});
+      (rec.users||[]).forEach(u=>{if(!(existing.users||[]).find(x=>x.id===u.id))(existing.users=existing.users||[]).push(u);});
+      existing.surveyName=rec.surveyName;
+      localStorage.setItem('arv_v3',JSON.stringify(existing));
+      syncActiveToList();
+    }
     toast('✅ Données mises à jour !');
     renderSurveyList();
   }catch(e){toast('❌ Sync échouée : '+e.message);}
@@ -806,13 +945,18 @@ function toast(msg){
   const rk=document.getElementById('rec-key');if(rk&&k)rk.value=k;
   const rb=document.getElementById('rec-bin');if(rb&&b)rb.value=b;
 
-  // Déterminer l'écran de départ
-  if(surveyName){
+  // Sync enquête active vers la liste
+  syncActiveToList();
+  initDefaultAdmin();
+
+  const surveys=getAllSurveys();
+  if(surveys.length>0){
     showScreen('choose');
   } else {
     showScreen('new');
   }
 })();
 </script>
+
 </body>
 </html>
