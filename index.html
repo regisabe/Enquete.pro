@@ -12,79 +12,91 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height:100vh;transition:background .25s,color .25s;font-size:15px}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bg5);border-radius:2px}
-
-/* ===== LOGIN SPLIT ===== */
+/* LOGIN SPLIT */
 #login-screen{min-height:100vh;display:flex;align-items:stretch;overflow:hidden}
-.login-left{flex:0 0 380px;background:linear-gradient(145deg,#1a4fcf 0%,#2563eb 45%,#3b82f6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2.5rem;position:relative;overflow:hidden}
-.login-left::before{content:'';position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.07);top:-80px;left:-80px;pointer-events:none}
-.login-left::after{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05);bottom:-50px;right:-60px;pointer-events:none}
+.login-left{flex:0 0 400px;background:linear-gradient(145deg,#1a4fcf 0%,#2563eb 40%,#3b82f6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2.5rem;position:relative;overflow:hidden}
+.login-left::before{content:'';position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.07);top:-80px;left:-80px}
+.login-left::after{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05);bottom:-50px;right:-60px}
 .login-left-inner{position:relative;z-index:1;text-align:center}
-.login-app-icon{width:90px;height:90px;background:rgba(255,255,255,.18);backdrop-filter:blur(12px);border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 24px;border:1.5px solid rgba(255,255,255,.25);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.login-app-icon{width:90px;height:90px;background:rgba(255,255,255,.18);backdrop-filter:blur(12px);border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 28px;border:1.5px solid rgba(255,255,255,.25);box-shadow:0 8px 32px rgba(0,0,0,.2)}
 .login-app-name{font-family:var(--font-h);font-size:30px;font-weight:800;color:#fff;letter-spacing:-.5px}
 .login-app-name span{color:rgba(255,255,255,.55);font-weight:400}
 .login-app-sub{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:2px;text-transform:uppercase;margin-top:10px}
-.login-version{position:absolute;bottom:1.25rem;left:0;right:0;text-align:center;font-size:11px;color:rgba(255,255,255,.35)}
-.login-right{flex:1;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;overflow-y:auto}
+.login-app-version{position:absolute;bottom:1.5rem;left:0;right:0;text-align:center;font-size:11px;color:rgba(255,255,255,.35)}
+.login-right{flex:1;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 2.5rem;overflow-y:auto}
 .login-panel{width:100%;max-width:380px;animation:fadeUp .4s ease}
-.login-panel h2{font-family:var(--font-h);font-size:20px;font-weight:700;color:#1a1e30;margin-bottom:4px}
-.lp-sub{font-size:13px;color:#6b7280;margin-bottom:1.5rem;line-height:1.5}
-
-/* Tabs (only footer, no top duplicate) */
-.login-footer{display:flex;justify-content:center;margin-top:1.25rem;padding-top:1rem;border-top:1px solid #f3f4f6;gap:0}
-.lft-btn{display:flex;align-items:center;gap:5px;padding:7px 14px;color:#6b7280;font-size:13px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);border-right:1px solid #e5e7eb;transition:color .2s}
-.lft-btn:last-child{border-right:none}
-.lft-btn:hover,.lft-btn.active{color:#2563eb}
-
-/* Space cards */
-.space-card{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1.5px solid #e5e7eb;border-radius:12px;margin-bottom:9px;cursor:pointer;transition:all .2s;background:#fff}
+.login-panel h2{font-family:var(--font-h);font-size:22px;font-weight:700;color:#1a1e30;margin-bottom:5px}
+.lp-sub{font-size:13.5px;color:#6b7280;margin-bottom:1.75rem}
+.login-tabs{display:flex;gap:0;background:#f3f4f6;border-radius:10px;padding:4px;margin-bottom:1.75rem}
+.login-tab{flex:1;padding:9px;text-align:center;font-size:13.5px;font-weight:500;color:#6b7280;border-radius:7px;cursor:pointer;transition:all .2s;border:none;background:transparent;font-family:var(--font-b)}
+.login-tab.active{background:#fff;color:#1a1e30;box-shadow:0 1px 5px rgba(0,0,0,.12)}
+.space-card{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid #e5e7eb;border-radius:12px;margin-bottom:10px;cursor:pointer;transition:all .2s;background:#fff}
 .space-card:hover,.space-card.selected{border-color:#3b82f6;background:#eff6ff}
-.space-av{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0;font-weight:700;font-family:var(--font-h)}
+.space-avatar{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0;font-weight:700;font-family:var(--font-h)}
 .space-name{font-size:14px;font-weight:600;color:#1a1e30}
-.space-sub{font-size:11.5px;color:#6b7280;margin-top:2px}
-.space-sync{display:flex;align-items:center;gap:4px;font-size:11px;color:#2563eb;background:#dbeafe;padding:3px 8px;border-radius:20px;font-weight:600;flex-shrink:0;margin-left:auto}
-.space-arr{color:#9ca3af;font-size:18px;margin-left:6px}
-
-/* Login form fields */
-.fg{margin-bottom:12px}
+.space-sub{font-size:11.5px;color:#6b7280;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.space-sync-badge{display:flex;align-items:center;gap:4px;font-size:11px;color:#2563eb;background:#dbeafe;padding:3px 9px;border-radius:20px;font-weight:600;flex-shrink:0;margin-left:auto}
+.space-arrow{color:#9ca3af;font-size:18px;margin-left:8px}
+.login-footer-links{display:flex;justify-content:center;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid #f3f4f6;gap:0}
+.lfl-btn{display:flex;align-items:center;gap:5px;padding:7px 16px;color:#6b7280;font-size:13px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);border-right:1px solid #e5e7eb;transition:color .2s}
+.lfl-btn:last-child{border-right:none}
+.lfl-btn:hover{color:#2563eb}
+.fg{margin-bottom:13px}
 .fg label{display:block;font-size:11px;font-weight:600;color:#6b7280;margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase}
-.fg input{width:100%;padding:12px 14px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:10px;color:#1a1e30;font-family:var(--font-b);font-size:15px;transition:border-color .2s}
+.fg input{width:100%;padding:13px 14px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:10px;color:#1a1e30;font-family:var(--font-b);font-size:15px;transition:border-color .2s}
 .fg input:focus{outline:none;border-color:#3b82f6;background:#fff}
-.btn-login{width:100%;padding:13px;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;border-radius:10px;font-family:var(--font-h);font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.3);transition:opacity .2s}
-.btn-login:active{opacity:.88}
+.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;border-radius:10px;font-family:var(--font-h);font-size:15px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:4px;box-shadow:0 4px 14px rgba(37,99,235,.3)}
+.btn-login:active{transform:scale(.98);opacity:.9}
 .btn-login:disabled{opacity:.6;cursor:not-allowed}
-.login-hint{font-size:11.5px;color:#9ca3af;text-align:center;margin-top:10px;line-height:1.6}
-.login-err-box{display:none;padding:9px 12px;background:#fee2e2;border:1.5px solid #fca5a5;border-radius:10px;font-size:13px;color:#dc2626;margin-bottom:10px;text-align:center}
-.login-status-box{display:none;padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;text-align:center}
-
-/* Enquête preview card */
-.enq-preview{background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:12px;padding:14px;margin-bottom:14px}
-.enq-preview-title{font-family:var(--font-h);font-size:14px;font-weight:700;color:#0369a1;margin-bottom:8px}
-.enq-stat{display:flex;align-items:center;gap:8px;font-size:13px;color:#0369a1;margin-bottom:4px}
-
-/* APP */
+.login-hint{font-size:12px;color:#9ca3af;text-align:center;margin-top:12px;line-height:1.6}
+.recover-input-row{display:flex;gap:8px;margin-bottom:12px}
+.recover-input-row input{flex:1;padding:12px 14px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:10px;color:#1a1e30;font-family:var(--font-b);font-size:14px;transition:border-color .2s}
+.recover-input-row input:focus{outline:none;border-color:#3b82f6;background:#fff}
+.btn-recover{padding:12px 18px;background:#2563eb;color:#fff;border:none;border-radius:10px;font-family:var(--font-h);font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn-recover:hover{opacity:.9}
+@media(max-width:900px){
+  .login-left{flex:0 0 300px}
+  .login-app-icon{width:70px;height:70px;font-size:34px;margin-bottom:20px}
+  .login-app-name{font-size:24px}
+}
+@media(max-width:640px){
+  #login-screen{flex-direction:column;min-height:100vh}
+  .login-left{flex:0 0 auto;padding:1.75rem 1.5rem}
+  .login-app-icon{width:58px;height:58px;font-size:26px;margin-bottom:12px;border-radius:16px}
+  .login-app-name{font-size:20px}
+  .login-app-sub{font-size:10px;margin-top:6px}
+  .login-app-version{display:none}
+  .login-right{flex:1;padding:1.5rem 1.25rem;justify-content:flex-start;padding-top:1.75rem}
+  .login-panel{max-width:100%}
+  .login-tabs{margin-bottom:1.25rem}
+  .login-tab{font-size:12px;padding:8px 6px}
+  .space-card{padding:11px 12px;gap:10px}
+  .space-avatar{width:38px;height:38px;font-size:16px;border-radius:10px}
+  .lfl-btn{padding:7px 12px;font-size:12px}
+}
 #app{display:none;min-height:100vh}
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sb);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:300;transition:transform .28s cubic-bezier(.4,0,.2,1)}
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:299;backdrop-filter:blur(2px)}
-.sb-head{padding:1.2rem 1.1rem .9rem;border-bottom:1px solid var(--border);flex-shrink:0}
+.sb-head{padding:1.3rem 1.1rem .9rem;border-bottom:1px solid var(--border);flex-shrink:0}
 .sb-logo{display:flex;align-items:center;gap:10px}
-.sb-logo .ico{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.sb-logo-txt span{font-family:var(--font-h);font-size:14px;font-weight:700;display:block}
-.sb-sub{font-size:10px;color:var(--text3);line-height:1.4;margin-top:1px}
+.sb-logo .ico{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.sb-logo-txt span{font-family:var(--font-h);font-size:15px;font-weight:700;display:block}
+.sb-sub{font-size:10px;color:var(--text3);line-height:1.4;margin-top:2px}
 .sb-nav{flex:1;padding:.9rem .7rem;overflow-y:auto}
 .nav-sec{font-size:10px;font-weight:600;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;padding:0 .5rem;margin:1rem 0 .35rem}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;font-size:13.5px;color:var(--text2);transition:all .15s;margin-bottom:2px;border:1px solid transparent;user-select:none}
+.nav-item{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;color:var(--text2);transition:all .15s;margin-bottom:2px;border:1px solid transparent;user-select:none}
 .nav-item:active{transform:scale(.97)}
-.nav-item .ni{font-size:16px;flex-shrink:0}
+.nav-item .ni{font-size:17px;flex-shrink:0}
 .nav-item.active{background:rgba(91,141,246,.12);color:var(--accent);border-color:rgba(91,141,246,.18);font-weight:500}
 .nav-item:not(.active):hover{background:var(--bg3);color:var(--text)}
 .sb-foot{padding:.9rem .7rem;border-top:1px solid var(--border);flex-shrink:0}
 .user-chip{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:var(--radius-sm);background:var(--bg3);margin-bottom:8px}
-.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
 .u-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .u-role{font-size:11px;color:var(--text2)}
 .sb-btns{display:flex;gap:6px}
 .main{margin-left:var(--sb);min-height:100vh;display:flex;flex-direction:column}
-.topbar{position:sticky;top:0;z-index:200;background:var(--bg);border-bottom:1px solid var(--border);padding:0 1.25rem;height:54px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.topbar{position:sticky;top:0;z-index:200;background:var(--bg);border-bottom:1px solid var(--border);padding:0 1.25rem;height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .tb-left{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
 .page-title{font-family:var(--font-h);font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tb-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
@@ -94,8 +106,9 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn-primary:active{opacity:.85}
 .btn-success{background:var(--accent3);color:#fff;border-color:var(--accent3)}
 .btn-danger{color:var(--danger);border-color:rgba(245,101,101,.25);background:transparent}.btn-danger:active{background:rgba(245,101,101,.1)}
+.btn-warn{background:var(--warn);color:#fff;border-color:var(--warn)}
 .btn-sm{padding:6px 11px;font-size:12.5px}
-.btn-icon{padding:8px;min-width:36px}
+.btn-icon{padding:9px;min-width:38px}
 .btn-full{width:100%;padding:14px;font-size:15px}
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;margin-bottom:14px}
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:10px;flex-wrap:wrap}
@@ -135,8 +148,8 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .opt-row.sel{border-color:var(--accent);background:rgba(91,141,246,.1);color:var(--accent)}
 .opt-row input{accent-color:var(--accent);flex-shrink:0;width:18px;height:18px}
 .err-border{border:1.5px solid var(--danger)!important;background:rgba(245,101,101,.05)!important}
-.prog-tracker{display:flex;margin-bottom:1.25rem;border-radius:var(--radius-sm);border:1px solid var(--border);overflow:hidden}
-.pt-step{flex:1;padding:9px 4px;text-align:center;font-size:10px;font-weight:600;color:var(--text3);background:var(--bg3);border-right:1px solid var(--border);transition:all .2s;cursor:pointer}
+.prog-tracker{display:flex;gap:0;margin-bottom:1.25rem;border-radius:var(--radius-sm);border:1px solid var(--border);overflow:hidden}
+.pt-step{flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--text3);background:var(--bg3);border-right:1px solid var(--border);transition:all .2s;cursor:pointer}
 .pt-step:last-child{border-right:none}
 .pt-step.active{background:rgba(91,141,246,.15);color:var(--accent)}
 .prog-wrap{margin-bottom:10px}
@@ -144,7 +157,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .prog-bar-bg{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
 .prog-bar{height:100%;border-radius:3px;transition:width .4s ease}
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;padding:12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1.2rem;align-items:center}
-.filter-bar select{padding:8px 24px 8px 10px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-b);font-size:13px;cursor:pointer;-webkit-appearance:none}
+.filter-bar select{padding:9px 28px 9px 12px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-b);font-size:13.5px;cursor:pointer;-webkit-appearance:none}
 .filter-bar select:focus{outline:none;border-color:var(--accent)}
 .filter-label{font-size:12px;font-weight:600;color:var(--text2)}
 .ch-wrap{position:relative;width:100%;margin-top:12px}
@@ -159,17 +172,19 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .s-pend{background:var(--warn);animation:pulse 1.4s infinite}
 .s-err{background:var(--danger)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-#toast{position:fixed;bottom:20px;right:16px;left:16px;max-width:360px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:13px 16px;font-size:13.5px;z-index:9999;box-shadow:var(--shadow);transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;text-align:center;line-height:1.4}
+#toast{position:fixed;bottom:20px;right:16px;left:16px;max-width:360px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:13px 16px;font-size:13.5px;z-index:9999;box-shadow:var(--shadow);transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none;line-height:1.4;text-align:center}
 #toast.show{transform:translateY(0);opacity:1}
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;z-index:500;animation:fadeIn .15s ease}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;z-index:500;padding:0;animation:fadeIn .15s ease}
 .modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:22px 22px 0 0;padding:1.75rem 1.5rem;width:100%;max-width:560px;box-shadow:var(--shadow);animation:slideUp .25s ease;max-height:88vh;overflow-y:auto}
 .modal-handle{width:40px;height:4px;background:var(--bg5);border-radius:2px;margin:0 auto 1.25rem;display:block}
 .modal-title{font-family:var(--font-h);font-size:18px;font-weight:700;margin-bottom:1rem}
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:250;padding:6px 0 calc(6px + env(safe-area-inset-bottom));justify-content:space-around}
-.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 8px;cursor:pointer;border:none;background:transparent;color:var(--text2);font-family:var(--font-b);font-size:10px;font-weight:500;flex:1;user-select:none;border-radius:var(--radius-sm)}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 10px;cursor:pointer;border-radius:var(--radius-sm);transition:all .15s;border:none;background:transparent;color:var(--text2);font-family:var(--font-b);font-size:10px;font-weight:500;flex:1;user-select:none}
 .bn-item:active{transform:scale(.92)}
 .bn-item .bn-ico{font-size:20px}
 .bn-item.active{color:var(--accent)}
+.score-box{text-align:center;padding:1.5rem;background:var(--bg3);border-radius:var(--radius);border:2px solid var(--border2);margin-bottom:12px}
+.score-big{font-family:var(--font-h);font-size:52px;font-weight:800;line-height:1}
 .rpt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .rpt-tab{padding:8px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:13px;cursor:pointer;font-family:var(--font-b);transition:all .15s}
 .rpt-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -182,103 +197,131 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .page{animation:fadeUp .3s ease}
 @media print{.sidebar,.topbar,.filter-bar,.bottom-nav,.sb-overlay,.no-print{display:none!important}.main{margin-left:0!important;padding-bottom:0!important}.content{max-width:100%!important;padding:0!important}body{background:white!important;color:black!important}.card{border:1px solid #ccc!important;background:white!important;break-inside:avoid}}
-@media(max-width:900px){:root{--sb:200px}.login-left{flex:0 0 300px}}
-@media(max-width:640px){.sidebar{transform:translateX(-100%);width:260px;--sb:0}.sidebar.open{transform:translateX(0);box-shadow:var(--shadow)}.sb-overlay.show{display:block}.main{margin-left:0;padding-bottom:72px}.bottom-nav{display:flex}.topbar{padding:0 1rem;height:52px}.content{padding:1rem .9rem}.met-grid{grid-template-columns:repeat(2,1fr);gap:9px}.met-val{font-size:22px}.modal-box{border-radius:22px 22px 0 0}.filter-bar{gap:6px}.row-2{grid-template-columns:1fr}.opt-row{padding:11px 12px}.card{padding:1rem}
-  #login-screen{flex-direction:column;min-height:100vh}
-  .login-left{flex:0 0 auto;padding:1.75rem 1.5rem}
-  .login-app-icon{width:60px;height:60px;font-size:28px;margin-bottom:14px;border-radius:18px}
-  .login-app-name{font-size:22px}.login-app-sub{font-size:10px}.login-version{display:none}
-  .login-right{padding:1.5rem 1.25rem;justify-content:flex-start}
-  .login-panel{max-width:100%}
-}
+@media(max-width:900px){:root{--sb:200px}.met-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.sidebar{transform:translateX(-100%);width:260px;--sb:0}.sidebar.open{transform:translateX(0);box-shadow:var(--shadow)}.sb-overlay.show{display:block}.main{margin-left:0;padding-bottom:72px}.bottom-nav{display:flex}.topbar{padding:0 1rem;height:52px}.content{padding:1rem .9rem}.met-grid{grid-template-columns:repeat(2,1fr);gap:9px}.met-val{font-size:22px}.modal-box{border-radius:22px 22px 0 0;max-height:90vh}.filter-bar{gap:6px}.row-2{grid-template-columns:1fr}.opt-row{padding:12px}.card{padding:1rem}}
 .hidden{display:none!important}
 </style>
 </head>
 <body>
-
-<!-- ===== LOGIN ===== -->
 <div id="login-screen">
+  <!-- LEFT -->
   <div class="login-left">
     <div class="login-left-inner">
       <div class="login-app-icon">🧬</div>
       <div class="login-app-name">Enquête<span>Pro.</span></div>
       <div class="login-app-sub">Gestion d'enquêtes · ARV</div>
     </div>
-    <div class="login-version">v3.0 · Mémoire de recherche · Abidjan CI</div>
+    <div class="login-app-version">v3.0 · Mémoire de recherche · Abidjan CI</div>
   </div>
-
+  <!-- RIGHT -->
   <div class="login-right">
     <div class="login-panel">
 
-      <!-- PANEL CONNEXION -->
-      <div id="ls-connect">
-        <h2>Choisir un espace</h2>
-        <p class="lp-sub" id="ls-count">Chargement...</p>
-        <div id="ls-spaces"></div>
-        <div id="ls-form" style="display:none;margin-top:14px">
-          <div class="fg">
-            <label>Mot de passe</label>
-            <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"
-              onkeydown="if(event.key==='Enter')doLogin()"/>
+      <!-- ÉTAPE 1 : Config / Récupération -->
+      <div id="ls-step1">
+        <!-- Indicateur étapes -->
+        <div style="display:flex;align-items:center;gap:0;margin-bottom:1.5rem">
+          <div style="display:flex;align-items:center;gap:6px;flex:1">
+            <div id="step-dot1" style="width:28px;height:28px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">1</div>
+            <span style="font-size:13px;font-weight:600;color:#2563eb">Configuration</span>
           </div>
-          <div class="login-err-box" id="login-err"></div>
-          <button class="btn-login" id="btn-go" onclick="doLogin()">Accéder →</button>
-          <div style="text-align:center;margin-top:10px">
-            <button style="font-size:13px;color:#6b7280;background:none;border:none;cursor:pointer;font-family:var(--font-b)"
-              onclick="cancelLogin()">← Retour</button>
+          <div style="flex:1;height:2px;background:#e5e7eb;margin:0 8px"></div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="width:28px;height:28px;border-radius:50%;background:#e5e7eb;color:#9ca3af;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">2</div>
+            <span style="font-size:13px;color:#9ca3af">Connexion</span>
           </div>
         </div>
+
+        <!-- Onglets (UN SEUL ENDROIT) -->
+        <div style="display:flex;gap:0;background:#f3f4f6;border-radius:10px;padding:4px;margin-bottom:1.25rem">
+          <button class="ls-tab active" id="ltab-recover" onclick="switchStep1Tab('recover')" style="flex:1;padding:9px 8px;text-align:center;font-size:13px;font-weight:500;color:#6b7280;border-radius:7px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);transition:all .2s">☁️ Récupérer</button>
+          <button class="ls-tab" id="ltab-new" onclick="switchStep1Tab('new')" style="flex:1;padding:9px 8px;text-align:center;font-size:13px;font-weight:500;color:#6b7280;border-radius:7px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);transition:all .2s">✨ Nouvelle enquête</button>
+          <button class="ls-tab" id="ltab-sync" onclick="switchStep1Tab('sync')" style="flex:1;padding:9px 8px;text-align:center;font-size:13px;font-weight:500;color:#6b7280;border-radius:7px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);transition:all .2s">⚙️ Sync</button>
+        </div>
+
+        <!-- Onglet Récupérer -->
+        <div id="ls-recover">
+          <h2 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:#1a1e30;margin-bottom:4px">Récupérer les données</h2>
+          <p class="lp-sub">Entrez vos clés JSONBin pour charger les données synchronisées depuis le cloud.</p>
+          <div class="fg"><label>Clé API JSONBin (Master Key)</label>
+            <input type="text" id="rec-key" placeholder="$2a$10$..." autocapitalize="none"/></div>
+          <div class="fg"><label>Bin ID</label>
+            <input type="text" id="rec-bin" placeholder="686a3e..." autocapitalize="none"/></div>
+          <div id="rec-status" style="display:none;padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;text-align:center"></div>
+          <!-- Aperçu enquête après récup -->
+          <div id="rec-preview" style="display:none;background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:12px;padding:14px;margin-bottom:12px">
+            <div style="font-family:var(--font-h);font-size:13px;font-weight:700;color:#0369a1;margin-bottom:8px">📋 Données chargées</div>
+            <div id="rec-preview-body" style="font-size:13px;color:#0369a1;line-height:1.8"></div>
+            <button class="btn-login" onclick="goToStep2()" style="margin-top:10px">Se connecter →</button>
+          </div>
+          <button class="btn-login" onclick="recoverFromCloud()" id="btn-recover">☁️ Récupérer les données</button>
+          <div class="login-hint">Les données seront fusionnées avec celles déjà présentes localement.</div>
+        </div>
+
+        <!-- Onglet Nouvelle enquête -->
+        <div id="ls-new" style="display:none">
+          <h2 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:#1a1e30;margin-bottom:4px">Démarrer une nouvelle enquête</h2>
+          <p class="lp-sub">Commencez directement sans synchronisation cloud. Vous pourrez configurer la sync plus tard.</p>
+          <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;padding:14px;margin-bottom:16px">
+            <div style="font-size:13px;color:#166534;line-height:1.7">
+              ✅ <strong>Un compte admin est déjà prêt</strong><br>
+              Identifiant : <strong>admin</strong><br>
+              Mot de passe : <strong>admin2026</strong><br>
+              <span style="font-size:11px;opacity:.8">Changez le mot de passe dans Paramètres après la connexion.</span>
+            </div>
+          </div>
+          <button class="btn-login" onclick="goToStep2()">Continuer → Se connecter</button>
+          <div class="login-hint">Pas de cloud requis. Données sauvegardées localement.</div>
+        </div>
+
+        <!-- Onglet Sync Config -->
+        <div id="ls-sync" style="display:none">
+          <h2 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:#1a1e30;margin-bottom:4px">Configuration Sync</h2>
+          <p class="lp-sub">Configurez JSONBin pour la synchronisation automatique entre appareils. Gratuit sur jsonbin.io</p>
+          <div class="fg"><label>Clé API Master (JSONBin)</label>
+            <input type="text" id="sync-key" placeholder="$2a$10$..." autocapitalize="none"/></div>
+          <div class="fg"><label>Bin ID (vide = créé automatiquement)</label>
+            <input type="text" id="sync-bin" placeholder="ID du bin..." autocapitalize="none"/></div>
+          <button class="btn-login" onclick="saveSyncConf()">💾 Enregistrer et continuer</button>
+          <div class="login-hint">Après avoir enregistré, utilisez "Récupérer" pour charger vos données.</div>
+        </div>
       </div>
 
-      <!-- PANEL RÉCUPÉRER -->
-      <div id="ls-recover" style="display:none">
-        <h2>Récupérer les données</h2>
-        <p class="lp-sub">Entrez votre clé API JSONBin et votre Bin ID pour charger les données du cloud.</p>
-        <div class="fg">
-          <label>Clé API JSONBin (Master Key)</label>
-          <input type="text" id="rec-key" placeholder="$2a$10$..." autocapitalize="none"/>
+      <!-- ÉTAPE 2 : Connexion (identifiants) -->
+      <div id="ls-step2" style="display:none">
+        <!-- Indicateur étapes -->
+        <div style="display:flex;align-items:center;gap:0;margin-bottom:1.5rem">
+          <div style="display:flex;align-items:center;gap:6px;flex:1">
+            <div style="width:28px;height:28px;border-radius:50%;background:#10d9a0;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">✓</div>
+            <span style="font-size:13px;color:#6b7280">Configuration</span>
+          </div>
+          <div style="flex:1;height:2px;background:#2563eb;margin:0 8px"></div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="width:28px;height:28px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">2</div>
+            <span style="font-size:13px;font-weight:600;color:#2563eb">Connexion</span>
+          </div>
         </div>
-        <div class="fg">
-          <label>Bin ID</label>
-          <input type="text" id="rec-bin" placeholder="686a3e4f..." autocapitalize="none"/>
+
+        <h2 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:#1a1e30;margin-bottom:4px">Se connecter</h2>
+        <p class="lp-sub">Saisissez vos identifiants pour accéder à l'enquête.</p>
+        <div class="fg"><label>Identifiant</label>
+          <input type="text" id="lp-login" placeholder="Votre identifiant..." autocapitalize="none" autocomplete="username"
+            onkeydown="if(event.key==='Enter')document.getElementById('lp').focus()"/></div>
+        <div class="fg"><label>Mot de passe</label>
+          <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password"
+            onkeydown="if(event.key==='Enter')doLogin()"/></div>
+        <div id="login-err" style="display:none;padding:9px 12px;background:#fee2e2;border:1.5px solid #fca5a5;border-radius:10px;font-size:13px;color:#dc2626;margin-bottom:10px;text-align:center"></div>
+        <button class="btn-login" onclick="doLogin()">Accéder →</button>
+        <div style="text-align:center;margin-top:12px">
+          <button style="font-size:13px;color:#6b7280;background:none;border:none;cursor:pointer;font-family:var(--font-b)" onclick="backToStep1()">← Retour</button>
         </div>
-        <div class="login-status-box" id="rec-status"></div>
-        <!-- Aperçu enquête après récupération -->
-        <div id="rec-preview" style="display:none" class="enq-preview">
-          <div class="enq-preview-title">📋 Données récupérées</div>
-          <div id="rec-preview-content"></div>
-        </div>
-        <button class="btn-login" onclick="recoverFromCloud()" id="btn-recover">☁️ Récupérer les données</button>
-        <div class="login-hint">Les données seront fusionnées avec celles déjà présentes.</div>
+        <div class="login-hint">Contactez l'administrateur si vous avez oublié vos identifiants.</div>
       </div>
 
-      <!-- PANEL SYNC CONFIG -->
-      <div id="ls-sync" style="display:none">
-        <h2>Configuration Sync</h2>
-        <p class="lp-sub">Configurez JSONBin pour la synchronisation automatique entre appareils.</p>
-        <div class="fg">
-          <label>Clé API Master (JSONBin)</label>
-          <input type="text" id="sync-key" placeholder="$2a$10$..." autocapitalize="none"/>
-        </div>
-        <div class="fg">
-          <label>Bin ID (vide = créé automatiquement au 1er sync)</label>
-          <input type="text" id="sync-bin" placeholder="ID du bin..." autocapitalize="none"/>
-        </div>
-        <button class="btn-login" onclick="saveSyncConf()">💾 Enregistrer</button>
-        <div class="login-hint">Après configuration, utilisez "Récupérer" pour charger vos données.</div>
-      </div>
-
-      <!-- FOOTER (3 boutons, pas de doublon) -->
-      <div class="login-footer">
-        <button class="lft-btn active" id="lft-connect" onclick="showLoginPanel('connect')">🔑 Connexion</button>
-        <button class="lft-btn" id="lft-recover" onclick="showLoginPanel('recover')">☁️ Récupérer</button>
-        <button class="lft-btn" id="lft-sync" onclick="showLoginPanel('sync')">⚙️ Sync</button>
-      </div>
     </div>
   </div>
 </div>
 
-<!-- ===== APP ===== -->
 <div id="app">
   <div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
   <div class="sidebar" id="sidebar">
@@ -309,7 +352,6 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
       </div>
     </div>
   </div>
-
   <div class="main">
     <div class="topbar">
       <div class="tb-left">
@@ -319,14 +361,13 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
       <div class="tb-right">
         <span style="display:flex;align-items:center;gap:5px">
           <span class="sync-dot s-pend" id="sdot"></span>
-          <span id="slbl" style="font-size:11px;color:var(--text2)">Sync...</span>
+          <span id="slbl" style="font-size:12px;color:var(--text2)">Sync...</span>
         </span>
         <button class="btn btn-sm btn-primary no-print" onclick="syncNow()">🔄</button>
       </div>
     </div>
     <div class="content" id="content"></div>
   </div>
-
   <div class="bottom-nav" id="bottom-nav">
     <button class="bn-item active" id="bn-dashboard" onclick="go('dashboard')"><span class="bn-ico">🏠</span><span>Accueil</span></button>
     <button class="bn-item" id="bn-fill" onclick="go('fill')"><span class="bn-ico">📝</span><span>Enquête</span></button>
@@ -339,543 +380,563 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 
 <script>
 // =====================================================================
-// ÉTAT
+// ÉTAT GLOBAL
 // =====================================================================
-var CU=null, isDark=true, responses=[], users=[], customQ=[], Q_EDITS={};
-var syncInt=null, charts={}, curPage='dashboard', activeTab='global';
-var selectedUser=null;
+let CU = null, isDark = true, responses = [], users = [], customQ = [], syncInt = null, charts = {}, curPage = 'dashboard', activeTab = 'global';
+// Q_EDITS: overrides for base questions {qid: {label, opts, req, disabled}}
+let Q_EDITS = {};
 
-var PAL=['#5b8df6','#10d9a0','#f6ad55','#f56565','#8b5cf6','#63b3ed','#fc8181','#48bb78','#ed8936','#9f7aea'];
-var PAGE_TITLES={dashboard:'Tableau de bord',fill:'Nouvelle enquête',report:'Rapport & Statistiques',editq:'Modifier le questionnaire',agents:'Enquêteurs de terrain',settings:'Paramètres & Synchronisation'};
+function getQBase() {
+  // Returns Q_BASE with admin edits applied
+  return Q_BASE.map(q => {
+    const e = Q_EDITS[q.id];
+    if (!e) return q;
+    return {...q, ...e};
+  }).filter(q => !(Q_EDITS[q.id] && Q_EDITS[q.id].disabled));
+}
+
+const PAL = ['#5b8df6','#10d9a0','#f6ad55','#f56565','#8b5cf6','#63b3ed','#fc8181','#48bb78','#ed8936','#9f7aea'];
+const PAGE_TITLES = {dashboard:'Tableau de bord',fill:'Nouvelle enquête',report:'Rapport & Statistiques',editq:'Modifier le questionnaire',agents:'Enquêteurs de terrain',settings:'Paramètres & Synchronisation'};
 
 // =====================================================================
-// SECTIONS & QUESTIONS
+// SECTIONS FIXES
 // =====================================================================
-var SECTIONS={
-  demo:    {label:'Caractéristiques démographiques',icon:'👤',cls:'s1'},
-  s21:     {label:'2.1 — Facteurs individuels',     icon:'🧠',cls:'s2'},
-  s22:     {label:'2.2 — Système de santé',         icon:'🏥',cls:'s3'},
-  s23:     {label:'2.3 — Facteurs psychosociaux',   icon:'💬',cls:'s4'},
-  s24:     {label:'2.4 — Facteurs économiques',     icon:'💰',cls:'s5'},
-  s3:      {label:"3 — Évaluation de l'inobservance",icon:'📋',cls:'s1'},
-  morisky: {label:'Questionnaire MMAS-4 (Morisky)', icon:'💊',cls:'s2'},
+const SECTIONS = {
+  demo:    {label:'Caractéristiques démographiques', icon:'👤', cls:'s1'},
+  s21:     {label:'2.1 — Facteurs individuels',       icon:'🧠', cls:'s2'},
+  s22:     {label:'2.2 — Système de santé',           icon:'🏥', cls:'s3'},
+  s23:     {label:'2.3 — Facteurs psychosociaux',     icon:'💬', cls:'s4'},
+  s24:     {label:'2.4 — Facteurs économiques',       icon:'💰', cls:'s5'},
+  s3:      {label:'3 — Évaluation de l\'inobservance',icon:'📋', cls:'s1'},
+  morisky: {label:'Questionnaire MMAS-4 (Morisky)',   icon:'💊', cls:'s2'},
 };
 
-var Q_BASE=[
-  {id:'q_num',sec:'demo',label:'N° identifiant (auto)',type:'auto',req:false},
-  {id:'q_date_dep',sec:'demo',label:'Date de dépistage',type:'date',req:false},
-  {id:'q_date_trt',sec:'demo',label:'Date de mise sous traitement',type:'date',req:false},
-  {id:'q_delai',sec:'demo',label:'Délai de mise sous traitement',type:'choice',req:true,opts:['Immédiat','< 1 mois','+ 3 mois']},
-  {id:'q_sexe',sec:'demo',label:'Sexe',type:'choice',req:true,opts:['Masculin','Féminin']},
-  {id:'q_age',sec:'demo',label:"Tranche d'âge",type:'choice',req:true,opts:['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +']},
-  {id:'q_matri',sec:'demo',label:'Situation matrimoniale',type:'choice',req:true,opts:['Concubinage','Mariage traditionnel','Mariage civil','Mariage religieux']},
-  {id:'q_instruct',sec:'demo',label:"Niveau d'instruction",type:'choice',req:true,opts:['Aucun','Primaire','Secondaire','Universitaire']},
-  {id:'q_residence',sec:'demo',label:'Lieu de résidence',type:'choice',req:true,opts:['Dans le département','Hors du département']},
-  {id:'q_population',sec:'demo',label:'Type de population',type:'choice',req:true,opts:['Générale','TS','MSM']},
-  {id:'q_conjoint_statut',sec:'demo',label:'Statut du conjoint connu ?',type:'yesno',req:true},
-  {id:'q_conjoint_result',sec:'demo',label:'Résultat dépistage du conjoint',type:'choice',req:false,opts:['Négatif','Positif']},
-  {id:'q_partage_statut',sec:'s21',label:'Avez-vous partagé votre statut avec votre conjoint ?',type:'yesno',req:true},
-  {id:'q_delai_partage',sec:'s21',label:'Délai de partage du statut',type:'choice',req:false,opts:['< 3 mois','3–6 mois','6–12 mois','+ de 12 mois']},
-  {id:'q_connais_benef',sec:'s21',label:'Connaissez-vous les bénéfices du traitement ARV ?',type:'yesno',req:true},
-  {id:'q_benef_cite',sec:'s21',label:'Citez deux bénéfices du traitement ARV',type:'text',ph:'Bénéfice 1 / Bénéfice 2...',req:false},
-  {id:'q_connais_effets',sec:'s21',label:'Connaissez-vous les effets secondaires du traitement ARV ?',type:'yesno',req:true},
-  {id:'q_soins_diff',sec:'s22',label:'Connaissez-vous les soins différenciés ?',type:'yesno',req:true},
-  {id:'q_choix_impose',sec:'s22',label:"Le choix vous a-t-il été imposé par l'agent de santé ?",type:'yesno',req:true},
-  {id:'q_personnel_dispo',sec:'s22',label:'Le personnel de santé est-il disponible lors de vos RDV ?',type:'yesno',req:true},
-  {id:'q_relation_soignant',sec:'s22',label:'Relation avec le personnel soignant',type:'choice',req:true,opts:['Très bonne','Bonne','Insuffisante','Mauvaise']},
-  {id:'q_rupture_meds',sec:'s22',label:'Avez-vous connu des ruptures de médicaments ARV ?',type:'yesno',req:true},
-  {id:'q_soutien_conjoint',sec:'s23',label:'Avez-vous le soutien de votre conjoint pour le traitement ?',type:'yesno',req:true},
-  {id:'q_soutien_type',sec:'s23',label:'À quel niveau ce soutien vous rassure le plus ?',type:'multi',req:false,opts:['Rappel prise médicaments','Accompagnement RDV médicament','Accompagnement RDV prélèvement CV','Soutien affectif et psychologique']},
-  {id:'q_conflits',sec:'s23',label:'Avez-vous des conflits conjugaux ?',type:'yesno',req:true},
-  {id:'q_conflits_type',sec:'s23',label:'Nature des conflits',type:'multi',req:false,opts:["Acception du statut",'Financier','Éducation des enfants','Sexuel','Autres']},
-  {id:'q_stigma',sec:'s23',label:'Êtes-vous stigmatisé(e) au centre de santé ?',type:'yesno',req:true},
-  {id:'q_transport',sec:'s24',label:'Avez-vous des difficultés de frais de transport pour vos RDV ?',type:'yesno',req:true},
-  {id:'q_aide_financiere',sec:'s24',label:"Bénéficiez-vous d'une aide financière pour vos soins ?",type:'yesno',req:true},
-  {id:'q_horaire_meds',sec:'s3',label:'Respectez-vous les heures de prise de vos médicaments ?',type:'yesno',req:true},
-  {id:'q_cv_m6',sec:'s3',label:'Charge virale M6',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
-  {id:'q_cv_m12',sec:'s3',label:'Charge virale M12',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
-  {id:'q_cv_m18_24',sec:'s3',label:'Charge virale M18-24',type:'choice',req:false,opts:['Supprimée','Non supprimée']},
-  {id:'q_raisons_inobs',sec:'s3',label:'Deux raisons qui vous empêchent de prendre vos médicaments',type:'text',ph:'Raison 1 / Raison 2...',req:false},
-  {id:'q_m1',sec:'morisky',label:"Vous arrive-t-il d'oublier de prendre votre traitement ?",type:'yesno',req:true,isMorisky:true},
-  {id:'q_m2',sec:'morisky',label:'Avez-vous parfois du mal à vous rappeler de prendre votre traitement ?',type:'yesno',req:true,isMorisky:true},
-  {id:'q_m3',sec:'morisky',label:"Quand vous vous sentez mieux, vous arrive-t-il d'arrêter de prendre votre traitement ?",type:'yesno',req:true,isMorisky:true},
-  {id:'q_m4',sec:'morisky',label:'Si vous vous sentez moins bien, arrêtez-vous parfois de prendre votre traitement ?',type:'yesno',req:true,isMorisky:true},
-  {id:'q_morisky_score',sec:'morisky',label:'Score MMAS-4 (calculé automatiquement)',type:'morisky_result',req:false},
+// =====================================================================
+// QUESTIONS FIXES (Q_BASE)
+// =====================================================================
+const Q_BASE = [
+  // DEMO
+  {id:'q_num',      sec:'demo', label:'N° identifiant (auto)', type:'auto', req:false},
+  {id:'q_date_dep', sec:'demo', label:'Date de dépistage',     type:'date', req:false},
+  {id:'q_date_trt', sec:'demo', label:'Date de mise sous traitement', type:'date', req:false},
+  {id:'q_delai',    sec:'demo', label:'Délai de mise sous traitement', type:'choice', req:true, opts:['Immédiat','< 1 mois','+ 3 mois']},
+  {id:'q_sexe',     sec:'demo', label:'Sexe', type:'choice', req:true, opts:['Masculin','Féminin']},
+  {id:'q_age',      sec:'demo', label:'Tranche d\'âge', type:'choice', req:true, opts:['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +']},
+  {id:'q_matri',    sec:'demo', label:'Situation matrimoniale', type:'choice', req:true, opts:['Concubinage','Mariage traditionnel','Mariage civil','Mariage religieux']},
+  {id:'q_instruct', sec:'demo', label:'Niveau d\'instruction', type:'choice', req:true, opts:['Aucun','Primaire','Secondaire','Universitaire']},
+  {id:'q_residence',sec:'demo', label:'Lieu de résidence', type:'choice', req:true, opts:['Dans le département','Hors du département']},
+  {id:'q_population',sec:'demo',label:'Type de population', type:'choice', req:true, opts:['Générale','TS','MSM']},
+  {id:'q_conjoint_statut', sec:'demo', label:'Statut du conjoint connu ?', type:'yesno', req:true},
+  {id:'q_conjoint_result', sec:'demo', label:'Résultat dépistage du conjoint', type:'choice', req:false, opts:['Négatif','Positif']},
+  // S2.1
+  {id:'q_partage_statut', sec:'s21', label:'Avez-vous partagé votre statut avec votre conjoint ?', type:'yesno', req:true},
+  {id:'q_delai_partage',  sec:'s21', label:'Délai de partage du statut', type:'choice', req:false, opts:['< 3 mois','3–6 mois','6–12 mois','+ de 12 mois']},
+  {id:'q_connais_benef',  sec:'s21', label:'Connaissez-vous les bénéfices du traitement ARV ?', type:'yesno', req:true},
+  {id:'q_benef_cite',     sec:'s21', label:'Citez deux bénéfices du traitement ARV', type:'text', ph:'Bénéfice 1 / Bénéfice 2...', req:false},
+  {id:'q_connais_effets', sec:'s21', label:'Connaissez-vous les effets secondaires du traitement ARV ?', type:'yesno', req:true},
+  // S2.2
+  {id:'q_soins_diff',       sec:'s22', label:'Connaissez-vous les soins différenciés ?', type:'yesno', req:true},
+  {id:'q_choix_impose',     sec:'s22', label:'Le choix vous a-t-il été imposé par l\'agent de santé ?', type:'yesno', req:true},
+  {id:'q_personnel_dispo',  sec:'s22', label:'Le personnel de santé est-il disponible lors de vos RDV ?', type:'yesno', req:true},
+  {id:'q_relation_soignant',sec:'s22', label:'Relation avec le personnel soignant', type:'choice', req:true, opts:['Très bonne','Bonne','Insuffisante','Mauvaise']},
+  {id:'q_rupture_meds',     sec:'s22', label:'Avez-vous connu des ruptures de médicaments ARV ?', type:'yesno', req:true},
+  // S2.3
+  {id:'q_soutien_conjoint',sec:'s23', label:'Avez-vous le soutien de votre conjoint pour le traitement ?', type:'yesno', req:true},
+  {id:'q_soutien_type',    sec:'s23', label:'À quel niveau ce soutien vous rassure le plus ?', type:'multi', req:false, opts:['Rappel prise médicaments','Accompagnement RDV médicament','Accompagnement RDV prélèvement CV','Soutien affectif et psychologique']},
+  {id:'q_conflits',        sec:'s23', label:'Avez-vous des conflits conjugaux ?', type:'yesno', req:true},
+  {id:'q_conflits_type',   sec:'s23', label:'Nature des conflits', type:'multi', req:false, opts:['Acception du statut','Financier','Éducation des enfants','Sexuel','Autres']},
+  {id:'q_stigma',          sec:'s23', label:'Êtes-vous stigmatisé(e) au centre de santé ?', type:'yesno', req:true},
+  // S2.4
+  {id:'q_transport',      sec:'s24', label:'Avez-vous des difficultés de frais de transport pour vos RDV ?', type:'yesno', req:true},
+  {id:'q_aide_financiere',sec:'s24', label:'Bénéficiez-vous d\'une aide financière pour vos soins ?', type:'yesno', req:true},
+  // S3
+  {id:'q_horaire_meds',sec:'s3', label:'Respectez-vous les heures de prise de vos médicaments ?', type:'yesno', req:true},
+  {id:'q_cv_m6',       sec:'s3', label:'Charge virale M6',    type:'choice', req:false, opts:['Supprimée','Non supprimée']},
+  {id:'q_cv_m12',      sec:'s3', label:'Charge virale M12',   type:'choice', req:false, opts:['Supprimée','Non supprimée']},
+  {id:'q_cv_m18_24',   sec:'s3', label:'Charge virale M18-24',type:'choice', req:false, opts:['Supprimée','Non supprimée']},
+  {id:'q_raisons_inobs',sec:'s3',label:'Deux raisons qui vous empêchent de prendre vos médicaments', type:'text', ph:'Raison 1 / Raison 2...', req:false},
+  // MORISKY MMAS-4 : Oui = 0 pt, Non = 1 pt (barème MMAS-4)
+  {id:'q_m1', sec:'morisky', label:'Vous arrive-t-il d\'oublier de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  {id:'q_m2', sec:'morisky', label:'Avez-vous parfois du mal à vous rappeler de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  {id:'q_m3', sec:'morisky', label:'Quand vous vous sentez mieux, vous arrive-t-il d\'arrêter de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  {id:'q_m4', sec:'morisky', label:'Si vous vous sentez moins bien, arrêtez-vous parfois de prendre votre traitement ?', type:'yesno', req:true, isMorisky:true},
+  // Score calculé auto
+  {id:'q_morisky_score', sec:'morisky', label:'Score MMAS-4 (calculé automatiquement)', type:'morisky_result', req:false},
 ];
 
-function getQBase(){return Q_BASE.map(function(q){var e=Q_EDITS[q.id];if(!e)return q;return Object.assign({},q,e);}).filter(function(q){return!(Q_EDITS[q.id]&&Q_EDITS[q.id].disabled);});}
-function allQ(){return getQBase().concat(customQ);}
-function genNum(){return String(responses.length+1).padStart(3,'0')+'/'+new Date().getFullYear();}
-function calcMorisky(ans){var s=0;['q_m1','q_m2','q_m3','q_m4'].forEach(function(id){if(ans[id]==='Non')s++;});return s;}
-function morLevel(s){
-  if(s===4)return{label:'Haute observance',cls:'badge-green',color:'var(--accent3)'};
-  if(s===3)return{label:'Observance moyenne',cls:'badge-warn',color:'var(--warn)'};
-  return{label:'Faible observance',cls:'badge-danger',color:'var(--danger)'};
+function allQ() { return [...getQBase(), ...customQ]; }
+function genNum() { return String(responses.length + 1).padStart(3,'0') + '/' + new Date().getFullYear(); }
+
+// MMAS-4 : Oui=0, Non=1 => score = nombre de "Non"
+function calcMorisky(ans) {
+  let score = 0;
+  ['q_m1','q_m2','q_m3','q_m4'].forEach(id => { if (ans[id] === 'Non') score++; });
+  return score;
+}
+function morLevel(s) {
+  if (s === 4) return {label:'Haute observance', cls:'badge-green', color:'var(--accent3)'};
+  if (s === 3) return {label:'Observance moyenne', cls:'badge-warn', color:'var(--warn)'};
+  return {label:'Faible observance', cls:'badge-danger', color:'var(--danger)'};
 }
 
 // =====================================================================
-// LOGIN
+// LOGIN / LOGOUT
 // =====================================================================
-function showLoginPanel(panel){
-  ['connect','recover','sync'].forEach(function(p){
-    document.getElementById('ls-'+p).style.display=p===panel?'block':'none';
-    var btn=document.getElementById('lft-'+p);
-    if(btn)btn.classList.toggle('active',p===panel);
+// ---- Login state ----
+let selectedUser = null;
+
+function initUsers() {
+  if (!users.length) {
+    users = [{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true}];
+    saveLocal();
+  }
+}
+
+// Step 1 tab switcher
+function switchStep1Tab(tab) {
+  ['recover','new','sync'].forEach(t => {
+    const el = document.getElementById('ls-'+t);
+    if (el) el.style.display = t===tab ? 'block' : 'none';
+    const btn = document.getElementById('ltab-'+t);
+    if (btn) {
+      btn.style.background = t===tab ? '#fff' : 'transparent';
+      btn.style.color = t===tab ? '#1a1e30' : '#6b7280';
+      btn.style.boxShadow = t===tab ? '0 1px 4px rgba(0,0,0,.12)' : 'none';
+    }
   });
-  if(panel==='connect'){selectedUser=null;document.getElementById('ls-form').style.display='none';renderSpaces();}
 }
 
-function initUsers(){
-  if(!users.length){
-    users=[{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true}];
-    saveLocal();
+// Go to step 2 (login form)
+function goToStep2() {
+  document.getElementById('ls-step1').style.display = 'none';
+  document.getElementById('ls-step2').style.display = 'block';
+  const li = document.getElementById('lp-login');
+  if (li) { li.value = ''; setTimeout(() => li.focus(), 100); }
+  const lp = document.getElementById('lp'); if (lp) lp.value = '';
+  const err = document.getElementById('login-err'); if (err) err.style.display = 'none';
+}
+
+// Back to step 1
+function backToStep1() {
+  document.getElementById('ls-step2').style.display = 'none';
+  document.getElementById('ls-step1').style.display = 'block';
+}
+
+function doLogin() {
+  const loginVal = (document.getElementById('lp-login').value || '').trim().toLowerCase();
+  const pass = document.getElementById('lp').value;
+  const err = document.getElementById('login-err');
+  err.style.display = 'none';
+  if (!loginVal) { showErr('Saisissez votre identifiant.'); return; }
+  if (!pass) { showErr('Saisissez votre mot de passe.'); return; }
+  const user = users.find(u => u.active && u.login.toLowerCase() === loginVal && u.password === pass);
+  if (!user) { showErr('Identifiant ou mot de passe incorrect.'); return; }
+  if (!user.active) { showErr('Ce compte est désactivé.'); return; }
+  launchApp(user);
+}
+
+function launchApp(user) {
+  CU = user;
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('ua').textContent = user.name.charAt(0).toUpperCase();
+  document.getElementById('un').textContent = user.name;
+  document.getElementById('ur').textContent = user.role === 'admin' ? '👑 Chercheur principal' : '🧭 Enquêteur terrain';
+  document.getElementById('menu-btn').style.display = 'flex';
+  if (user.role !== 'admin') {
+    document.querySelectorAll('[data-admin]').forEach(e => e.style.display = 'none');
+    document.querySelectorAll('.bn-admin').forEach(e => e.style.display = 'none');
   }
+  const t = gs('theme'); if (t === 'light') { isDark = false; document.body.classList.add('light'); document.getElementById('thbtn').textContent = '☀️'; }
+  startSync(); go('dashboard');
 }
 
-function renderSpaces(){
-  var sc=document.getElementById('ls-spaces');
-  var cnt=document.getElementById('ls-count');
-  if(!sc)return;
-  var active=users.filter(function(u){return u.active;});
-  if(cnt)cnt.textContent=active.length+' espace(s) disponible(s)';
-  if(!active.length){
-    sc.innerHTML='<p style="color:#6b7280;font-size:13px;text-align:center;padding:1rem">Aucun compte. Utilisez Récupérer pour charger vos données ☁️</p>';
-    return;
-  }
-  sc.innerHTML=active.map(function(u){
-    var n=responses.filter(function(r){return r.agentName===u.name;}).length;
-    return '<div class="space-card" onclick="selectSpace(\''+u.id+'\')">'
-      +'<div class="space-av">'+u.name.charAt(0).toUpperCase()+'</div>'
-      +'<div style="flex:1;min-width:0">'
-        +'<div class="space-name">'+esc(u.name)+'</div>'
-        +'<div class="space-sub">'+(u.role==='admin'?'Chercheur principal':'Enquêteur')+' · '+n+' enquête(s)</div>'
-      +'</div>'
-      +'<span class="space-sync">☁️ sync</span>'
-      +'<span class="space-arr">›</span>'
-    +'</div>';
-  }).join('');
-}
+function showErr(m) { const e = document.getElementById('login-err'); e.textContent = m; e.style.display = 'block'; }
 
-function selectSpace(uid){
-  selectedUser=users.find(function(u){return u.id===uid;});
-  if(!selectedUser)return;
-  document.querySelectorAll('.space-card').forEach(function(c){c.classList.remove('selected');});
-  event.currentTarget.classList.add('selected');
-  var lf=document.getElementById('ls-form');lf.style.display='block';
-  document.getElementById('lp').value='';
-  var err=document.getElementById('login-err');err.style.display='none';
-  var btn=document.getElementById('btn-go');
-  btn.textContent='Accéder — '+selectedUser.name+' →';
-  setTimeout(function(){document.getElementById('lp').focus();},100);
-}
-
-function cancelLogin(){
-  selectedUser=null;
-  document.getElementById('ls-form').style.display='none';
-  document.querySelectorAll('.space-card').forEach(function(c){c.classList.remove('selected');});
-}
-
-function doLogin(){
-  if(!selectedUser){showErr('Sélectionnez un espace.');return;}
-  var pass=document.getElementById('lp').value;
-  var err=document.getElementById('login-err');err.style.display='none';
-  if(!pass){showErr('Saisissez le mot de passe.');return;}
-  if(!selectedUser.active){showErr('Ce compte est désactivé.');return;}
-  if(selectedUser.password!==pass){showErr('Mot de passe incorrect.');return;}
-  launchApp(selectedUser);
-}
-
-function showErr(m){var e=document.getElementById('login-err');e.textContent=m;e.style.display='block';}
-
-function launchApp(user){
-  CU=user;
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('app').style.display='block';
-  document.getElementById('ua').textContent=user.name.charAt(0).toUpperCase();
-  document.getElementById('un').textContent=user.name;
-  document.getElementById('ur').textContent=user.role==='admin'?'👑 Chercheur principal':'🧭 Enquêteur terrain';
-  document.getElementById('menu-btn').style.display='flex';
-  if(user.role!=='admin'){
-    document.querySelectorAll('[data-admin]').forEach(function(e){e.style.display='none';});
-    document.querySelectorAll('.bn-admin').forEach(function(e){e.style.display='none';});
-  }
-  var t=gs('theme');if(t==='light'){isDark=false;document.body.classList.add('light');document.getElementById('thbtn').textContent='☀️';}
-  startSync();go('dashboard');
-}
-
-function doLogout(){
-  if(!confirm('Se déconnecter ?'))return;
-  clearInterval(syncInt);syncInt=null;saveLocal();CU=null;selectedUser=null;
-  document.getElementById('app').style.display='none';
-  document.getElementById('login-screen').style.display='flex';
-  document.getElementById('lp').value='';
-  document.getElementById('login-err').style.display='none';
-  document.querySelectorAll('[data-admin]').forEach(function(e){e.style.display='';});
-  document.querySelectorAll('.bn-admin').forEach(function(e){e.style.display='';});
-  closeSidebar();
-  Object.values(charts).forEach(function(c){try{c.destroy();}catch(e){}});charts={};
-  showLoginPanel('connect');renderSpaces();
-}
-
-// =====================================================================
-// RECOVER FROM CLOUD
-// =====================================================================
-function recoverFromCloud(){
-  var key=document.getElementById('rec-key').value.trim();
-  var bin=document.getElementById('rec-bin').value.trim();
-  var st=document.getElementById('rec-status');
-  var prev=document.getElementById('rec-preview');
-  function showSt(msg,type){
+// ---- Recover from cloud ----
+async function recoverFromCloud() {
+  const key = document.getElementById('rec-key').value.trim();
+  const bin = document.getElementById('rec-bin').value.trim();
+  const st  = document.getElementById('rec-status');
+  const showSt = (msg, type) => {
     st.style.display='block';
-    st.style.background=type==='ok'?'#dcfce7':type==='err'?'#fee2e2':'#dbeafe';
-    st.style.color=type==='ok'?'#166534':type==='err'?'#dc2626':'#1d4ed8';
-    st.textContent=msg;
-  }
-  if(!key||!bin){showSt('Entrez la clé API et le Bin ID.','err');return;}
-  var btn=document.getElementById('btn-recover');
-  btn.disabled=true;btn.textContent='⏳ Récupération en cours...';
-  prev.style.display='none';
+    st.style.background = type==='ok'?'#dcfce7':type==='err'?'#fee2e2':'#dbeafe';
+    st.style.color = type==='ok'?'#166534':type==='err'?'#dc2626':'#1d4ed8';
+    st.textContent = msg;
+  };
+  if (!key || !bin) { showSt('Entrez la clé API et le Bin ID.','err'); return; }
+  const btn = document.getElementById('btn-recover');
+  btn.disabled = true; btn.textContent = '⏳ Récupération en cours...';
   showSt('Connexion à JSONBin.io...','info');
-  var headers={'X-Master-Key':key,'X-Access-Key':key};
-  // Try /latest first, then base URL
-  fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest',{headers:headers})
-  .then(function(r){
-    if(r.status===404)return fetch('https://api.jsonbin.io/v3/b/'+bin,{headers:headers});
-    return r;
-  })
-  .then(function(r){
-    if(r.status===401)throw new Error('Clé API incorrecte (401).');
-    if(r.status===403)throw new Error('Accès refusé. Vérifiez que c\'est une Master Key (403).');
-    if(r.status===404)throw new Error('Bin ID introuvable (404). Vérifiez l\'ID.');
-    if(!r.ok)throw new Error('Erreur JSONBin ('+r.status+').');
-    return r.json();
-  })
-  .then(function(d){
-    var rec=d.record||d;
-    if(!rec||typeof rec!=='object')throw new Error('Format invalide dans ce bin.');
-    ss('apikey',key);ss('binid',bin);
-    var addedR=0,addedU=0;
-    var eIds=new Set(responses.map(function(r){return r.id;}));
-    (rec.responses||[]).forEach(function(r){if(!eIds.has(r.id)){responses.push(r);addedR++;}});
-    (rec.users||[]).forEach(function(u){if(!users.find(function(x){return x.id===u.id;})){users.push(u);addedU++;}});
-    if(rec.customQ)customQ=rec.customQ;
-    if(rec.Q_EDITS)Q_EDITS=rec.Q_EDITS;
+  try {
+    // JSONBin v3: use X-Master-Key for auth, try /latest first then without
+    const headers = { 'X-Master-Key': key, 'X-Access-Key': key };
+    let rec = null;
+    // Try /latest
+    let res = await fetch('https://api.jsonbin.io/v3/b/'+bin+'/latest', { headers });
+    if (res.status === 404) {
+      // Try without /latest
+      res = await fetch('https://api.jsonbin.io/v3/b/'+bin, { headers });
+    }
+    if (res.status === 401) throw new Error('Clé API incorrecte ou non autorisée (401).');
+    if (res.status === 403) throw new Error('Accès refusé. Vérifiez que la clé API est une Master Key (403).');
+    if (res.status === 404) throw new Error('Bin ID introuvable (404). V\u00e9rifiez l\'ID du bin.');
+    if (!res.ok) throw new Error('Erreur serveur JSONBin ('+res.status+'). Réessayez.');
+    const d = await res.json();
+    // JSONBin returns {record: {...}} or directly the object
+    rec = d.record || d;
+    if (!rec || typeof rec !== 'object') throw new Error('Format de données invalide dans ce bin.');
+    // Save keys
+    ss('apikey', key); ss('binid', bin);
+    // Merge data
+    let addedR = 0, addedU = 0;
+    const eIds = new Set(responses.map(r=>r.id));
+    (rec.responses||[]).forEach(r=>{ if(!eIds.has(r.id)){responses.push(r);addedR++;} });
+    (rec.users||[]).forEach(u=>{ if(!users.find(x=>x.id===u.id)){users.push(u);addedU++;} });
+    if (rec.customQ) customQ = rec.customQ;
+    if (rec.Q_EDITS) Q_EDITS = rec.Q_EDITS;
     saveLocal();
-    showSt('✅ '+addedR+' enquête(s) · '+users.length+' compte(s) chargé(s).','ok');
-    // Show preview
-    var women=responses.filter(function(r){return r.answers&&r.answers.q_sexe==='Féminin';}).length;
-    var men=responses.filter(function(r){return r.answers&&r.answers.q_sexe==='Masculin';}).length;
-    var agentSet=new Set(responses.map(function(r){return r.agentName;}));
-    document.getElementById('rec-preview-content').innerHTML=
-      '<div class="enq-stat">📋 <strong>'+responses.length+'</strong> enquête(s) au total</div>'
-      +'<div class="enq-stat">👥 <strong>'+agentSet.size+'</strong> enquêteur(s)</div>'
-      +'<div class="enq-stat">♀ <strong>'+women+'</strong> femmes · ♂ <strong>'+men+'</strong> hommes</div>'
-      +'<div class="enq-stat">👤 <strong>'+users.length+'</strong> compte(s) disponible(s)</div>';
-    prev.style.display='block';
-    btn.textContent='☁️ Récupérer à nouveau';
-    renderSpaces();
+    showSt('✅ '+addedR+' enquête(s) chargée(s) · '+users.length+' compte(s).','ok');
+    btn.textContent = '☁️ Récupérer à nouveau';
     // Pre-fill sync fields
-    var sk=document.getElementById('sync-key');var sb2=document.getElementById('sync-bin');
-    if(sk)sk.value=key;if(sb2)sb2.value=bin;
-    setTimeout(function(){showLoginPanel('connect');},2500);
-  })
-  .catch(function(e){
+    const sk=document.getElementById('sync-key'); const sb2=document.getElementById('sync-bin');
+    if(sk) sk.value=key; if(sb2) sb2.value=bin;
+    // Show preview card
+    const prev = document.getElementById('rec-preview');
+    const prevBody = document.getElementById('rec-preview-body');
+    const women = responses.filter(r=>r.answers&&r.answers.q_sexe==='Féminin').length;
+    const men = responses.filter(r=>r.answers&&r.answers.q_sexe==='Masculin').length;
+    const agSet = new Set(responses.map(r=>r.agentName)).size;
+    if (prevBody) prevBody.innerHTML =
+      '📋 <strong>'+responses.length+'</strong> enquête(s) au total<br>'
+      +'👥 <strong>'+agSet+'</strong> enquêteur(s) · <strong>'+users.length+'</strong> compte(s)<br>'
+      +'♀ <strong>'+women+'</strong> femmes · ♂ <strong>'+men+'</strong> hommes';
+    if (prev) prev.style.display = 'block';
+    // Scroll to preview
+    if (prev) prev.scrollIntoView({behavior:'smooth', block:'center'});
+  } catch(e) {
     showSt('❌ '+e.message,'err');
-    btn.textContent='☁️ Réessayer';
-  })
-  .finally(function(){btn.disabled=false;});
+    btn.textContent = '☁️ Réessayer';
+  }
+  btn.disabled = false;
 }
 
-function saveSyncConf(){
-  var key=document.getElementById('sync-key').value.trim();
-  var bin=document.getElementById('sync-bin').value.trim();
-  if(!key){toast('Saisissez la clé API.','w');return;}
-  ss('apikey',key);if(bin)ss('binid',bin);
+// ---- Save sync config from login ----
+function saveSyncConf() {
+  const key = document.getElementById('sync-key').value.trim();
+  const bin = document.getElementById('sync-bin').value.trim();
+  if (!key) { toast('Saisissez la clé API.','w'); return; }
+  ss('apikey', key); if (bin) ss('binid', bin);
+  // Pre-fill recover fields
+  const rk=document.getElementById('rec-key'); if(rk) rk.value=key;
+  const rb=document.getElementById('rec-bin'); if(rb&&bin) rb.value=bin;
   toast('✅ Configuration enregistrée !','s');
-  setTimeout(function(){showLoginPanel('recover');},600);
+  setTimeout(()=>switchStep1Tab('recover'), 400);
+}
+
+function doLogout() {
+  if (!confirm('Se déconnecter ?')) return;
+  clearInterval(syncInt); syncInt = null; saveLocal(); CU = null; selectedUser = null;
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('lp').value = '';
+  document.getElementById('login-err').style.display = 'none';
+  document.querySelectorAll('[data-admin]').forEach(e => e.style.display = '');
+  document.querySelectorAll('.bn-admin').forEach(e => e.style.display = '');
+  closeSidebar();
+  Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} }); charts = {};
+  // Reset to step 1
+  const s1 = document.getElementById('ls-step1'); if(s1) s1.style.display = 'block';
+  const s2 = document.getElementById('ls-step2'); if(s2) s2.style.display = 'none';
+  const prev = document.getElementById('rec-preview'); if(prev) prev.style.display = 'none';
+  const rst = document.getElementById('rec-status'); if(rst) rst.style.display = 'none';
+  switchStep1Tab('recover');
 }
 
 // =====================================================================
 // NAVIGATION
 // =====================================================================
-function go(page){
-  curPage=page;closeSidebar();
-  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-  document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('active');});
-  var ne=document.getElementById('nav-'+page);if(ne)ne.classList.add('active');
-  var be=document.getElementById('bn-'+page);if(be)be.classList.add('active');
-  document.getElementById('page-title').textContent=PAGE_TITLES[page]||page;
-  Object.values(charts).forEach(function(c){try{c.destroy();}catch(e){}});charts={};
-  var R={dashboard:renderDash,fill:renderFill,report:renderReport,editq:renderEditQ,agents:renderAgents,settings:renderSettings};
-  if(R[page])R[page]();
-  window.scrollTo({top:0,behavior:'smooth'});
+function go(page) {
+  curPage = page; closeSidebar();
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  const ne = document.getElementById('nav-'+page); if (ne) ne.classList.add('active');
+  const be = document.getElementById('bn-'+page);  if (be) be.classList.add('active');
+  document.getElementById('page-title').textContent = PAGE_TITLES[page] || page;
+  Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} }); charts = {};
+  const R = {dashboard:renderDash, fill:renderFill, report:renderReport, editq:renderEditQ, agents:renderAgents, settings:renderSettings};
+  if (R[page]) R[page]();
+  window.scrollTo({top:0, behavior:'smooth'});
 }
-function toggleSidebar(){var sb=document.getElementById('sidebar');sb.classList.contains('open')?closeSidebar():(sb.classList.add('open'),document.getElementById('sb-overlay').classList.add('show'));}
-function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sb-overlay').classList.remove('show');}
+function toggleSidebar() { const sb = document.getElementById('sidebar'); sb.classList.contains('open') ? closeSidebar() : (sb.classList.add('open'), document.getElementById('sb-overlay').classList.add('show')); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sb-overlay').classList.remove('show'); }
 
 // =====================================================================
 // DASHBOARD
 // =====================================================================
-function renderDash(){
-  var n=responses.length;
-  var today=responses.filter(function(r){return new Date(r.ts).toDateString()===new Date().toDateString();}).length;
-  var women=responses.filter(function(r){return r.answers&&r.answers.q_sexe==='Féminin';}).length;
-  var men=responses.filter(function(r){return r.answers&&r.answers.q_sexe==='Masculin';}).length;
-  var agSet=[...new Set(responses.map(function(r){return r.agentName;}))];
-  var el=document.getElementById('content');
-  el.innerHTML='<div class="page">'
-    +'<div class="met-grid">'
-      +'<div class="met-card"><div class="met-val">'+n+'</div><div class="met-lbl">📋 Enquêtes totales</div></div>'
-      +'<div class="met-card m2"><div class="met-val">'+today+'</div><div class="met-lbl">📅 Aujourd\'hui</div></div>'
-      +'<div class="met-card m3"><div class="met-val">'+women+'</div><div class="met-lbl">♀ Femmes</div></div>'
-      +'<div class="met-card m4"><div class="met-val">'+men+'</div><div class="met-lbl">♂ Hommes</div></div>'
-    +'</div>'
-    +(CU.role==='admin'
-      ?'<div class="card no-print"><div class="card-header"><div class="card-title">⚡ Actions rapides</div></div>'
-        +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
-          +'<button class="btn btn-primary" onclick="go(\'fill\')">📝 Nouvelle enquête</button>'
-          +'<button class="btn btn-success" onclick="go(\'report\')">📊 Rapport</button>'
-          +'<button class="btn" onclick="dlCSV(buildAllCsvRows(),\'Rapport_ARV\')">📥 Export CSV</button>'
-          +'<button class="btn" onclick="showShareModal()">🔗 Partager</button>'
-        +'</div></div>'
-      :'<div class="card" style="border-left:3px solid var(--accent)">'
-        +'<div class="card-title" style="margin-bottom:6px">👋 Bienvenue, '+esc(CU.name)+' !</div>'
-        +'<p style="font-size:13px;color:var(--text2);margin-bottom:12px">Appuyez ci-dessous pour commencer une enquête.</p>'
-        +'<button class="btn btn-primary btn-full" onclick="go(\'fill\')">📝 Commencer une enquête</button>'
-        +'</div>')
-    +'<div class="card"><div class="card-header"><div class="card-title">📈 Activité par enquêteur</div></div>'
-      +(agSet.length===0?'<p style="color:var(--text2);font-size:13px">Aucune donnée encore.</p>'
-        :agSet.map(function(a){var c=responses.filter(function(r){return r.agentName===a;}).length;var p=pct(c,n);
-          return '<div class="prog-wrap"><div class="prog-info"><span>👤 '+esc(a)+'</span><span style="font-weight:500">'+c+' ('+p+'%)</span></div>'
-            +'<div class="prog-bar-bg"><div class="prog-bar" style="width:'+p+'%;background:var(--accent)"></div></div></div>';}).join(''))
-    +'</div>'
-    +'<div class="card"><div class="card-header"><div class="card-title">🕐 Dernières enquêtes</div></div>'
-      +(responses.slice().reverse().slice(0,6).map(function(r){
-        var ms=r.answers?r.answers.q_morisky_score:null;
-        var lv=(ms!==null&&ms!==undefined)?morLevel(ms):null;
-        return '<div class="agent-row">'
-          +'<div class="avatar" style="width:30px;height:30px;font-size:11px">'+r.agentName.charAt(0)+'</div>'
-          +'<div style="flex:1;min-width:0">'
-            +'<div style="font-size:13px;font-weight:500">'+esc(r.agentName)+' <span style="color:var(--text2);font-weight:400">· '+(r.answers?esc(r.answers.q_age||'—'):'—')+'</span></div>'
-            +'<div style="font-size:11px;color:var(--text3)">'+r.date+' · N° '+esc(r.answers?r.answers.q_num||'#'+r.id:'#'+r.id)+'</div>'
-          +'</div>'
-          +(lv?'<span class="badge '+lv.cls+'">Morisky '+ms+'/4</span>':'')
-          +'</div>';}).join('')||'<p style="color:var(--text2);font-size:13px">Aucune enquête pour l\'instant.</p>')
-    +'</div></div>';
+function renderDash() {
+  const n = responses.length;
+  const today = responses.filter(r => new Date(r.ts).toDateString() === new Date().toDateString()).length;
+  const women = responses.filter(r => r.answers.q_sexe === 'Féminin').length;
+  const men   = responses.filter(r => r.answers.q_sexe === 'Masculin').length;
+  const agSet = [...new Set(responses.map(r => r.agentName))];
+  document.getElementById('content').innerHTML = `<div class="page">
+    <div class="met-grid">
+      <div class="met-card"><div class="met-val">${n}</div><div class="met-lbl">📋 Enquêtes totales</div></div>
+      <div class="met-card m2"><div class="met-val">${today}</div><div class="met-lbl">📅 Aujourd'hui</div></div>
+      <div class="met-card m3"><div class="met-val">${women}</div><div class="met-lbl">♀ Femmes</div></div>
+      <div class="met-card m4"><div class="met-val">${men}</div><div class="met-lbl">♂ Hommes</div></div>
+    </div>
+    ${CU.role==='admin' ? `<div class="card no-print"><div class="card-header"><div class="card-title">⚡ Actions rapides</div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="go('fill')">📝 Nouvelle enquête</button>
+        <button class="btn btn-success" onclick="go('report')">📊 Rapport</button>
+        <button class="btn" onclick="dlCSV(buildAllCsvRows(),'Rapport_ARV')">📥 Export CSV</button>
+        <button class="btn" onclick="showShareModal()">🔗 Partager</button>
+      </div></div>` :
+      `<div class="card" style="border-left:3px solid var(--accent)">
+        <div class="card-title" style="margin-bottom:6px">👋 Bienvenue, ${esc(CU.name)} !</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Appuyez ci-dessous pour commencer une enquête.</p>
+        <button class="btn btn-primary btn-full" onclick="go('fill')">📝 Commencer une enquête</button>
+      </div>`}
+    <div class="card">
+      <div class="card-header"><div class="card-title">📈 Activité par enquêteur</div></div>
+      ${agSet.length===0 ? '<p style="color:var(--text2);font-size:13px">Aucune donnée encore.</p>' :
+        agSet.map(a => { const c=responses.filter(r=>r.agentName===a).length; const p=pct(c,n);
+          return `<div class="prog-wrap"><div class="prog-info"><span>👤 ${esc(a)}</span><span style="font-weight:500">${c} (${p}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:var(--accent)"></div></div></div>`;
+        }).join('')}
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">🕐 Dernières enquêtes</div></div>
+      ${responses.slice().reverse().slice(0,6).map(r => {
+        const ms = r.answers.q_morisky_score;
+        const ml = ms !== undefined && ms !== null ? morLevel(ms) : null;
+        return `<div class="agent-row">
+          <div class="avatar" style="width:30px;height:30px;font-size:11px">${r.agentName.charAt(0)}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13px;font-weight:500">${esc(r.agentName)} · <span style="color:var(--text2);font-weight:400">${esc(r.answers.q_age||'—')}</span></div>
+            <div style="font-size:11px;color:var(--text3)">${r.date} · N° ${esc(r.answers.q_num||'#'+r.id)}</div>
+          </div>
+          ${ml ? `<span class="badge ${ml.cls}">Morisky ${ms}/4</span>` : ''}
+        </div>`;
+      }).join('') || '<p style="color:var(--text2);font-size:13px">Aucune enquête pour l\'instant.</p>'}
+    </div>
+  </div>`;
 }
 
 // =====================================================================
-// REMPLIR
+// REMPLIR QUESTIONNAIRE
 // =====================================================================
-var FA={};
-function renderFill(){
-  FA={};
-  var allQs=allQ();
-  var secs=Object.keys(SECTIONS);
-  var html='<div class="page">';
-  html+='<div class="prog-tracker">'+secs.map(function(s,i){
-    return '<div class="pt-step" onclick="scrollToSec(\''+s+'\')">'+SECTIONS[s].icon+'</div>';
-  }).join('')+'</div>';
-  html+='<div class="card" style="border-left:3px solid var(--accent);margin-bottom:16px">'
-    +'<div style="font-family:var(--font-h);font-size:17px;font-weight:700;margin-bottom:4px">📋 Questionnaire — Inobservance ARV</div>'
-    +'<div style="font-size:12.5px;color:var(--text2)">'+new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+'</div>'
-    +'</div>';
+let FA = {};
 
-  secs.forEach(function(secId){
-    var sec=SECTIONS[secId];
-    var qs=allQs.filter(function(q){return q.sec===secId&&q.type!=='auto'&&q.type!=='morisky_result';});
-    if(!qs.length)return;
+function renderFill() {
+  FA = {};
+  const allQs = allQ();
+  const secs = Object.keys(SECTIONS);
+  let html = `<div class="page">
+    <div class="prog-tracker">${secs.map((s,i) => `<div class="pt-step" onclick="scrollToSec('${s}')">${i+1} ${SECTIONS[s].icon}</div>`).join('')}</div>
+    <div class="card" style="border-left:3px solid var(--accent);margin-bottom:16px">
+      <div style="font-family:var(--font-h);font-size:17px;font-weight:700;margin-bottom:4px">📋 Questionnaire — Inobservance ARV</div>
+      <div style="font-size:12.5px;color:var(--text2)">${new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
+    </div>`;
 
-    if(secId==='morisky'){
-      html+='<div id="sec-morisky">'
-        +'<div class="sec-head s2"><span class="sec-icon">💊</span>'
-          +'<div><div class="sec-title">'+sec.label+'</div>'
-          +'<div class="sec-sub">Cochez une seule réponse par question · Score calculé automatiquement</div></div>'
-        +'</div>'
-        +'<div class="card" style="background:rgba(139,92,246,.06);border-color:rgba(139,92,246,.2);margin-bottom:12px">'
-          +'<div style="font-size:13px;color:var(--text2);line-height:1.7">'
-          +'<strong>Barème MMAS-4 :</strong> Oui = 0 point · Non = 1 point<br>'
-          +'Score 4/4 → Haute observance &nbsp;|&nbsp; Score 3/4 → Observance moyenne &nbsp;|&nbsp; Score ≤ 2/4 → Faible observance'
-          +'</div></div>';
-      qs.forEach(function(q,i){
-        html+='<div class="card fq" id="fq-'+q.id+'">'
-          +'<div class="fq-label"><span class="qn" style="background:var(--accent2)">'+(i+1)+'</span>'+esc(q.label)+'</div>'
-          +'<div class="opt-row" onclick="selOptM(this,\''+q.id+'\',\'Oui\')"><input type="radio" name="r-'+q.id+'"/> Oui <span style="margin-left:auto;font-size:11px;color:var(--text3)">0 pt</span></div>'
-          +'<div class="opt-row" onclick="selOptM(this,\''+q.id+'\',\'Non\')"><input type="radio" name="r-'+q.id+'"/> Non <span style="margin-left:auto;font-size:11px;color:var(--text3)">1 pt</span></div>'
-          +'</div>';
+  secs.forEach(secId => {
+    const sec = SECTIONS[secId];
+    const qs = allQs.filter(q => q.sec === secId && q.type !== 'auto' && q.type !== 'morisky_result');
+    if (!qs.length) return;
+
+    if (secId === 'morisky') {
+      html += `<div id="sec-morisky">
+        <div class="sec-head s2"><span class="sec-icon">💊</span>
+          <div><div class="sec-title">${sec.label}</div>
+          <div class="sec-sub" style="margin-top:2px">Cochez une seule réponse par question · Score calculé automatiquement</div></div>
+        </div>
+        <div class="card" style="background:rgba(139,92,246,.06);border-color:rgba(139,92,246,.2);margin-bottom:12px">
+          <div style="font-size:13px;color:var(--text2);line-height:1.7">
+            <strong>Barème MMAS-4 :</strong> Oui = 0 point · Non = 1 point<br>
+            Score 4/4 → Haute observance &nbsp;|&nbsp; Score 3/4 → Observance moyenne &nbsp;|&nbsp; Score ≤ 2/4 → Faible observance
+          </div>
+        </div>`;
+      qs.forEach((q, i) => {
+        html += `<div class="card fq" id="fq-${q.id}">
+          <div class="fq-label"><span class="qn" style="background:var(--accent2)">${i+1}</span>${esc(q.label)}</div>
+          <div class="opt-row" onclick="selOptMorisky(this,'${q.id}','Oui')"><input type="radio" name="r-${q.id}" /> Oui <span style="margin-left:auto;font-size:11px;color:var(--text3)">0 pt</span></div>
+          <div class="opt-row" onclick="selOptMorisky(this,'${q.id}','Non')"><input type="radio" name="r-${q.id}" /> Non <span style="margin-left:auto;font-size:11px;color:var(--text3)">1 pt</span></div>
+        </div>`;
       });
-      html+='<div class="card" id="mor-score-card" style="border:2px dashed var(--border2)">'
-        +'<div style="text-align:center;padding:.5rem">'
-          +'<div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Score MMAS-4</div>'
-          +'<div id="mor-live" style="font-family:var(--font-h);font-size:48px;font-weight:800;color:var(--text3)">—/4</div>'
-          +'<div id="mor-level" style="font-size:13px;color:var(--text2);margin-top:4px">Répondez aux 4 questions</div>'
-        +'</div></div>'
-      +'</div>';
+      // Score affiché en temps réel
+      html += `<div class="card" id="morisky-score-card" style="border:2px dashed var(--border2)">
+        <div style="text-align:center;padding:.5rem">
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Score MMAS-4</div>
+          <div id="morisky-live" style="font-family:var(--font-h);font-size:48px;font-weight:800;color:var(--text3)">—/4</div>
+          <div id="morisky-level" style="font-size:13px;color:var(--text2);margin-top:4px">Répondez aux 4 questions</div>
+        </div>
+      </div>`;
+      html += `</div>`;
     } else {
-      html+='<div id="sec-'+secId+'">'
-        +'<div class="sec-head '+sec.cls+'"><span class="sec-icon">'+sec.icon+'</span>'
-          +'<div><div class="sec-title">'+esc(sec.label)+'</div><div class="sec-sub">'+qs.length+' question(s)</div></div>'
-        +'</div>';
-      qs.forEach(function(q){
-        html+='<div class="card fq" id="fq-'+q.id+'"><div class="fq-label">';
-        if(q.req)html+='<span class="qn">●</span>';
-        html+=esc(q.label)+'</div>';
-        if(q.type==='text'){
-          html+='<textarea class="ta-f" id="fa-'+q.id+'" rows="3" placeholder="'+esc(q.ph||'')+'" oninput="FA[\''+q.id+'\']=this.value" style="margin-bottom:0"></textarea>';
-        } else if(q.type==='date'){
-          html+='<input class="input-f" type="date" id="fa-'+q.id+'" oninput="FA[\''+q.id+'\']=this.value" style="margin-bottom:0"/>';
-        } else if(q.type==='yesno'){
-          html+='<div class="opt-row" onclick="selOpt(this,\''+q.id+'\',\'Oui\')"><input type="radio" name="r-'+q.id+'"/> Oui</div>'
-              +'<div class="opt-row" onclick="selOpt(this,\''+q.id+'\',\'Non\')"><input type="radio" name="r-'+q.id+'"/> Non</div>';
-        } else if(q.type==='choice'){
-          html+=q.opts.map(function(o){return '<div class="opt-row" onclick="selOpt(this,\''+q.id+'\',\''+esc(o)+'\')"><input type="radio" name="r-'+q.id+'"/>'+esc(o)+'</div>';}).join('');
-        } else if(q.type==='multi'){
-          html+=q.opts.map(function(o){return '<div class="opt-row" onclick="togOpt(this,\''+q.id+'\',\''+esc(o)+'\')"><input type="checkbox"/>'+esc(o)+'</div>';}).join('');
+      html += `<div id="sec-${secId}"><div class="sec-head ${sec.cls}"><span class="sec-icon">${sec.icon}</span><div><div class="sec-title">${esc(sec.label)}</div><div class="sec-sub">${qs.length} question(s)</div></div></div>`;
+      qs.forEach(q => {
+        html += `<div class="card fq" id="fq-${q.id}"><div class="fq-label">`;
+        if (q.req) html += `<span class="qn">●</span>`;
+        html += `${esc(q.label)}</div>`;
+        if (q.type === 'text') {
+          html += `<textarea class="ta-f" id="fa-${q.id}" rows="3" placeholder="${esc(q.ph||'')}" oninput="FA['${q.id}']=this.value" style="margin-bottom:0"></textarea>`;
+        } else if (q.type === 'date') {
+          html += `<input class="input-f" type="date" id="fa-${q.id}" oninput="FA['${q.id}']=this.value" style="margin-bottom:0"/>`;
+        } else if (q.type === 'yesno') {
+          html += `<div class="opt-row" onclick="selOpt(this,'${q.id}','Oui')"><input type="radio" name="r-${q.id}"/> Oui</div>
+                   <div class="opt-row" onclick="selOpt(this,'${q.id}','Non')"><input type="radio" name="r-${q.id}"/> Non</div>`;
+        } else if (q.type === 'choice') {
+          html += q.opts.map(o => `<div class="opt-row" onclick="selOpt(this,'${q.id}','${esc(o)}')"><input type="radio" name="r-${q.id}"/>${esc(o)}</div>`).join('');
+        } else if (q.type === 'multi') {
+          html += q.opts.map(o => `<div class="opt-row" onclick="togOpt(this,'${q.id}','${esc(o)}')"><input type="checkbox"/>${esc(o)}</div>`).join('');
         }
-        html+='</div>';
+        html += `</div>`;
       });
-      html+='</div>';
+      html += `</div>`;
     }
   });
-  html+='<button class="btn btn-primary btn-full no-print" onclick="submitResp()" style="margin-bottom:1rem">📤 Soumettre l\'enquête</button></div>';
-  document.getElementById('content').innerHTML=html;
+
+  html += `<button class="btn btn-primary btn-full no-print" onclick="submitResp()" style="margin-bottom:1rem">📤 Soumettre l'enquête</button></div>`;
+  document.getElementById('content').innerHTML = html;
 }
 
-function scrollToSec(s){var el=document.getElementById('sec-'+s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+function scrollToSec(s) { const el = document.getElementById('sec-'+s); if (el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
 
-function selOpt(el,qid,val){
-  el.closest('.card').querySelectorAll('.opt-row').forEach(function(r){r.classList.remove('sel');r.querySelector('input').checked=false;});
-  el.classList.add('sel');el.querySelector('input').checked=true;
-  FA[qid]=val;
-  var fq=document.getElementById('fq-'+qid);if(fq)fq.classList.remove('err-border');
+function selOpt(el, qid, val) {
+  el.closest('.card').querySelectorAll('.opt-row').forEach(r => { r.classList.remove('sel'); r.querySelector('input').checked = false; });
+  el.classList.add('sel'); el.querySelector('input').checked = true;
+  FA[qid] = val;
+  const fq = document.getElementById('fq-'+qid); if (fq) fq.classList.remove('err-border');
 }
 
-function selOptM(el,qid,val){
-  el.closest('.card').querySelectorAll('.opt-row').forEach(function(r){r.classList.remove('sel');r.querySelector('input').checked=false;});
-  el.classList.add('sel');el.querySelector('input').checked=true;
-  FA[qid]=val;
-  var fq=document.getElementById('fq-'+qid);if(fq)fq.classList.remove('err-border');
-  updateMorLive();
+function selOptMorisky(el, qid, val) {
+  el.closest('.card').querySelectorAll('.opt-row').forEach(r => { r.classList.remove('sel'); r.querySelector('input').checked = false; });
+  el.classList.add('sel'); el.querySelector('input').checked = true;
+  FA[qid] = val;
+  const fq = document.getElementById('fq-'+qid); if (fq) fq.classList.remove('err-border');
+  updateMoriskyLive();
 }
 
-function updateMorLive(){
-  var answered=['q_m1','q_m2','q_m3','q_m4'].filter(function(id){return FA[id];});
-  if(!answered.length)return;
-  var score=calcMorisky(FA);
-  var lv=morLevel(score);
-  var live=document.getElementById('mor-live');
-  var lvl=document.getElementById('mor-level');
-  var card=document.getElementById('mor-score-card');
-  if(live){live.textContent=score+'/4';live.style.color=lv.color;}
-  if(lvl)lvl.textContent=lv.label+(answered.length<4?' ('+answered.length+'/4 réponses)':' ✓');
-  if(card)card.style.borderColor=lv.color;
+function updateMoriskyLive() {
+  const answered = ['q_m1','q_m2','q_m3','q_m4'].filter(id => FA[id]);
+  if (answered.length === 0) return;
+  const score = calcMorisky(FA);
+  const lv = morLevel(score);
+  const liveEl = document.getElementById('morisky-live');
+  const lvlEl  = document.getElementById('morisky-level');
+  const card    = document.getElementById('morisky-score-card');
+  if (liveEl) { liveEl.textContent = score + '/4'; liveEl.style.color = lv.color; }
+  if (lvlEl)  lvlEl.textContent = lv.label + (answered.length < 4 ? ` (${answered.length}/4 réponses)` : ' ✓');
+  if (card)   card.style.borderColor = lv.color;
 }
 
-function togOpt(el,qid,val){
-  el.classList.toggle('sel');el.querySelector('input').checked=el.classList.contains('sel');
-  if(!FA[qid])FA[qid]=[];
-  if(el.classList.contains('sel')){if(!FA[qid].includes(val))FA[qid].push(val);}
-  else FA[qid]=FA[qid].filter(function(v){return v!==val;});
+function togOpt(el, qid, val) {
+  el.classList.toggle('sel'); el.querySelector('input').checked = el.classList.contains('sel');
+  if (!FA[qid]) FA[qid] = [];
+  if (el.classList.contains('sel')) { if (!FA[qid].includes(val)) FA[qid].push(val); }
+  else FA[qid] = FA[qid].filter(v => v !== val);
 }
 
-function submitResp(){
-  var errs=[];
-  allQ().filter(function(q){return q.req&&q.type!=='auto'&&q.type!=='morisky_result';}).forEach(function(q){
-    var a=FA[q.id];
-    if(!a||(Array.isArray(a)&&!a.length)||(typeof a==='string'&&!a.trim())){
+function submitResp() {
+  let errs = [];
+  allQ().filter(q => q.req && q.type !== 'auto' && q.type !== 'morisky_result').forEach(q => {
+    const a = FA[q.id];
+    if (!a || (Array.isArray(a) && !a.length) || (typeof a === 'string' && !a.trim())) {
       errs.push(q.id);
-      var fq=document.getElementById('fq-'+q.id);if(fq)fq.classList.add('err-border');
+      const fq = document.getElementById('fq-'+q.id); if (fq) fq.classList.add('err-border');
     }
   });
-  if(errs.length){
-    var f=document.getElementById('fq-'+errs[0]);if(f)f.scrollIntoView({behavior:'smooth',block:'center'});
-    toast('⚠️ '+errs.length+' champ(s) obligatoire(s) manquant(s).','w');return;
+  if (errs.length) {
+    document.getElementById('fq-'+errs[0])?.scrollIntoView({behavior:'smooth',block:'center'});
+    toast('⚠️ ' + errs.length + ' champ(s) obligatoire(s) manquant(s).', 'w'); return;
   }
-  FA.q_num=genNum();
-  FA.q_morisky_score=calcMorisky(FA);
-  var r={id:responses.length+1,agentId:CU.id,agentName:CU.name,date:new Date().toLocaleString('fr-FR'),ts:Date.now(),answers:Object.assign({},FA)};
+  FA.q_num = genNum();
+  FA.q_morisky_score = calcMorisky(FA);
+  const r = {id: responses.length + 1, agentId: CU.id, agentName: CU.name, date: new Date().toLocaleString('fr-FR'), ts: Date.now(), answers: {...FA}};
   responses.push(r);
-  saveLocal();syncNow();
-  var lv=morLevel(FA.q_morisky_score);
-  toast('✅ Enquête N° '+FA.q_num+' enregistrée ! Morisky : '+FA.q_morisky_score+'/4 ('+lv.label+')','s');
+  saveLocal(); syncNow();
+  const lv = morLevel(FA.q_morisky_score);
+  toast('✅ Enquête N° ' + FA.q_num + ' enregistrée ! Score Morisky : ' + FA.q_morisky_score + '/4 (' + lv.label + ')', 's');
   renderFill();
 }
 
 // =====================================================================
-// RAPPORT
+// RAPPORT — 5 ONGLETS
 // =====================================================================
-function renderReport(){
-  if(CU.role!=='admin'){toast('Accès réservé.','d');return;}
-  var agList=[...new Set(responses.map(function(r){return r.agentName;}))];
-  var ages=['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
-  document.getElementById('content').innerHTML='<div class="page">'
-    +'<div class="rpt-tabs no-print">'
-      +'<button class="rpt-tab active" data-tab="global" onclick="swTab(\'global\')">📊 Global</button>'
-      +'<button class="rpt-tab" data-tab="morisky" onclick="swTab(\'morisky\')">💊 Morisky</button>'
-      +'<button class="rpt-tab" data-tab="croises" onclick="swTab(\'croises\')">📐 Croisées</button>'
-      +'<button class="rpt-tab" data-tab="classement" onclick="swTab(\'classement\')">🏆 Classement</button>'
-      +'<button class="rpt-tab" data-tab="individuel" onclick="swTab(\'individuel\')">👥 Fiches</button>'
-    +'</div>'
-    +'<div class="filter-bar no-print" id="filter-zone">'
-      +'<span class="filter-label">🔍 Filtres :</span>'
-      +'<select id="f-sexe" onchange="refreshRpt()"><option value="">Genre (tous)</option><option>Masculin</option><option>Féminin</option></select>'
-      +'<select id="f-age" onchange="refreshRpt()"><option value="">Âge (tous)</option>'+ages.map(function(a){return '<option>'+esc(a)+'</option>';}).join('')+'</select>'
-      +'<select id="f-enq" onchange="refreshRpt()"><option value="">Enquêteur (tous)</option>'+agList.map(function(a){return '<option>'+esc(a)+'</option>';}).join('')+'</select>'
-      +'<button class="btn btn-sm" onclick="resetF()">✕ Reset</button>'
-    +'</div>'
-    +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" class="no-print">'
-      +'<button class="btn btn-primary" onclick="exportTabCsv()">📥 Export cet onglet (CSV)</button>'
-      +'<button class="btn btn-success" onclick="dlCSV(buildAllCsvRows(),\'Rapport_Complet_ARV\')">📥 Export complet</button>'
-      +'<button class="btn" onclick="window.print()">🖨️ Imprimer</button>'
-    +'</div>'
-    +'<div id="rpt-body"></div>'
-  +'</div>';
-  activeTab='global';buildRpt();
-}
-
-function swTab(t){
-  activeTab=t;
-  document.querySelectorAll('.rpt-tab').forEach(function(b){b.classList.toggle('active',b.dataset.tab===t);});
-  var fz=document.getElementById('filter-zone');
-  if(fz)fz.style.display=t==='classement'?'none':'flex';
-  Object.values(charts).forEach(function(c){try{c.destroy();}catch(e){}});charts={};
+function renderReport() {
+  if (CU.role !== 'admin') { toast('Accès réservé.', 'd'); return; }
+  const agList = [...new Set(responses.map(r => r.agentName))];
+  const ages   = ['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
+  document.getElementById('content').innerHTML = `<div class="page">
+    <div class="rpt-tabs no-print">
+      <button class="rpt-tab active" data-tab="global"     onclick="swTab('global')">📊 Global</button>
+      <button class="rpt-tab"        data-tab="morisky"    onclick="swTab('morisky')">💊 Morisky</button>
+      <button class="rpt-tab"        data-tab="croises"    onclick="swTab('croises')">📐 Analyses croisées</button>
+      <button class="rpt-tab"        data-tab="classement" onclick="swTab('classement')">🏆 Classement</button>
+      <button class="rpt-tab"        data-tab="individuel" onclick="swTab('individuel')">👥 Fiches</button>
+    </div>
+    <div class="filter-bar no-print" id="filter-zone">
+      <span class="filter-label">🔍 Filtres :</span>
+      <select id="f-sexe" onchange="refreshRpt()"><option value="">Genre (tous)</option><option>Masculin</option><option>Féminin</option></select>
+      <select id="f-age"  onchange="refreshRpt()"><option value="">Âge (tous)</option>${ages.map(a=>`<option>${esc(a)}</option>`).join('')}</select>
+      <select id="f-enq"  onchange="refreshRpt()"><option value="">Enquêteur (tous)</option>${agList.map(a=>`<option>${esc(a)}</option>`).join('')}</select>
+      <button class="btn btn-sm" onclick="resetF()">✕ Reset</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" class="no-print" id="export-btns">
+      <button class="btn btn-primary" onclick="exportTabCsv()">📥 Exporter cet onglet (CSV)</button>
+      <button class="btn btn-success" onclick="dlCSV(buildAllCsvRows(),'Rapport_Complet_ARV')">📥 Export complet (CSV)</button>
+      <button class="btn" onclick="window.print()">🖨️ Imprimer / PDF</button>
+    </div>
+    <div id="rpt-body"></div>
+  </div>`;
+  activeTab = 'global';
   buildRpt();
 }
 
-function resetF(){['f-sexe','f-age','f-enq'].forEach(function(id){var e=document.getElementById(id);if(e)e.value='';});refreshRpt();}
-function refreshRpt(){Object.values(charts).forEach(function(c){try{c.destroy();}catch(e){}});charts={};buildRpt();}
+function swTab(t) {
+  activeTab = t;
+  document.querySelectorAll('.rpt-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
+  const fz = document.getElementById('filter-zone');
+  if (fz) fz.style.display = t === 'classement' ? 'none' : 'flex';
+  Object.values(charts).forEach(c => { try{c.destroy();}catch(e){} }); charts = {};
+  buildRpt();
+}
 
-function getFilt(){
-  var fs=document.getElementById('f-sexe')?document.getElementById('f-sexe').value:'';
-  var fa=document.getElementById('f-age')?document.getElementById('f-age').value:'';
-  var fe=document.getElementById('f-enq')?document.getElementById('f-enq').value:'';
-  return responses.filter(function(r){
-    if(fs&&r.answers&&r.answers.q_sexe!==fs)return false;
-    if(fa&&r.answers&&r.answers.q_age!==fa)return false;
-    if(fe&&r.agentName!==fe)return false;
+function resetF() { ['f-sexe','f-age','f-enq'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';}); refreshRpt(); }
+function refreshRpt() { Object.values(charts).forEach(c=>{try{c.destroy();}catch(e){}});charts={};buildRpt(); }
+
+function getFilt() {
+  const fs = document.getElementById('f-sexe')?.value||'';
+  const fa = document.getElementById('f-age')?.value||'';
+  const fe = document.getElementById('f-enq')?.value||'';
+  return responses.filter(r => {
+    if (fs && r.answers.q_sexe !== fs) return false;
+    if (fa && r.answers.q_age  !== fa) return false;
+    if (fe && r.agentName      !== fe) return false;
     return true;
   });
 }
 
-function buildRpt(){
-  var rb=document.getElementById('rpt-body');if(!rb)return;
-  if(activeTab==='global')tabGlobal(rb);
-  else if(activeTab==='morisky')tabMorisky(rb);
-  else if(activeTab==='croises')tabCroises(rb);
-  else if(activeTab==='classement')tabClassement(rb);
-  else if(activeTab==='individuel')tabIndividuel(rb);
+function buildRpt() {
+  const rb = document.getElementById('rpt-body'); if (!rb) return;
+  if      (activeTab==='global')     tabGlobal(rb);
+  else if (activeTab==='morisky')    tabMorisky(rb);
+  else if (activeTab==='croises')    tabCroises(rb);
+  else if (activeTab==='classement') tabClassement(rb);
+  else if (activeTab==='individuel') tabIndividuel(rb);
 }
 
-function mkChart(id,type,labels,datasets,opts){
-  var ctx=document.getElementById(id);if(!ctx)return;
-  var leg=(opts&&opts.leg!==undefined)?opts.leg:true;
-  var legPos=(opts&&opts.legPos)||'top';
-  charts[id]=new Chart(ctx,{
-    type:type,data:{labels:labels,datasets:datasets},
+function mkChart(id, type, labels, datasets, opts) {
+  const ctx = document.getElementById(id); if (!ctx) return;
+  const leg = opts && opts.leg !== undefined ? opts.leg : true;
+  const legPos = (opts && opts.legPos) || 'top';
+  charts[id] = new Chart(ctx, {
+    type, data:{labels, datasets},
     options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:leg,position:legPos,labels:{color:'#7b82a0',font:{size:11},padding:10}}},
-      scales:(type==='doughnut'||type==='pie')?{}:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:leg, position:legPos, labels:{color:'#7b82a0',font:{size:11},padding:10}}},
+      scales: (type==='doughnut'||type==='pie') ? {} : {
         y:{beginAtZero:true,ticks:{color:'#7b82a0',stepSize:1},grid:{color:'rgba(255,255,255,0.04)'}},
         x:{ticks:{color:'#7b82a0',font:{size:11}},grid:{display:false}}
       }
@@ -883,258 +944,293 @@ function mkChart(id,type,labels,datasets,opts){
   });
 }
 
-function barBlock(q,data){
-  var opts=q.type==='yesno'?['Oui','Non']:(q.opts||[]);
-  var counts={};opts.forEach(function(o){counts[o]=0;});
-  data.forEach(function(r){
-    if(!r.answers)return;
-    var a=r.answers[q.id];
-    if(Array.isArray(a))a.forEach(function(v){if(counts[v]!=null)counts[v]++;});
-    else if(a&&counts[a]!=null)counts[a]++;
+function barBlock(q, data) {
+  const opts = q.type==='yesno' ? ['Oui','Non'] : (q.opts||[]);
+  const counts = {}; opts.forEach(o=>counts[o]=0);
+  data.forEach(r => {
+    const a = r.answers[q.id];
+    if (Array.isArray(a)) a.forEach(v=>{if(counts[v]!=null)counts[v]++;});
+    else if (a && counts[a]!=null) counts[a]++;
   });
-  var tot=Object.values(counts).reduce(function(a,b){return a+b;},0)||1;
-  var html='<div class="card"><div style="font-size:14px;font-weight:500;display:flex;gap:8px;align-items:flex-start;margin-bottom:10px">'
-    +'<span class="qn" style="background:var(--accent2)">Q</span>'+esc(q.label)+'</div>';
-  opts.forEach(function(o,i){
-    var c=counts[o]||0;var p=pct(c,tot);
-    html+='<div class="prog-wrap"><div class="prog-info"><span>'+esc(o)+'</span><span style="font-weight:500">'+c+' ('+p+'%)</span></div>'
-      +'<div class="prog-bar-bg"><div class="prog-bar" style="width:'+p+'%;background:'+PAL[i%PAL.length]+'"></div></div></div>';
+  const tot = Object.values(counts).reduce((a,b)=>a+b,0)||1;
+  let html = `<div class="card"><div style="font-size:14px;font-weight:500;display:flex;gap:8px;align-items:flex-start;margin-bottom:10px"><span class="qn" style="background:var(--accent2)">Q</span>${esc(q.label)}</div>`;
+  opts.forEach((o,i) => {
+    const c=counts[o]||0; const p=pct(c,tot);
+    html += `<div class="prog-wrap"><div class="prog-info"><span>${esc(o)}</span><span style="font-weight:500">${c} (${p}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:${PAL[i%PAL.length]}"></div></div></div>`;
   });
-  var h=q.type==='yesno'?160:Math.max(160,opts.length*38);
-  html+='<div class="ch-wrap" style="height:'+h+'px"><canvas id="c-'+q.id+'"></canvas></div></div>';
-  var drawFn=function(){
-    mkChart('c-'+q.id,q.type==='yesno'?'doughnut':'bar',opts,
-      [{data:opts.map(function(o){return counts[o]||0;}),backgroundColor:opts.map(function(_,i){return PAL[i%PAL.length];}),borderWidth:0,borderRadius:4}],
-      {leg:q.type==='yesno',legPos:'right'});
-  };
-  return{html:html,draw:drawFn};
+  const h = q.type==='yesno' ? 160 : Math.max(160, opts.length*38);
+  html += `<div class="ch-wrap" style="height:${h}px"><canvas id="c-${q.id}"></canvas></div></div>`;
+  return { html, draw:()=>mkChart('c-'+q.id, q.type==='yesno'?'doughnut':'bar', opts, [{data:opts.map(o=>counts[o]||0),backgroundColor:opts.map((_,i)=>PAL[i%PAL.length]),borderWidth:0,borderRadius:4}], {leg:q.type==='yesno',legPos:'right'}) };
 }
 
-function tabGlobal(rb){
-  var data=getFilt();var n=data.length;
-  if(!n){rb.innerHTML=noData();return;}
-  var women=data.filter(function(r){return r.answers&&r.answers.q_sexe==='Féminin';}).length;
-  var men=data.filter(function(r){return r.answers&&r.answers.q_sexe==='Masculin';}).length;
-  var draws=[];
-  var html='<div class="met-grid">'
-    +'<div class="met-card"><div class="met-val">'+n+'</div><div class="met-lbl">📋 Enquêtes</div></div>'
-    +'<div class="met-card m2"><div class="met-val">'+new Set(data.map(function(r){return r.agentName;})).size+'</div><div class="met-lbl">👥 Enquêteurs</div></div>'
-    +'<div class="met-card m3"><div class="met-val">'+women+'</div><div class="met-lbl">♀ Femmes ('+pct(women,n)+'%)</div></div>'
-    +'<div class="met-card m4"><div class="met-val">'+men+'</div><div class="met-lbl">♂ Hommes ('+pct(men,n)+'%)</div></div>'
-    +'</div>';
-  Object.entries(SECTIONS).filter(function(e){return e[0]!=='morisky';}).forEach(function(entry){
-    var secId=entry[0],sec=entry[1];
-    var qs=Q_BASE.filter(function(q){return q.sec===secId&&['choice','yesno','multi'].includes(q.type)&&!q.isMorisky&&q.type!=='morisky_result';});
-    var tqs=Q_BASE.filter(function(q){return q.sec===secId&&q.type==='text';});
-    if(!qs.length&&!tqs.length)return;
-    html+='<div class="sec-head '+sec.cls+'"><span class="sec-icon">'+sec.icon+'</span><div class="sec-title">'+esc(sec.label)+'</div></div>';
-    qs.forEach(function(q){var b=barBlock(q,data);html+=b.html;draws.push(b.draw);});
-    tqs.forEach(function(q){
-      var ans=data.filter(function(r){return r.answers&&r.answers[q.id]&&r.answers[q.id].trim();});if(!ans.length)return;
-      html+='<div class="card"><div class="card-header"><div class="card-title">'+esc(q.label)+'</div><span class="badge badge-green">'+ans.length+'</span></div>';
-      ans.slice(0,8).forEach(function(r){html+='<div class="resp-card"><div class="resp-meta">👤 '+esc(r.agentName)+' · '+r.date+'</div><div style="font-size:14px">'+esc(r.answers[q.id])+'</div></div>';});
-      if(ans.length>8)html+='<p style="font-size:12px;color:var(--text3);text-align:center;margin-top:6px">…et '+(ans.length-8)+' autre(s)</p>';
-      html+='</div>';
+// --- ONGLET GLOBAL ---
+function tabGlobal(rb) {
+  const data=getFilt(); const n=data.length;
+  if (!n) { rb.innerHTML=noData(); return; }
+  const women=data.filter(r=>r.answers.q_sexe==='Féminin').length;
+  const men=data.filter(r=>r.answers.q_sexe==='Masculin').length;
+  const draws = [];
+  let html = `<div class="met-grid">
+    <div class="met-card"><div class="met-val">${n}</div><div class="met-lbl">📋 Enquêtes</div></div>
+    <div class="met-card m2"><div class="met-val">${new Set(data.map(r=>r.agentName)).size}</div><div class="met-lbl">👥 Enquêteurs</div></div>
+    <div class="met-card m3"><div class="met-val">${women}</div><div class="met-lbl">♀ Femmes (${pct(women,n)}%)</div></div>
+    <div class="met-card m4"><div class="met-val">${men}</div><div class="met-lbl">♂ Hommes (${pct(men,n)}%)</div></div>
+  </div>`;
+  Object.entries(SECTIONS).filter(([s])=>s!=='morisky').forEach(([secId,sec]) => {
+    const qs = Q_BASE.filter(q=>q.sec===secId&&['choice','yesno','multi'].includes(q.type)&&!q.isMorisky&&q.type!=='morisky_result');
+    const tqs = Q_BASE.filter(q=>q.sec===secId&&q.type==='text');
+    if (!qs.length && !tqs.length) return;
+    html += `<div class="sec-head ${sec.cls}"><span class="sec-icon">${sec.icon}</span><div class="sec-title">${esc(sec.label)}</div></div>`;
+    qs.forEach(q => { const b=barBlock(q,data); html+=b.html; draws.push(b.draw); });
+    tqs.forEach(q => {
+      const ans=data.filter(r=>r.answers[q.id]?.trim()); if(!ans.length)return;
+      html+=`<div class="card"><div class="card-header"><div class="card-title">${esc(q.label)}</div><span class="badge badge-green">${ans.length}</span></div>`;
+      ans.slice(0,8).forEach(r=>html+=`<div class="resp-card"><div class="resp-meta">👤 ${esc(r.agentName)} · ${r.date}</div><div style="font-size:14px">${esc(r.answers[q.id])}</div></div>`);
+      if(ans.length>8)html+=`<p style="font-size:12px;color:var(--text3);text-align:center;margin-top:6px">…et ${ans.length-8} autre(s)</p>`;
+      html+=`</div>`;
     });
   });
+  // Custom questions
+  const cqs = customQ.filter(q=>['choice','yesno','multi'].includes(q.type));
+  if (cqs.length) {
+    html+=`<div class="sec-head s4"><span class="sec-icon">✏️</span><div class="sec-title">Questions personnalisées</div></div>`;
+    cqs.forEach(q=>{ const b=barBlock(q,data); html+=b.html; draws.push(b.draw); });
+  }
   rb.innerHTML=html;
-  setTimeout(function(){draws.forEach(function(fn){fn();});},200);
+  setTimeout(()=>draws.forEach(fn=>fn()),200);
 }
 
-function tabMorisky(rb){
-  var data=getFilt();var n=data.length;
-  if(!n){rb.innerHTML=noData();return;}
-  var scored=data.filter(function(r){return r.answers&&r.answers.q_morisky_score!==undefined&&r.answers.q_morisky_score!==null;});
-  var ns=scored.length;
-  var counts={0:0,1:0,2:0,3:0,4:0};
-  scored.forEach(function(r){var s=parseInt(r.answers.q_morisky_score);if(!isNaN(s)&&counts[s]!=null)counts[s]++;});
-  var somme=scored.reduce(function(a,r){return a+parseInt(r.answers.q_morisky_score);},0);
-  var moy=ns?(somme/ns).toFixed(2):0;
-  var haute=scored.filter(function(r){return parseInt(r.answers.q_morisky_score)===4;}).length;
-  var moy_obs=scored.filter(function(r){return parseInt(r.answers.q_morisky_score)===3;}).length;
-  var faible=scored.filter(function(r){return parseInt(r.answers.q_morisky_score)<=2;}).length;
-  var draws=[];
-  var scCol={0:'#f56565',1:'#f56565',2:'#f6ad55',3:'#f6ad55',4:'#10d9a0'};
-  var scLbl={0:'Très faible',1:'Faible',2:'Faible',3:'Moyenne',4:'Haute'};
+// --- ONGLET MORISKY ---
+function tabMorisky(rb) {
+  const data=getFilt(); const n=data.length;
+  if (!n) { rb.innerHTML=noData(); return; }
+  const scored=data.filter(r=>r.answers.q_morisky_score!==undefined&&r.answers.q_morisky_score!==null);
+  const ns=scored.length;
+  const counts={0:0,1:0,2:0,3:0,4:0};
+  scored.forEach(r=>{const s=parseInt(r.answers.q_morisky_score);if(!isNaN(s)&&counts[s]!=null)counts[s]++;});
+  const somme=scored.reduce((a,r)=>a+parseInt(r.answers.q_morisky_score),0);
+  const moy=ns?(somme/ns).toFixed(2):0;
+  const haute=scored.filter(r=>parseInt(r.answers.q_morisky_score)===4).length;
+  const moyenne_obs=scored.filter(r=>parseInt(r.answers.q_morisky_score)===3).length;
+  const faible=scored.filter(r=>parseInt(r.answers.q_morisky_score)<=2).length;
+  const draws=[];
 
-  var html='<div class="sec-head s2"><span class="sec-icon">💊</span>'
-    +'<div><div class="sec-title">Questionnaire de Morisky — MMAS-4</div>'
-    +'<div class="sec-sub">'+ns+' patient(s) évalué(s) sur '+n+'</div></div></div>'
-    +'<div class="met-grid">'
-      +'<div class="met-card"><div class="met-val">'+ns+'</div><div class="met-lbl">🧾 Évalués</div></div>'
-      +'<div class="met-card m3"><div class="met-val" style="color:var(--accent3)">'+haute+'</div><div class="met-lbl">✅ Haute (4/4)</div></div>'
-      +'<div class="met-card m4"><div class="met-val" style="color:var(--warn)">'+moy_obs+'</div><div class="met-lbl">⚠️ Moyenne (3/4)</div></div>'
-      +'<div class="met-card m2"><div class="met-val" style="color:var(--danger)">'+faible+'</div><div class="met-lbl">❌ Faible (≤2/4)</div></div>'
-    +'</div>'
-    +'<div class="card" style="border-left:4px solid var(--accent)">'
-      +'<div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">'
-        +'<div><div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Score moyen</div>'
-        +'<div style="font-family:var(--font-h);font-size:50px;font-weight:800;color:var(--accent);line-height:1">'+moy+'<span style="font-size:18px;color:var(--text2)">/4</span></div></div>'
-        +'<div style="flex:1;min-width:180px;font-size:13px;line-height:2">'
-          +'<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent3);margin-right:6px"></span>Score = 4/4 → <strong>Haute observance</strong><br>'
-          +'<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--warn);margin-right:6px"></span>Score = 3/4 → <strong>Observance moyenne</strong><br>'
-          +'<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--danger);margin-right:6px"></span>Score ≤ 2/4 → <strong>Faible observance</strong>'
-        +'</div>'
-      +'</div>'
-    +'</div>'
-    +'<div class="card"><div class="card-header"><div class="card-title">📊 Distribution des scores</div></div>';
-  [0,1,2,3,4].forEach(function(s){
-    var c=counts[s]||0;var p=pct(c,ns||1);
-    html+='<div class="prog-wrap"><div class="prog-info"><span><strong>'+s+'/4</strong> <span style="font-size:12px;color:var(--text2)">'+scLbl[s]+'</span></span>'
-      +'<span style="font-weight:500">'+c+' ('+p+'%)</span></div>'
-      +'<div class="prog-bar-bg"><div class="prog-bar" style="width:'+p+'%;background:'+scCol[s]+'"></div></div></div>';
-  });
-  html+='<div class="ch-wrap" style="height:220px"><canvas id="c-mor-dist"></canvas></div></div>'
-    +'<div class="card"><div class="card-header"><div class="card-title">🍩 Répartition par niveau</div></div>'
-    +'<div class="ch-wrap" style="height:220px"><canvas id="c-mor-niv"></canvas></div></div>'
-    +'<div class="sec-head s2" style="margin-top:4px"><span class="sec-icon">❓</span><div class="sec-title">Détail par question MMAS-4</div></div>';
+  let html=`<div class="sec-head s2"><span class="sec-icon">💊</span>
+    <div><div class="sec-title">Questionnaire de Morisky — MMAS-4</div>
+    <div class="sec-sub">${ns} patient(s) évalué(s) sur ${n}</div></div></div>
 
-  Q_BASE.filter(function(q){return q.isMorisky;}).forEach(function(q,i){
-    var oui=data.filter(function(r){return r.answers&&r.answers[q.id]==='Oui';}).length;
-    var non=data.filter(function(r){return r.answers&&r.answers[q.id]==='Non';}).length;
-    var tot=oui+non||1;
-    html+='<div class="card"><div style="font-size:14px;font-weight:500;display:flex;gap:8px;align-items:flex-start;margin-bottom:10px">'
-      +'<span class="qn" style="background:var(--accent2)">Q'+(i+1)+'</span>'+esc(q.label)+'</div>'
-      +'<div class="prog-wrap"><div class="prog-info"><span>Oui (0 pt)</span><span style="font-weight:500;color:var(--danger)">'+oui+' ('+pct(oui,tot)+'%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:'+pct(oui,tot)+'%;background:var(--danger)"></div></div></div>'
-      +'<div class="prog-wrap"><div class="prog-info"><span>Non (1 pt)</span><span style="font-weight:500;color:var(--accent3)">'+non+' ('+pct(non,tot)+'%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:'+pct(non,tot)+'%;background:var(--accent3)"></div></div></div>'
-      +'<div class="ch-wrap" style="height:140px"><canvas id="cmq'+i+'"></canvas></div></div>';
-    draws.push((function(ii,oo,nn){return function(){mkChart('cmq'+ii,'doughnut',['Oui (0pt)','Non (1pt)'],[{data:[oo,nn],backgroundColor:['#f56565','#10d9a0'],borderWidth:0}],{leg:true,legPos:'right'});};;})(i,oui,non));
+  <div class="met-grid">
+    <div class="met-card"><div class="met-val">${ns}</div><div class="met-lbl">🧾 Évalués</div></div>
+    <div class="met-card m3"><div class="met-val" style="color:var(--accent3)">${haute}</div><div class="met-lbl">✅ Haute obs. (4/4)</div></div>
+    <div class="met-card m4"><div class="met-val" style="color:var(--warn)">${moyenne_obs}</div><div class="met-lbl">⚠️ Moy. obs. (3/4)</div></div>
+    <div class="met-card m2"><div class="met-val" style="color:var(--danger)">${faible}</div><div class="met-lbl">❌ Faible obs. (≤2/4)</div></div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--accent)">
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Score moyen</div>
+        <div style="font-family:var(--font-h);font-size:50px;font-weight:800;color:var(--accent);line-height:1">${moy}<span style="font-size:18px;color:var(--text2)">/4</span></div>
+      </div>
+      <div style="flex:1;min-width:180px">
+        <div style="font-size:13px;color:var(--text2);margin-bottom:8px">Interprétation MMAS-4 :</div>
+        <div style="font-size:13px;line-height:2">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent3);margin-right:6px"></span>Score = 4/4 → <strong>Haute observance</strong><br>
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--warn);margin-right:6px"></span>Score = 3/4 → <strong>Observance moyenne</strong><br>
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--danger);margin-right:6px"></span>Score ≤ 2/4 → <strong>Faible observance</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">📊 Distribution des scores</div></div>`;
+  const scColors={0:'#f56565',1:'#f56565',2:'#f6ad55',3:'#f6ad55',4:'#10d9a0'};
+  const scLabel={0:'Très faible',1:'Faible',2:'Faible',3:'Moyenne',4:'Haute'};
+  [0,1,2,3,4].forEach(s=>{
+    const c=counts[s]||0; const p=pct(c,ns||1);
+    html+=`<div class="prog-wrap"><div class="prog-info">
+      <span><strong>${s}/4</strong> <span style="font-size:12px;color:var(--text2)">${scLabel[s]}</span></span>
+      <span style="font-weight:500">${c} (${p}%)</span>
+    </div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:${scColors[s]}"></div></div></div>`;
+  });
+  html+=`<div class="ch-wrap" style="height:220px"><canvas id="c-mor-dist"></canvas></div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">🍩 Répartition par niveau d'observance</div></div>
+    <div class="ch-wrap" style="height:220px"><canvas id="c-mor-niv"></canvas></div>
+  </div>
+
+  <div class="sec-head s2" style="margin-top:4px"><span class="sec-icon">❓</span><div class="sec-title">Détail par question MMAS-4</div></div>`;
+
+  Q_BASE.filter(q=>q.isMorisky).forEach((q,i)=>{
+    const oui=data.filter(r=>r.answers[q.id]==='Oui').length;
+    const non=data.filter(r=>r.answers[q.id]==='Non').length;
+    const tot=oui+non||1;
+    html+=`<div class="card"><div style="font-size:14px;font-weight:500;display:flex;gap:8px;align-items:flex-start;margin-bottom:10px">
+      <span class="qn" style="background:var(--accent2)">Q${i+1}</span>${esc(q.label)}</div>
+      <div class="prog-wrap"><div class="prog-info"><span>Oui (0 pt)</span><span style="font-weight:500;color:var(--danger)">${oui} (${pct(oui,tot)}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${pct(oui,tot)}%;background:var(--danger)"></div></div></div>
+      <div class="prog-wrap"><div class="prog-info"><span>Non (1 pt)</span><span style="font-weight:500;color:var(--accent3)">${non} (${pct(non,tot)}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${pct(non,tot)}%;background:var(--accent3)"></div></div></div>
+      <div class="ch-wrap" style="height:140px"><canvas id="cmq${i}"></canvas></div>
+    </div>`;
+    draws.push(()=>mkChart('cmq'+i,'doughnut',['Oui (0pt)','Non (1pt)'],[{data:[oui,non],backgroundColor:['#f56565','#10d9a0'],borderWidth:0}],{leg:true,legPos:'right'}));
   });
 
-  // Patient table
-  html+='<div class="card"><div class="card-header"><div class="card-title">📋 Détail par patient</div><span class="badge badge-blue">'+ns+'</span></div>'
-    +'<div style="overflow-x:auto"><table class="tbl"><thead><tr>'
-    +'<th>N°</th><th>Âge</th><th>Genre</th><th style="text-align:center">Q1</th><th style="text-align:center">Q2</th><th style="text-align:center">Q3</th><th style="text-align:center">Q4</th><th style="text-align:center">Score</th><th>Niveau</th>'
-    +'</tr></thead><tbody>';
-  scored.forEach(function(r){
-    var s=parseInt(r.answers.q_morisky_score);
-    var lv=morLevel(s);
-    var pt=function(v){return v==='Non'?'<span style="color:var(--accent3);font-weight:700">1</span>':'<span style="color:var(--danger)">0</span>';};
-    html+='<tr>'
-      +'<td>'+esc(r.answers.q_num||'#'+r.id)+'</td>'
-      +'<td style="color:var(--text2)">'+esc(r.answers.q_age||'—')+'</td>'
-      +'<td style="color:var(--text2)">'+esc(r.answers.q_sexe||'—')+'</td>'
-      +'<td style="text-align:center">'+pt(r.answers.q_m1)+'</td>'
-      +'<td style="text-align:center">'+pt(r.answers.q_m2)+'</td>'
-      +'<td style="text-align:center">'+pt(r.answers.q_m3)+'</td>'
-      +'<td style="text-align:center">'+pt(r.answers.q_m4)+'</td>'
-      +'<td style="text-align:center;font-family:var(--font-h);font-size:17px;font-weight:800;color:'+lv.color+'">'+s+'/4</td>'
-      +'<td><span class="badge '+lv.cls+'">'+lv.label+'</span></td>'
-    +'</tr>';
+  // Tableau patients
+  html+=`<div class="card"><div class="card-header"><div class="card-title">📋 Détail par patient</div><span class="badge badge-blue">${ns}</span></div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr>
+        <th>N°</th><th>Âge</th><th>Genre</th>
+        <th style="text-align:center">Q1</th><th style="text-align:center">Q2</th><th style="text-align:center">Q3</th><th style="text-align:center">Q4</th>
+        <th style="text-align:center">Score</th><th>Niveau</th>
+      </tr></thead><tbody>`;
+  scored.forEach(r=>{
+    const s=parseInt(r.answers.q_morisky_score);
+    const lv=morLevel(s);
+    const pt=v=>v==='Non'?`<span style="color:var(--accent3);font-weight:700">1</span>`:`<span style="color:var(--danger)">0</span>`;
+    html+=`<tr>
+      <td>${esc(r.answers.q_num||'#'+r.id)}</td>
+      <td style="color:var(--text2)">${esc(r.answers.q_age||'—')}</td>
+      <td style="color:var(--text2)">${esc(r.answers.q_sexe||'—')}</td>
+      <td style="text-align:center">${pt(r.answers.q_m1)}</td>
+      <td style="text-align:center">${pt(r.answers.q_m2)}</td>
+      <td style="text-align:center">${pt(r.answers.q_m3)}</td>
+      <td style="text-align:center">${pt(r.answers.q_m4)}</td>
+      <td style="text-align:center;font-family:var(--font-h);font-size:17px;font-weight:800;color:${lv.color}">${s}/4</td>
+      <td><span class="badge ${lv.cls}">${lv.label}</span></td>
+    </tr>`;
   });
-  html+='</tbody></table></div></div>';
+  html+=`</tbody></table></div></div>`;
 
   rb.innerHTML=html;
-  setTimeout(function(){
-    draws.forEach(function(fn){fn();});
+  setTimeout(()=>{
+    draws.forEach(fn=>fn());
     mkChart('c-mor-dist','bar',['0/4','1/4','2/4','3/4','4/4'],
-      [{data:[counts[0],counts[1],counts[2],counts[3],counts[4]],backgroundColor:['#f56565','#f56565','#f6ad55','#f6ad55','#10d9a0'],borderWidth:0,borderRadius:5}],{leg:false});
-    mkChart('c-mor-niv','doughnut',['Haute (4/4)','Moyenne (3/4)','Faible (≤2/4)'],
-      [{data:[haute,moy_obs,faible],backgroundColor:['#10d9a0','#f6ad55','#f56565'],borderWidth:0}],{leg:true,legPos:'right'});
+      [{data:[counts[0],counts[1],counts[2],counts[3],counts[4]],backgroundColor:['#f56565','#f56565','#f6ad55','#f6ad55','#10d9a0'],borderWidth:0,borderRadius:5}],
+      {leg:false});
+    mkChart('c-mor-niv','doughnut',
+      ['Haute (4/4)','Moyenne (3/4)','Faible (≤2/4)'],
+      [{data:[haute,moyenne_obs,faible],backgroundColor:['#10d9a0','#f6ad55','#f56565'],borderWidth:0}],
+      {leg:true,legPos:'right'});
   },200);
 }
 
-function tabCroises(rb){
-  var data=getFilt();var n=data.length;
-  if(n<2){rb.innerHTML=noData('Pas assez de données (minimum 2).');return;}
-  var AGES=['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
-  var ageLbls=AGES.filter(function(a){return data.some(function(r){return r.answers&&r.answers.q_age===a;});});
-  var genLbls=['Masculin','Féminin'].filter(function(g){return data.some(function(r){return r.answers&&r.answers.q_sexe===g;});});
-  var html='<div class="sec-head s1"><span class="sec-icon">📐</span><div class="sec-title">Analyses croisées · '+n+' enquête(s)</div></div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">🕐 Âge × Respect des horaires</div></div><div class="ch-wrap" style="height:240px"><canvas id="cx1"></canvas></div></div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">👫 Genre × Respect des horaires</div></div><div class="ch-wrap" style="height:200px"><canvas id="cx2"></canvas></div></div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">💊 Âge × Score Morisky moyen</div></div><div class="ch-wrap" style="height:230px"><canvas id="cx3"></canvas></div></div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">💊 Genre × Score Morisky moyen</div></div><div class="ch-wrap" style="height:200px"><canvas id="cx4"></canvas></div></div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">📚 Instruction × Respect des horaires</div></div><div class="ch-wrap" style="height:220px"><canvas id="cx5"></canvas></div></div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">⚠️ Stigmatisation × Respect des horaires</div></div><div class="ch-wrap" style="height:190px"><canvas id="cx6"></canvas></div></div>';
+// --- ONGLET ANALYSES CROISÉES ---
+function tabCroises(rb) {
+  const data=getFilt(); const n=data.length;
+  if (n<2){rb.innerHTML=noData('Pas assez de données (minimum 2 enquêtes).');return;}
+  const AGES=['18–29 ans','30–41 ans','42–53 ans','54–65 ans','66–77 ans','78 ans et +'];
+  const ageLbls=AGES.filter(a=>data.some(r=>r.answers.q_age===a));
+  const genLbls=['Masculin','Féminin'].filter(g=>data.some(r=>r.answers.q_sexe===g));
+
+  let html=`<div class="sec-head s1"><span class="sec-icon">📐</span><div class="sec-title">Analyses croisées · ${n} enquête(s)</div></div>
+    <div class="card"><div class="card-header"><div class="card-title">🕐 Tranche d'âge × Respect des horaires ARV</div></div><div class="ch-wrap" style="height:240px"><canvas id="cx1"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">👫 Genre × Respect des horaires ARV</div></div><div class="ch-wrap" style="height:200px"><canvas id="cx2"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">💊 Tranche d'âge × Score Morisky moyen</div></div><div class="ch-wrap" style="height:230px"><canvas id="cx3"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">💊 Genre × Score Morisky moyen</div></div><div class="ch-wrap" style="height:200px"><canvas id="cx4"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">📚 Niveau d'instruction × Respect des horaires</div></div><div class="ch-wrap" style="height:220px"><canvas id="cx5"></canvas></div></div>
+    <div class="card"><div class="card-header"><div class="card-title">⚠️ Stigmatisation × Respect des horaires</div></div><div class="ch-wrap" style="height:190px"><canvas id="cx6"></canvas></div></div>`;
   rb.innerHTML=html;
-  function ds2(lbls,f1,f2){return[{label:'Observant ✓',data:lbls.map(f1),backgroundColor:'#10d9a0',borderRadius:4,borderWidth:0},{label:'Non observant ✗',data:lbls.map(f2),backgroundColor:'#f56565',borderRadius:4,borderWidth:0}];}
-  setTimeout(function(){
-    mkChart('cx1','bar',ageLbls.map(function(a){return a.replace(' ans','');}),ds2(ageLbls,function(a){return data.filter(function(r){return r.answers&&r.answers.q_age===a&&r.answers.q_horaire_meds==='Oui';}).length;},function(a){return data.filter(function(r){return r.answers&&r.answers.q_age===a&&r.answers.q_horaire_meds==='Non';}).length;}));
-    mkChart('cx2','bar',genLbls,ds2(genLbls,function(g){return data.filter(function(r){return r.answers&&r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Oui';}).length;},function(g){return data.filter(function(r){return r.answers&&r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Non';}).length;}));
-    mkChart('cx3','bar',ageLbls.map(function(a){return a.replace(' ans','');}),
-      [{label:'Score moy /4',data:ageLbls.map(function(a){var s=data.filter(function(r){return r.answers&&r.answers.q_age===a&&r.answers.q_morisky_score!=null;});return s.length?+(s.reduce(function(acc,r){return acc+parseFloat(r.answers.q_morisky_score);},0)/s.length).toFixed(2):0;}),backgroundColor:'#8b5cf6',borderRadius:4,borderWidth:0}],{leg:false});
+
+  const ds2=(lbls,fn1,fn2)=>[{label:'Observant ✓',data:lbls.map(fn1),backgroundColor:'#10d9a0',borderRadius:4,borderWidth:0},{label:'Non observant ✗',data:lbls.map(fn2),backgroundColor:'#f56565',borderRadius:4,borderWidth:0}];
+  setTimeout(()=>{
+    mkChart('cx1','bar',ageLbls.map(a=>a.replace(' ans','')),ds2(ageLbls,a=>data.filter(r=>r.answers.q_age===a&&r.answers.q_horaire_meds==='Oui').length,a=>data.filter(r=>r.answers.q_age===a&&r.answers.q_horaire_meds==='Non').length));
+    mkChart('cx2','bar',genLbls,ds2(genLbls,g=>data.filter(r=>r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Oui').length,g=>data.filter(r=>r.answers.q_sexe===g&&r.answers.q_horaire_meds==='Non').length));
+    mkChart('cx3','bar',ageLbls.map(a=>a.replace(' ans','')),
+      [{label:'Score moy /4',data:ageLbls.map(a=>{const s=data.filter(r=>r.answers.q_age===a&&r.answers.q_morisky_score!=null);return s.length?+(s.reduce((acc,r)=>acc+parseFloat(r.answers.q_morisky_score),0)/s.length).toFixed(2):0;}),backgroundColor:'#8b5cf6',borderRadius:4,borderWidth:0}],{leg:false});
     mkChart('cx4','bar',genLbls,
-      [{label:'Score moy /4',data:genLbls.map(function(g){var s=data.filter(function(r){return r.answers&&r.answers.q_sexe===g&&r.answers.q_morisky_score!=null;});return s.length?+(s.reduce(function(acc,r){return acc+parseFloat(r.answers.q_morisky_score);},0)/s.length).toFixed(2):0;}),backgroundColor:['#5b8df6','#f75d9d'],borderRadius:4,borderWidth:0}],{leg:false});
-    var ins=['Aucun','Primaire','Secondaire','Universitaire'].filter(function(v){return data.some(function(r){return r.answers&&r.answers.q_instruct===v;});});
-    mkChart('cx5','bar',ins,ds2(ins,function(v){return data.filter(function(r){return r.answers&&r.answers.q_instruct===v&&r.answers.q_horaire_meds==='Oui';}).length;},function(v){return data.filter(function(r){return r.answers&&r.answers.q_instruct===v&&r.answers.q_horaire_meds==='Non';}).length;}));
-    mkChart('cx6','bar',['Stigmatisé: Oui','Stigmatisé: Non'],ds2(['Oui','Non'],function(v){return data.filter(function(r){return r.answers&&r.answers.q_stigma===v&&r.answers.q_horaire_meds==='Oui';}).length;},function(v){return data.filter(function(r){return r.answers&&r.answers.q_stigma===v&&r.answers.q_horaire_meds==='Non';}).length;}));
+      [{label:'Score moy /4',data:genLbls.map(g=>{const s=data.filter(r=>r.answers.q_sexe===g&&r.answers.q_morisky_score!=null);return s.length?+(s.reduce((acc,r)=>acc+parseFloat(r.answers.q_morisky_score),0)/s.length).toFixed(2):0;}),backgroundColor:['#5b8df6','#f75d9d'],borderRadius:4,borderWidth:0}],{leg:false});
+    const ins=['Aucun','Primaire','Secondaire','Universitaire'].filter(v=>data.some(r=>r.answers.q_instruct===v));
+    mkChart('cx5','bar',ins,ds2(ins,v=>data.filter(r=>r.answers.q_instruct===v&&r.answers.q_horaire_meds==='Oui').length,v=>data.filter(r=>r.answers.q_instruct===v&&r.answers.q_horaire_meds==='Non').length));
+    mkChart('cx6','bar',['Stigmatisé: Oui','Stigmatisé: Non'],ds2(['Oui','Non'],v=>data.filter(r=>r.answers.q_stigma===v&&r.answers.q_horaire_meds==='Oui').length,v=>data.filter(r=>r.answers.q_stigma===v&&r.answers.q_horaire_meds==='Non').length));
   },200);
 }
 
-function tabClassement(rb){
-  var total=responses.length;
-  if(!total){rb.innerHTML=noData();return;}
-  var map={};
-  responses.forEach(function(r){
-    if(!map[r.agentName])map[r.agentName]={name:r.agentName,count:0,ms:0,msn:0};
+// --- ONGLET CLASSEMENT ---
+function tabClassement(rb) {
+  const total=responses.length;
+  if (!total){rb.innerHTML=noData();return;}
+  const map={};
+  responses.forEach(r=>{
+    if(!map[r.agentName])map[r.agentName]={name:r.agentName,count:0,ms:0,msn:0,dates:[]};
     map[r.agentName].count++;
-    if(r.answers){var ms=parseFloat(r.answers.q_morisky_score);if(!isNaN(ms)){map[r.agentName].ms+=ms;map[r.agentName].msn++;}}
+    map[r.agentName].dates.push(r.ts);
+    const ms=parseFloat(r.answers.q_morisky_score);
+    if(!isNaN(ms)){map[r.agentName].ms+=ms;map[r.agentName].msn++;}
   });
-  var list=Object.values(map).sort(function(a,b){return b.count-a.count;});
-  var maxC=list[0]?list[0].count:1;
-  var medals=['🥇','🥈','🥉'];
-  var html='<div class="sec-head s3"><span class="sec-icon">🏆</span><div><div class="sec-title">Classement des enquêteurs</div><div class="sec-sub">'+list.length+' enquêteur(s) · '+total+' enquête(s)</div></div></div>';
-  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:16px">';
-  list.slice(0,3).forEach(function(ag,i){
-    var p=pct(ag.count,total);
-    var avg=ag.msn?(ag.ms/ag.msn).toFixed(1):'—';
-    var lv=ag.msn?morLevel(Math.round(ag.ms/ag.msn)):null;
-    html+='<div class="card" style="border-top:3px solid '+(i===0?'#f6ad55':i===1?'#8b92b0':'#cd7f32')+';text-align:center;padding:1.25rem">'
-      +'<div style="font-size:32px;margin-bottom:6px">'+(medals[i]||'👤')+'</div>'
-      +'<div class="avatar" style="margin:0 auto 8px;width:42px;height:42px;font-size:16px">'+ag.name.charAt(0)+'</div>'
-      +'<div style="font-family:var(--font-h);font-size:14px;font-weight:700;margin-bottom:4px">'+esc(ag.name)+'</div>'
-      +'<div style="font-size:26px;font-weight:700;color:'+(i===0?'var(--warn)':'var(--accent)')+';font-family:var(--font-h)">'+ag.count+'</div>'
-      +'<div style="font-size:11px;color:var(--text2)">'+p+'% des enquêtes</div>'
-      +(lv?'<div style="margin-top:6px"><span class="badge '+lv.cls+'">'+avg+'/4</span></div>':'')
-    +'</div>';
+  const list=Object.values(map).sort((a,b)=>b.count-a.count);
+  const maxC=list[0]?.count||1;
+  const medals=['🥇','🥈','🥉'];
+
+  let html=`<div class="sec-head s3"><span class="sec-icon">🏆</span><div><div class="sec-title">Classement des enquêteurs</div><div class="sec-sub">${list.length} enquêteur(s) · ${total} enquête(s)</div></div></div>`;
+
+  // Podium
+  html+=`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px">`;
+  list.slice(0,3).forEach((ag,i)=>{
+    const p=pct(ag.count,total);
+    const avg=ag.msn?(ag.ms/ag.msn).toFixed(1):'—';
+    const lv=ag.msn?morLevel(Math.round(ag.ms/ag.msn)):null;
+    html+=`<div class="card" style="border-top:3px solid ${i===0?'#f6ad55':i===1?'#8b92b0':'#cd7f32'};text-align:center;padding:1.25rem">
+      <div style="font-size:36px;margin-bottom:6px">${medals[i]||'👤'}</div>
+      <div class="avatar" style="margin:0 auto 8px;width:44px;height:44px;font-size:17px">${ag.name.charAt(0)}</div>
+      <div style="font-family:var(--font-h);font-size:14px;font-weight:700;margin-bottom:4px">${esc(ag.name)}</div>
+      <div style="font-size:28px;font-weight:700;color:${i===0?'var(--warn)':'var(--accent)'};font-family:var(--font-h)">${ag.count}</div>
+      <div style="font-size:11px;color:var(--text2)">${p}% des enquêtes</div>
+      ${lv?`<div style="margin-top:6px"><span class="badge ${lv.cls}">${avg}/4</span></div>`:''}
+    </div>`;
   });
-  html+='</div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">📋 Classement complet</div></div><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>Rang</th><th>Enquêteur</th><th style="text-align:center">Enquêtes</th><th style="text-align:center">Part</th><th style="text-align:center">Morisky moy.</th><th style="min-width:120px">Progression</th></tr></thead><tbody>';
-  list.forEach(function(ag,i){
-    var p=pct(ag.count,total);
-    var avg=ag.msn?(ag.ms/ag.msn).toFixed(1):'—';
-    var lv=ag.msn?morLevel(Math.round(ag.ms/ag.msn)):null;
-    var bw=pct(ag.count,maxC);
-    html+='<tr>'
-      +'<td style="font-size:18px">'+(medals[i]||('#'+(i+1)))+'</td>'
-      +'<td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0">'+ag.name.charAt(0)+'</div><span style="font-weight:500">'+esc(ag.name)+'</span></div></td>'
-      +'<td style="text-align:center;font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--accent)">'+ag.count+'</td>'
-      +'<td style="text-align:center"><span class="badge badge-blue">'+p+'%</span></td>'
-      +'<td style="text-align:center">'+(lv?'<span class="badge '+lv.cls+'">'+avg+'/4</span>':'<span class="badge">—</span>')+'</td>'
-      +'<td><div class="prog-bar-bg" style="height:8px"><div class="prog-bar" style="width:'+bw+'%;background:'+(i===0?'var(--warn)':'var(--accent)')+'"></div></div></td>'
-    +'</tr>';
+  html+=`</div>`;
+
+  // Tableau
+  html+=`<div class="card"><div class="card-header"><div class="card-title">📋 Classement complet</div></div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Rang</th><th>Enquêteur</th><th style="text-align:center">Enquêtes</th><th style="text-align:center">Part</th><th style="text-align:center">Morisky moy.</th><th style="min-width:120px">Progression</th></tr></thead>
+      <tbody>`;
+  list.forEach((ag,i)=>{
+    const p=pct(ag.count,total);
+    const avg=ag.msn?(ag.ms/ag.msn).toFixed(1):'—';
+    const lv=ag.msn?morLevel(Math.round(ag.ms/ag.msn)):null;
+    const bw=pct(ag.count,maxC);
+    html+=`<tr>
+      <td style="font-size:18px">${medals[i]||('#'+(i+1))}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0">${ag.name.charAt(0)}</div><span style="font-weight:500">${esc(ag.name)}</span></div></td>
+      <td style="text-align:center;font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--accent)">${ag.count}</td>
+      <td style="text-align:center"><span class="badge badge-blue">${p}%</span></td>
+      <td style="text-align:center">${lv?`<span class="badge ${lv.cls}">${avg}/4</span>`:'<span class="badge">—</span>'}</td>
+      <td><div class="prog-bar-bg" style="height:8px"><div class="prog-bar" style="width:${bw}%;background:${i===0?'var(--warn)':'var(--accent)'}"></div></div></td>
+    </tr>`;
   });
-  html+='</tbody></table></div></div>';
-  html+='<div class="card"><div class="card-header"><div class="card-title">📊 Enquêtes par enquêteur</div></div><div class="ch-wrap" style="height:'+Math.max(220,list.length*45)+'px"><canvas id="c-rank"></canvas></div></div>';
+  html+=`</tbody></table></div></div>
+  <div class="card"><div class="card-header"><div class="card-title">📊 Enquêtes par enquêteur</div></div>
+    <div class="ch-wrap" style="height:${Math.max(220,list.length*45)}px"><canvas id="c-rank"></canvas></div></div>`;
   rb.innerHTML=html;
-  setTimeout(function(){
-    mkChart('c-rank','bar',list.map(function(a){return esc(a.name);}),
-      [{label:'Enquêtes',data:list.map(function(a){return a.count;}),backgroundColor:list.map(function(_,i){return PAL[i%PAL.length];}),borderRadius:5,borderWidth:0}],{leg:false});
+  setTimeout(()=>{
+    mkChart('c-rank','bar',list.map(a=>esc(a.name)),
+      [{label:'Enquêtes',data:list.map(a=>a.count),backgroundColor:list.map((_,i)=>PAL[i%PAL.length]),borderRadius:5,borderWidth:0}],{leg:false});
   },200);
 }
 
-function tabIndividuel(rb){
-  var data=getFilt();var n=data.length;
+// --- ONGLET FICHES INDIVIDUELLES ---
+function tabIndividuel(rb) {
+  const data=getFilt(); const n=data.length;
   if(!n){rb.innerHTML=noData();return;}
-  var html='<div class="sec-head s4"><span class="sec-icon">👥</span><div><div class="sec-title">Réponses individuelles</div><div class="sec-sub">'+n+' fiche(s)</div></div></div>';
-  data.slice().reverse().forEach(function(r){
-    if(!r.answers)return;
-    var ms=r.answers.q_morisky_score;
-    var lv=(ms!==null&&ms!==undefined)?morLevel(parseInt(ms)):null;
-    html+='<div class="resp-card"><div class="resp-meta">'
-      +'<div class="avatar" style="width:26px;height:26px;font-size:10px;display:inline-flex">'+r.agentName.charAt(0)+'</div>'
-      +'<strong>'+esc(r.agentName)+'</strong> · '+r.date
-      +' <span class="badge badge-blue">N° '+esc(r.answers.q_num||'#'+r.id)+'</span>'
-      +' <span class="badge '+(r.answers.q_sexe==='Féminin'?'badge-purple':'badge-blue')+'">'+esc(r.answers.q_sexe||'—')+'</span>'
-      +' <span class="badge badge-warn">'+esc(r.answers.q_age||'—')+'</span>'
-      +(lv?' <span class="badge '+lv.cls+'">Morisky '+ms+'/4</span>':'')
-    +'</div>';
-    Q_BASE.filter(function(q){return !['auto','morisky_result'].includes(q.type)&&r.answers[q.id];}).forEach(function(q){
-      var a=r.answers[q.id];
-      html+='<div class="resp-ans"><div class="ra-q">'+esc(q.label)+'</div><div>'+(Array.isArray(a)?a.join(', '):esc(String(a)))+'</div></div>';
+  let html=`<div class="sec-head s4"><span class="sec-icon">👥</span><div><div class="sec-title">Réponses individuelles</div><div class="sec-sub">${n} fiche(s)</div></div></div>`;
+  data.slice().reverse().forEach(r=>{
+    const ms=r.answers.q_morisky_score;
+    const lv=ms!==undefined&&ms!==null?morLevel(parseInt(ms)):null;
+    html+=`<div class="resp-card"><div class="resp-meta">
+      <div class="avatar" style="width:26px;height:26px;font-size:10px;display:inline-flex">${r.agentName.charAt(0)}</div>
+      <strong>${esc(r.agentName)}</strong> · ${r.date}
+      <span class="badge badge-blue">N° ${esc(r.answers.q_num||'#'+r.id)}</span>
+      <span class="badge ${r.answers.q_sexe==='Féminin'?'badge-purple':'badge-blue'}">${r.answers.q_sexe||'—'}</span>
+      <span class="badge badge-warn">${r.answers.q_age||'—'}</span>
+      ${lv?`<span class="badge ${lv.cls}">Morisky ${ms}/4</span>`:''}
+    </div>`;
+    Q_BASE.filter(q=>!['auto','morisky_result'].includes(q.type)&&r.answers[q.id]).forEach(q=>{
+      const a=r.answers[q.id];
+      html+=`<div class="resp-ans"><div class="ra-q">${esc(q.label)}</div><div>${Array.isArray(a)?a.join(', '):esc(String(a))}</div></div>`;
     });
-    html+='</div>';
+    html+=`</div>`;
   });
   rb.innerHTML=html;
 }
@@ -1142,250 +1238,321 @@ function tabIndividuel(rb){
 // =====================================================================
 // MODIFIER QUESTIONNAIRE
 // =====================================================================
-function renderEditQ(){
-  if(CU.role!=='admin'){toast('Accès réservé.','d');return;}
-  var visibleSecs=Object.entries(SECTIONS);
-  var html='<div class="page">'
-    +'<div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">'
-      +'<button class="btn btn-primary" onclick="showET(\'base\')">📋 Questions de base</button>'
-      +'<button class="btn" onclick="showET(\'custom\')">✏️ Questions perso ('+customQ.length+')</button>'
-      +'<button class="btn" onclick="showET(\'add\')">➕ Ajouter</button>'
-    +'</div>'
+// ---- Editing state ----
+let editingQid = null;
 
-    +'<div id="et-base">'
-      +'<div class="card" style="margin-bottom:8px;padding:.9rem 1.2rem">'
-        +'<div style="font-size:13px;color:var(--text2);line-height:1.6">🛠 Cliquez <strong>✏️</strong> pour modifier une question, <strong>🚫 Masquer</strong> pour la retirer du formulaire, <strong>↩️</strong> pour restaurer.</div>'
-      +'</div>';
-  visibleSecs.forEach(function(entry){
-    var secId=entry[0],sec=entry[1];
-    var qs=Q_BASE.filter(function(q){return q.sec===secId&&q.type!=='auto'&&q.type!=='morisky_result';});
+function renderEditQ() {
+  if (CU.role!=='admin'){toast('Accès réservé.','d');return;}
+  const editedCount = Object.keys(Q_EDITS).length;
+  const disabledCount = Object.values(Q_EDITS).filter(e=>e.disabled).length;
+
+  let html=`<div class="page">
+
+    <!-- TABS -->
+    <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="showEditTab('base')">📋 Questions de base (${Q_BASE.filter(q=>q.type!=='auto'&&q.type!=='morisky_result').length})</button>
+      <button class="btn" onclick="showEditTab('custom')">✏️ Questions perso (${customQ.length})</button>
+      <button class="btn" onclick="showEditTab('add')">➕ Ajouter</button>
+      ${editedCount?`<span class="badge badge-warn" style="align-self:center">${editedCount} modif(s)</span>`:''}
+    </div>
+
+    <!-- BASE QUESTIONS TAB -->
+    <div id="et-base">
+      <div class="card" style="margin-bottom:8px;padding:.9rem 1.2rem">
+        <div style="font-size:13px;color:var(--text2);line-height:1.6">
+          🛠 Cliquez sur <strong>Modifier</strong> pour éditer le libellé, les options ou masquer une question de base.<br>
+          Les modifications sont appliquées au questionnaire et aux rapports.
+        </div>
+      </div>`;
+
+  Object.entries(SECTIONS).forEach(([secId,sec])=>{
+    const qs=Q_BASE.filter(q=>q.sec===secId&&q.type!=='auto'&&q.type!=='morisky_result');
     if(!qs.length)return;
-    html+='<div class="sec-head '+sec.cls+'"><span class="sec-icon">'+sec.icon+'</span><div class="sec-title">'+esc(sec.label)+'</div></div>';
-    qs.forEach(function(q,i){
-      var ed=Q_EDITS[q.id]||{};
-      var isDis=ed.disabled;
-      var isEd=!!Q_EDITS[q.id]&&!isDis;
-      var displayLabel=ed.label||q.label;
-      html+='<div style="border:1px solid '+(isEd?'rgba(246,173,85,.4)':'var(--border)')+';border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px;background:'+(isDis?'rgba(245,101,101,.05)':'var(--bg3)')+';">'
-        +'<div style="display:flex;align-items:flex-start;gap:8px">'
-          +'<span style="color:var(--text3);font-size:11px;flex-shrink:0;margin-top:3px">Q'+(i+1)+'</span>'
-          +'<div style="flex:1;min-width:0">'
-            +'<div style="font-size:13.5px;font-weight:500;'+(isDis?'text-decoration:line-through;color:var(--text3);':'')+'">'+(isDis?'<s>':'')+esc(displayLabel)+(isDis?'</s>':'')+'</div>'
-            +'<div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">'
-              +'<span class="badge badge-blue">'+q.type+'</span>'
-              +(q.req&&!isDis?'<span class="badge badge-danger">Obligatoire</span>':'')
-              +(isEd?'<span class="badge badge-warn">✏️ Modifiée</span>':'')
-              +(isDis?'<span class="badge badge-danger">🚫 Masquée</span>':'')
-            +'</div>'
-          +'</div>'
-          +'<div style="display:flex;gap:4px;flex-shrink:0">'
-            +'<button class="btn btn-sm" onclick="openEQ(\''+q.id+'\')">✏️</button>'
-            +'<button class="btn btn-sm '+(isDis?'btn-success':'btn-danger')+'" onclick="toggleDis(\''+q.id+'\')">'+( isDis?'👁':'🚫')+'</button>'
-            +(Q_EDITS[q.id]?'<button class="btn btn-sm" onclick="resetQ(\''+q.id+'\')">↩️</button>':'')
-          +'</div>'
-        +'</div>'
-        +'<div id="eq-'+q.id+'" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">'
-          +'<label class="fl">Libellé</label>'
-          +'<input class="input-f" id="eql-'+q.id+'" value="'+esc(displayLabel)+'" style="margin-bottom:10px"/>'
-          +(['choice','multi'].includes(q.type)?
-            '<label class="fl">Options (une par ligne)</label>'
-            +'<textarea class="ta-f" id="eqo-'+q.id+'" rows="4" style="margin-bottom:10px">'+(ed.opts||q.opts||[]).join('\n')+'</textarea>':'')
-          +'<div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">'
-            +'<input type="checkbox" id="eqr-'+q.id+'" '+(((ed.req!==undefined)?ed.req:q.req)?'checked':'')+' style="width:16px;height:16px;accent-color:var(--accent)"/>'
-            +'<label for="eqr-'+q.id+'" style="font-size:13.5px">Obligatoire</label>'
-          +'</div>'
-          +'<div style="display:flex;gap:8px">'
-            +'<button class="btn btn-primary btn-sm" onclick="saveEQ(\''+q.id+'\',\''+q.type+'\')">💾 Enregistrer</button>'
-            +'<button class="btn btn-sm" onclick="closeEQ(\''+q.id+'\')">Annuler</button>'
-          +'</div>'
-        +'</div>'
-      +'</div>';
+    html+=`<div class="sec-head ${sec.cls}"><span class="sec-icon">${sec.icon}</span><div class="sec-title">${esc(sec.label)}</div></div>`;
+    qs.forEach((q,i)=>{
+      const ed = Q_EDITS[q.id]||{};
+      const isDisabled = ed.disabled;
+      const isEdited = !!Q_EDITS[q.id];
+      const displayLabel = ed.label||q.label;
+      html+=`<div style="border:1px solid ${isEdited?'rgba(246,173,85,.4)':'var(--border)'};border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px;background:${isDisabled?'rgba(245,101,101,.05)':'var(--bg3)'}">
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <span style="color:var(--text3);font-size:11px;flex-shrink:0;margin-top:3px">Q${i+1}</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13.5px;font-weight:500;${isDisabled?'text-decoration:line-through;color:var(--text3);':''}">${esc(displayLabel)}</div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">
+              <span class="badge badge-blue">${q.type}</span>
+              ${q.req&&!isDisabled?'<span class="badge badge-danger">Obligatoire</span>':''}
+              ${isEdited&&!isDisabled?'<span class="badge badge-warn">✏️ Modifiée</span>':''}
+              ${isDisabled?'<span class="badge badge-danger">🚫 Masquée</span>':''}
+            </div>
+          </div>
+          <div style="display:flex;gap:5px;flex-shrink:0">
+            <button class="btn btn-sm" onclick="openEditQ('${q.id}')">✏️</button>
+            <button class="btn btn-sm ${isDisabled?'btn-success':'btn-danger'}" onclick="toggleQDisable('${q.id}')">${isDisabled?'👁 Afficher':'🚫 Masquer'}</button>
+            ${isEdited?`<button class="btn btn-sm" onclick="resetQ('${q.id}')" title="Restaurer">↩️</button>`:''}
+          </div>
+        </div>
+        <!-- INLINE EDIT FORM -->
+        <div id="eq-${q.id}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+          <label class="fl">Libellé de la question</label>
+          <input class="input-f" id="eq-label-${q.id}" value="${esc(displayLabel)}" style="margin-bottom:10px"/>
+          ${['choice','multi'].includes(q.type)?`
+          <label class="fl">Options (une par ligne)</label>
+          <textarea class="ta-f" id="eq-opts-${q.id}" rows="4" style="margin-bottom:10px">${(ed.opts||q.opts||[]).join('\n')}</textarea>`:''}
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+            <input type="checkbox" id="eq-req-${q.id}" ${(ed.req!==undefined?ed.req:q.req)?'checked':''} style="width:16px;height:16px;accent-color:var(--accent)"/>
+            <label for="eq-req-${q.id}" style="font-size:13.5px">Obligatoire</label>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-primary btn-sm" onclick="saveEditQ('${q.id}','${q.type}')">💾 Enregistrer</button>
+            <button class="btn btn-sm" onclick="closeEditQ('${q.id}')">Annuler</button>
+          </div>
+        </div>
+      </div>`;
     });
   });
-  html+='<div class="card" style="border-color:rgba(246,173,85,.3);margin-top:4px">'
-    +'<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">'
-      +'<div><div class="card-title" style="color:var(--warn)">↩️ Restaurer tout</div>'
-        +'<div style="font-size:12px;color:var(--text2);margin-top:3px">Annule toutes les modifications.</div></div>'
-      +'<button class="btn btn-sm" onclick="resetAllQ()" style="border-color:rgba(246,173,85,.4);color:var(--warn)">↩️ Tout restaurer</button>'
-    +'</div></div>'
-  +'</div>'
+  html+=`</div>
 
-  +'<div id="et-custom" style="display:none"><div class="card"><div class="card-header"><div class="card-title">✏️ Questions personnalisées</div><span class="badge badge-green">'+customQ.length+'</span></div>'
-    +(customQ.length===0?'<p style="color:var(--text2);font-size:13px">Aucune question. Utilisez Ajouter.</p>'
-      :customQ.map(function(q){
-        return '<div style="display:flex;align-items:flex-start;gap:8px;padding:10px;border-radius:var(--radius-sm);background:var(--bg3);margin-bottom:8px;border:1px solid var(--border)">'
-          +'<div style="flex:1"><div style="font-size:13.5px;font-weight:500;margin-bottom:4px">'+esc(q.label)+'</div>'
-            +'<div style="display:flex;gap:5px;flex-wrap:wrap">'
-              +'<span class="badge badge-blue">'+(SECTIONS[q.sec]?SECTIONS[q.sec].icon:'')+' '+esc(SECTIONS[q.sec]?SECTIONS[q.sec].label:q.sec)+'</span>'
-              +'<span class="badge badge-purple">'+q.type+'</span>'
-              +(q.req?'<span class="badge badge-danger">Obligatoire</span>':'')
-            +'</div>'
-            +(q.opts&&q.opts.length?'<div style="font-size:11px;color:var(--text3);margin-top:4px">'+q.opts.map(function(o){return esc(o);}).join(' · ')+'</div>':'')
-          +'</div>'
-          +'<button class="btn btn-danger btn-sm" onclick="delCQ(\''+q.id+'\')">🗑</button>'
-        +'</div>';
-      }).join(''))
-  +'</div>'
-  +(customQ.length?'<div class="card" style="border-color:rgba(245,101,101,.3)"><div class="card-title" style="margin-bottom:8px;color:var(--danger)">⚠️ Zone dangereuse</div><button class="btn btn-danger" onclick="clearCQ()">🗑 Tout supprimer</button></div>':'')
-  +'</div>'
+    <!-- CUSTOM QUESTIONS TAB -->
+    <div id="et-custom" style="display:none">
+      <div class="card">
+        <div class="card-header"><div class="card-title">✏️ Questions personnalisées</div><span class="badge badge-green">${customQ.length}</span></div>
+        ${customQ.length===0?'<p style="color:var(--text2);font-size:13px">Aucune question personnalisée. Utilisez l\'onglet Ajouter.</p>':
+          customQ.map(q=>`
+            <div style="display:flex;align-items:flex-start;gap:8px;padding:10px;border-radius:var(--radius-sm);background:var(--bg3);margin-bottom:8px;border:1px solid var(--border)">
+              <div style="flex:1">
+                <div style="font-size:13.5px;font-weight:500;margin-bottom:4px">${esc(q.label)}</div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap">
+                  <span class="badge badge-blue">${SECTIONS[q.sec]?.icon||''} ${esc(SECTIONS[q.sec]?.label||q.sec)}</span>
+                  <span class="badge badge-purple">${q.type}</span>
+                  ${q.req?'<span class="badge badge-danger">Obligatoire</span>':''}
+                </div>
+                ${q.opts?.length?`<div style="font-size:11px;color:var(--text3);margin-top:4px">${q.opts.map(o=>esc(o)).join(' · ')}</div>`:''}
+              </div>
+              <button class="btn btn-danger btn-sm" onclick="delCQ('${q.id}')">🗑</button>
+            </div>`).join('')}
+      </div>
+      ${customQ.length?`<div class="card" style="border-color:rgba(245,101,101,.3)">
+        <div class="card-title" style="margin-bottom:8px;color:var(--danger)">⚠️ Zone dangereuse</div>
+        <button class="btn btn-danger" onclick="clearCQ()">🗑 Supprimer toutes les questions perso</button>
+      </div>`:''}
+    </div>
 
-  +'<div id="et-add" style="display:none"><div class="card"><div class="card-header"><div class="card-title">➕ Nouvelle question personnalisée</div></div>'
-    +'<label class="fl">Texte de la question</label>'
-    +'<input class="input-f" id="cq-text" placeholder="Ex: Avez-vous accès à une pharmacie proche ?"/>'
-    +'<label class="fl">Section</label>'
-    +'<select class="select-f" id="cq-sec">'+Object.entries(SECTIONS).map(function(e){return '<option value="'+e[0]+'">'+e[1].icon+' '+esc(e[1].label)+'</option>';}).join('')+'</select>'
-    +'<label class="fl">Type de réponse</label>'
-    +'<select class="select-f" id="cq-type" onchange="toggleCqOpts()">'
-      +'<option value="yesno">Oui / Non</option>'
-      +'<option value="choice">Choix unique</option>'
-      +'<option value="multi">Choix multiple</option>'
-      +'<option value="text">Texte libre</option>'
-    +'</select>'
-    +'<div id="cq-opts-zone" style="display:none">'
-      +'<label class="fl">Options (une par ligne)</label>'
-      +'<textarea class="ta-f" id="cq-opts" placeholder="Option 1&#10;Option 2&#10;Option 3" rows="4"></textarea>'
-    +'</div>'
-    +'<div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">'
-      +'<input type="checkbox" id="cq-req" style="width:18px;height:18px;accent-color:var(--accent)"/>'
-      +'<label for="cq-req" style="font-size:13.5px">Question obligatoire</label>'
-    +'</div>'
-    +'<button class="btn btn-primary" onclick="addCQ()" style="width:100%">✅ Ajouter la question</button>'
-  +'</div></div>'
+    <!-- ADD QUESTION TAB -->
+    <div id="et-add" style="display:none">
+      <div class="card">
+        <div class="card-header"><div class="card-title">➕ Nouvelle question personnalisée</div></div>
+        <label class="fl">Texte de la question</label>
+        <input class="input-f" id="cq-text" placeholder="Ex: Avez-vous accès à une pharmacie proche ?"/>
+        <label class="fl">Section</label>
+        <select class="select-f" id="cq-sec">
+          ${Object.entries(SECTIONS).map(([k,v])=>`<option value="${k}">${v.icon} ${esc(v.label)}</option>`).join('')}
+        </select>
+        <label class="fl">Type de réponse</label>
+        <select class="select-f" id="cq-type" onchange="toggleCqOpts()">
+          <option value="yesno">Oui / Non</option>
+          <option value="choice">Choix unique</option>
+          <option value="multi">Choix multiple</option>
+          <option value="text">Texte libre</option>
+        </select>
+        <div id="cq-opts-zone" style="display:none">
+          <label class="fl">Options (une par ligne)</label>
+          <textarea class="ta-f" id="cq-opts" placeholder="Option 1&#10;Option 2&#10;Option 3" rows="4"></textarea>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
+          <input type="checkbox" id="cq-req" style="width:18px;height:18px;accent-color:var(--accent)"/>
+          <label for="cq-req" style="font-size:13.5px">Question obligatoire</label>
+        </div>
+        <button class="btn btn-primary" onclick="addCQ()" style="width:100%">✅ Ajouter la question</button>
+      </div>
+    </div>
 
-  +'</div>';
+    <!-- RESET ALL -->
+    <div class="card" style="border-color:rgba(246,173,85,.3);margin-top:8px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div><div class="card-title" style="color:var(--warn)">↩️ Restaurer les questions de base</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:3px">Annule toutes les modifications sur les questions de base.</div></div>
+        <button class="btn btn-sm" onclick="resetAllQ()" style="border-color:rgba(246,173,85,.4);color:var(--warn)">↩️ Tout restaurer</button>
+      </div>
+    </div>
+  </div>`;
   document.getElementById('content').innerHTML=html;
 }
 
-function showET(t){['base','custom','add'].forEach(function(x){var el=document.getElementById('et-'+x);if(el)el.style.display=x===t?'block':'none';});}
-function openEQ(qid){document.querySelectorAll('[id^="eq-"]').forEach(function(el){el.style.display='none';});var el=document.getElementById('eq-'+qid);if(el)el.style.display='block';}
-function closeEQ(qid){var el=document.getElementById('eq-'+qid);if(el)el.style.display='none';}
+function showEditTab(tab) {
+  ['base','custom','add'].forEach(t => {
+    const el=document.getElementById('et-'+t);
+    if(el) el.style.display=t===tab?'block':'none';
+  });
+}
 
-function saveEQ(qid,qtype){
-  var labelEl=document.getElementById('eql-'+qid);
-  var reqEl=document.getElementById('eqr-'+qid);
-  if(!labelEl)return;
-  var label=labelEl.value.trim();
-  if(!label){toast('Le libellé ne peut pas être vide.','w');return;}
-  if(!Q_EDITS[qid])Q_EDITS[qid]={};
-  Q_EDITS[qid].label=label;
-  Q_EDITS[qid].req=reqEl?reqEl.checked:false;
-  if(['choice','multi'].includes(qtype)){
-    var optsEl=document.getElementById('eqo-'+qid);
-    if(optsEl){
-      var opts=optsEl.value.split('\n').map(function(s){return s.trim();}).filter(Boolean);
-      if(opts.length>=2)Q_EDITS[qid].opts=opts;
-      else{toast('Minimum 2 options requises.','w');return;}
+function openEditQ(qid) {
+  // Close others
+  document.querySelectorAll('[id^="eq-"]').forEach(el => el.style.display='none');
+  const el = document.getElementById('eq-'+qid);
+  if (el) el.style.display = 'block';
+}
+function closeEditQ(qid) {
+  const el = document.getElementById('eq-'+qid);
+  if (el) el.style.display = 'none';
+}
+
+function saveEditQ(qid, qtype) {
+  const labelEl = document.getElementById('eq-label-'+qid);
+  const reqEl   = document.getElementById('eq-req-'+qid);
+  if (!labelEl) return;
+  const label = labelEl.value.trim();
+  if (!label) { toast('Le libellé ne peut pas être vide.','w'); return; }
+  if (!Q_EDITS[qid]) Q_EDITS[qid] = {};
+  Q_EDITS[qid].label = label;
+  Q_EDITS[qid].req   = reqEl ? reqEl.checked : false;
+  if (['choice','multi'].includes(qtype)) {
+    const optsEl = document.getElementById('eq-opts-'+qid);
+    if (optsEl) {
+      const opts = optsEl.value.split('\n').map(s=>s.trim()).filter(Boolean);
+      if (opts.length >= 2) Q_EDITS[qid].opts = opts;
+      else { toast('Minimum 2 options requises.','w'); return; }
     }
   }
-  saveLocal();syncNow();
+  saveLocal(); syncNow();
   toast('✅ Question modifiée !','s');
   renderEditQ();
 }
 
-function toggleDis(qid){
-  if(!Q_EDITS[qid])Q_EDITS[qid]={};
-  Q_EDITS[qid].disabled=!Q_EDITS[qid].disabled;
-  if(!Q_EDITS[qid].disabled&&Object.keys(Q_EDITS[qid]).length===1)delete Q_EDITS[qid];
-  saveLocal();syncNow();
-  toast(Q_EDITS[qid]&&Q_EDITS[qid].disabled?'🚫 Question masquée.':'👁 Question réactivée.','w');
+function toggleQDisable(qid) {
+  if (!Q_EDITS[qid]) Q_EDITS[qid] = {};
+  Q_EDITS[qid].disabled = !Q_EDITS[qid].disabled;
+  if (!Q_EDITS[qid].disabled && Object.keys(Q_EDITS[qid]).length===1) delete Q_EDITS[qid];
+  saveLocal(); syncNow();
+  toast(Q_EDITS[qid]?.disabled ? '🚫 Question masquée.' : '👁 Question réactivée.','w');
   renderEditQ();
 }
 
-function resetQ(qid){if(!confirm('Restaurer cette question ?'))return;delete Q_EDITS[qid];saveLocal();syncNow();toast('↩️ Restaurée.','s');renderEditQ();}
-function resetAllQ(){if(!confirm('Annuler toutes les modifications ?'))return;Q_EDITS={};saveLocal();syncNow();toast('↩️ Tout restauré.','s');renderEditQ();}
-function toggleCqOpts(){var t=document.getElementById('cq-type').value;document.getElementById('cq-opts-zone').style.display=['choice','multi'].includes(t)?'block':'none';}
+function resetQ(qid) {
+  if (!confirm('Restaurer cette question à sa version originale ?')) return;
+  delete Q_EDITS[qid];
+  saveLocal(); syncNow();
+  toast('↩️ Question restaurée.','s');
+  renderEditQ();
+}
+
+function resetAllQ() {
+  if (!confirm('Annuler TOUTES les modifications sur les questions de base ?')) return;
+  Q_EDITS = {};
+  saveLocal(); syncNow();
+  toast('↩️ Toutes les modifications annulées.','s');
+  renderEditQ();
+}
+
+function toggleCqOpts(){
+  const t=document.getElementById('cq-type').value;
+  document.getElementById('cq-opts-zone').style.display=['choice','multi'].includes(t)?'block':'none';
+}
 
 function addCQ(){
-  var text=document.getElementById('cq-text').value.trim();
-  var sec=document.getElementById('cq-sec').value;
-  var type=document.getElementById('cq-type').value;
-  var req=document.getElementById('cq-req').checked;
-  if(!text){toast('Saisis le texte.','w');return;}
-  var opts=[];
+  const text=document.getElementById('cq-text').value.trim();
+  const sec=document.getElementById('cq-sec').value;
+  const type=document.getElementById('cq-type').value;
+  const req=document.getElementById('cq-req').checked;
+  if(!text){toast('Saisis le texte de la question.','w');return;}
+  let opts=[];
   if(['choice','multi'].includes(type)){
-    opts=document.getElementById('cq-opts').value.split('\n').map(function(s){return s.trim();}).filter(Boolean);
+    opts=document.getElementById('cq-opts').value.split('\n').map(s=>s.trim()).filter(Boolean);
     if(opts.length<2){toast('Ajoute au moins 2 options.','w');return;}
   }
-  customQ.push({id:'cq'+Date.now(),sec:sec,label:text,type:type,opts:opts,req:req,custom:true});
+  customQ.push({id:'cq'+Date.now(),sec,label:text,type,opts,req,custom:true});
   saveLocal();syncNow();
   toast('✅ Question ajoutée !','s');
   renderEditQ();
 }
 
-function delCQ(id){if(!confirm('Supprimer cette question ?'))return;customQ=customQ.filter(function(q){return q.id!==id;});saveLocal();syncNow();toast('Question supprimée.','w');renderEditQ();}
-function clearCQ(){if(!confirm('Supprimer TOUTES les questions perso ?'))return;customQ=[];saveLocal();syncNow();toast('Supprimées.','w');renderEditQ();}
+function delCQ(id){
+  if(!confirm('Supprimer cette question ?'))return;
+  customQ=customQ.filter(q=>q.id!==id);
+  saveLocal();syncNow();
+  toast('Question supprimée.','w');
+  renderEditQ();
+}
+
+function clearCQ(){
+  if(!confirm('Supprimer TOUTES les questions personnalisées ?'))return;
+  customQ=[];saveLocal();syncNow();
+  toast('Questions personnalisées supprimées.','w');
+  renderEditQ();
+}
 
 // =====================================================================
 // AGENTS
 // =====================================================================
 function renderAgents(){
   if(CU.role!=='admin'){toast('Accès réservé.','d');return;}
-  var agents=users.filter(function(u){return u.role==='agent';});
-  var html='<div class="page">'
-    +'<div class="card"><div class="card-header"><div class="card-title">➕ Créer un enquêteur</div></div>'
-      +'<div class="row-2">'
-        +'<div><label class="fl">Nom complet</label><input class="input-f" id="ag-name" placeholder="Ex: Kouadio Jean"/></div>'
-        +'<div><label class="fl">Identifiant</label><input class="input-f" id="ag-login" placeholder="Ex: kjean" autocapitalize="none"/></div>'
-      +'</div>'
-      +'<label class="fl">Mot de passe</label>'
-      +'<input class="input-f" type="password" id="ag-pass" placeholder="Min. 4 caractères"/>'
-      +'<button class="btn btn-primary btn-full" onclick="createAgent()">✅ Créer</button>'
-    +'</div>'
-    +'<div class="card"><div class="card-header"><div class="card-title">👥 Enquêteurs ('+agents.length+')</div><span class="badge badge-blue">'+agents.filter(function(a){return a.active;}).length+' actif(s)</span></div>'
-      +(agents.length===0?'<p style="color:var(--text2);font-size:13px">Aucun enquêteur créé.</p>'
-        :agents.map(function(a){
-          var cnt=responses.filter(function(r){return r.agentName===a.name;}).length;
-          return '<div class="agent-row">'
-            +'<div class="avatar" style="'+(a.active?'':'opacity:.4')+'">'+a.name.charAt(0)+'</div>'
-            +'<div style="flex:1;min-width:0">'
-              +'<div style="font-size:13.5px;font-weight:500">'+esc(a.name)+(!a.active?' <span class="badge badge-danger">Désactivé</span>':'')+'</div>'
-              +'<div style="font-size:11px;color:var(--text3)">@'+esc(a.login)+' · '+a.createdAt+'</div>'
-            +'</div>'
-            +'<span class="badge badge-green" style="margin-right:6px">'+cnt+'</span>'
-            +'<button class="btn btn-sm '+(a.active?'btn-danger':'')+'" onclick="toggleAgent(\''+a.id+'\')" style="margin-right:4px">'+(a.active?'🔒':'✅')+'</button>'
-            +'<button class="btn btn-sm" onclick="resetPass(\''+a.id+'\')">🔑</button>'
-          +'</div>';
-        }).join(''))
-    +'</div>'
-    +'<div class="card"><div class="card-title" style="margin-bottom:10px">📋 Instructions</div>'
-      +'<div style="background:var(--bg3);border-radius:var(--radius-sm);padding:13px;font-size:13.5px;color:var(--text2);line-height:1.7">'
-        +'1. Ouvrir <strong>EnquetePro_Memoire.html</strong><br>'
-        +'2. Saisir identifiant et mot de passe personnels<br>'
-        +'3. Remplir et soumettre les enquêtes<br>'
-        +'4. Synchronisation auto toutes les 15 sec 🔄'
-      +'</div>'
-      +'<button class="btn btn-primary" style="margin-top:12px;width:100%" onclick="showShareModal()">🔗 Partager</button>'
-    +'</div></div>';
-  document.getElementById('content').innerHTML=html;
+  const agents=users.filter(u=>u.role==='agent');
+  document.getElementById('content').innerHTML=`<div class="page">
+    <div class="card">
+      <div class="card-header"><div class="card-title">➕ Créer un enquêteur</div></div>
+      <div class="row-2">
+        <div><label class="fl">Nom complet</label><input class="input-f" id="ag-name" placeholder="Ex: Kouadio Jean"/></div>
+        <div><label class="fl">Identifiant de connexion</label><input class="input-f" id="ag-login" placeholder="Ex: kjean" autocapitalize="none"/></div>
+      </div>
+      <label class="fl">Mot de passe</label>
+      <input class="input-f" type="password" id="ag-pass" placeholder="Mot de passe (min. 4 caractères)"/>
+      <button class="btn btn-primary btn-full" onclick="createAgent()">✅ Créer l'enquêteur</button>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">👥 Enquêteurs (${agents.length})</div><span class="badge badge-blue">${agents.filter(a=>a.active).length} actif(s)</span></div>
+      ${agents.length===0?'<p style="color:var(--text2);font-size:13px">Aucun enquêteur créé.</p>':
+        agents.map(a=>{const cnt=responses.filter(r=>r.agentName===a.name).length;
+          return`<div class="agent-row">
+            <div class="avatar" style="${!a.active?'opacity:.4':''}">${a.name.charAt(0)}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13.5px;font-weight:500">${esc(a.name)} ${!a.active?'<span class="badge badge-danger">Désactivé</span>':''}</div>
+              <div style="font-size:11px;color:var(--text3)">@${esc(a.login)} · Créé le ${a.createdAt}</div>
+            </div>
+            <span class="badge badge-green" style="margin-right:6px">${cnt}</span>
+            <button class="btn btn-sm ${a.active?'btn-danger':''}" onclick="toggleAgent('${a.id}')" style="margin-right:4px">${a.active?'🔒':'✅'}</button>
+            <button class="btn btn-sm" onclick="resetPass('${a.id}')">🔑</button>
+          </div>`;}).join('')}
+    </div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px">📋 Instructions pour les enquêteurs</div>
+      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:13px;font-size:13.5px;color:var(--text2);line-height:1.7">
+        1. Ouvrir le fichier <strong>EnquetePro_Memoire.html</strong><br>
+        2. Saisir son identifiant et mot de passe personnels<br>
+        3. Remplir et soumettre les enquêtes<br>
+        4. Synchronisation automatique toutes les 15 secondes 🔄
+      </div>
+      <button class="btn btn-primary" style="margin-top:12px;width:100%" onclick="showShareModal()">🔗 Partager</button>
+    </div>
+  </div>`;
 }
 
 function createAgent(){
-  var name=document.getElementById('ag-name').value.trim();
-  var login=document.getElementById('ag-login').value.trim().toLowerCase();
-  var pass=document.getElementById('ag-pass').value;
+  const name=document.getElementById('ag-name').value.trim();
+  const login=document.getElementById('ag-login').value.trim().toLowerCase();
+  const pass=document.getElementById('ag-pass').value;
   if(!name||!login||!pass){toast('Remplissez tous les champs.','w');return;}
-  if(users.find(function(u){return u.login===login;})){toast('Identifiant déjà utilisé.','d');return;}
-  if(pass.length<4){toast('Mot de passe trop court.','w');return;}
-  users.push({id:'u'+Date.now(),name:name,login:login,password:pass,role:'agent',createdAt:new Date().toLocaleDateString('fr-FR'),active:true});
+  if(users.find(u=>u.login===login)){toast('Cet identifiant existe déjà.','d');return;}
+  if(pass.length<4){toast('Mot de passe trop court (min. 4 car.).','w');return;}
+  users.push({id:'u'+Date.now(),name,login,password:pass,role:'agent',createdAt:new Date().toLocaleDateString('fr-FR'),active:true});
   saveLocal();syncNow();
-  toast('✅ Enquêteur "'+name+'" créé !','s');
+  toast('✅ Enquêteur "'+name+'" créé ! Login : '+login,'s');
   renderAgents();
 }
 
 function toggleAgent(id){
-  var u=users.find(function(x){return x.id===id;});if(!u)return;
-  if(u.id===CU.id){toast('Impossible de vous désactiver.','w');return;}
+  const u=users.find(u=>u.id===id);if(!u)return;
+  if(u.id===CU.id){toast('Impossible de vous désactiver vous-même.','w');return;}
   u.active=!u.active;saveLocal();syncNow();
   toast((u.active?'✅ Réactivé':'🔒 Désactivé')+' : '+u.name,u.active?'s':'w');
   renderAgents();
 }
 
 function resetPass(id){
-  var u=users.find(function(x){return x.id===id;});if(!u)return;
-  var np=prompt('Nouveau mot de passe pour '+u.name+' :');
+  const u=users.find(x=>x.id===id);if(!u)return;
+  const np=prompt('Nouveau mot de passe pour '+u.name+' :');
   if(!np||np.length<4){toast('Mot de passe invalide.','w');return;}
   u.password=np;saveLocal();syncNow();
-  toast('🔑 Modifié pour '+u.name+'.','s');
+  toast('🔑 Mot de passe modifié pour '+u.name+'.','s');
 }
 
 // =====================================================================
@@ -1393,77 +1560,102 @@ function resetPass(id){
 // =====================================================================
 function renderSettings(){
   if(CU.role!=='admin'){toast('Accès réservé.','d');return;}
-  document.getElementById('content').innerHTML='<div class="page">'
-    +'<div class="card"><div class="card-header"><div class="card-title">🔗 Synchronisation JSONBin.io</div></div>'
-      +'<p style="font-size:13px;color:var(--text2);margin-bottom:14px">Gratuit sur <a href="https://jsonbin.io" style="color:var(--accent)">jsonbin.io</a>.</p>'
-      +'<label class="fl">Clé API Master</label><input class="input-f" id="s-key" placeholder="$2a$10$..." value="'+esc(gs('apikey'))+'"/>'
-      +'<label class="fl">Bin ID (vide = créé auto)</label><input class="input-f" id="s-bin" placeholder="ID du bin..." value="'+esc(gs('binid'))+'"/>'
-      +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
-        +'<button class="btn btn-primary" onclick="saveApiConf()">💾 Enregistrer</button>'
-        +'<button class="btn" onclick="syncNow()">🔄 Tester</button>'
-      +'</div>'
-    +'</div>'
-    +'<div class="card"><div class="card-title" style="margin-bottom:10px">🎨 Apparence</div>'
-      +'<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'
-        +'<button class="btn" onclick="toggleTheme()">🌙/☀️ Basculer</button>'
-        +'<span style="font-size:13px;color:var(--text2)">Thème : <strong>'+(isDark?'Sombre':'Clair')+'</strong></span>'
-      +'</div>'
-    +'</div>'
-    +'<div class="card" style="border-color:rgba(245,101,101,.3)">'
-      +'<div class="card-title" style="margin-bottom:10px;color:var(--danger)">⚠️ Données</div>'
-      +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
-        +'<button class="btn btn-success" onclick="dlCSV(buildAllCsvRows(),\'Rapport_ARV\')">📥 Export CSV</button>'
-        +'<button class="btn btn-danger" onclick="clearAll()">🗑 Effacer les enquêtes</button>'
-      +'</div>'
-    +'</div>'
-  +'</div>';
+  document.getElementById('content').innerHTML=`<div class="page">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🔗 Synchronisation JSONBin.io</div></div>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Configurez JSONBin pour synchroniser les données entre tous vos enquêteurs. Gratuit sur <a href="https://jsonbin.io" style="color:var(--accent)">jsonbin.io</a>.</p>
+      <label class="fl">Clé API Master</label>
+      <input class="input-f" id="s-key" placeholder="$2a$10$..." value="${esc(gs('apikey'))}"/>
+      <label class="fl">Bin ID (vide = créé automatiquement)</label>
+      <input class="input-f" id="s-bin" placeholder="ID du bin..." value="${esc(gs('binid'))}"/>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="saveApiConf()">💾 Enregistrer</button>
+        <button class="btn" onclick="syncNow()">🔄 Tester</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px">🎨 Apparence</div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="btn" onclick="toggleTheme()">🌙/☀️ Basculer le thème</button>
+        <span style="font-size:13px;color:var(--text2)">Actuel : <strong>${isDark?'Sombre':'Clair'}</strong></span>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(245,101,101,.3)">
+      <div class="card-title" style="margin-bottom:10px;color:var(--danger)">⚠️ Données</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-success" onclick="dlCSV(buildAllCsvRows(),'Rapport_ARV')">📥 Export CSV complet</button>
+        <button class="btn btn-danger" onclick="clearAll()">🗑 Effacer toutes les enquêtes</button>
+      </div>
+    </div>
+  </div>`;
 }
 
-function saveApiConf(){ss('apikey',document.getElementById('s-key').value.trim());ss('binid',document.getElementById('s-bin').value.trim());toast('✅ Enregistrées !','s');syncNow();}
+function saveApiConf(){
+  ss('apikey',document.getElementById('s-key').value.trim());
+  ss('binid',document.getElementById('s-bin').value.trim());
+  toast('✅ Clés enregistrées ! Test en cours...','s');syncNow();
+}
 
 // =====================================================================
 // SYNC JSONBIN
 // =====================================================================
-function startSync(){syncNow();syncInt=setInterval(syncNow,15000);}
+function startSync(){
+  if(syncInt) clearInterval(syncInt); // reset propre
+  syncNow();
+  syncInt = setInterval(syncNow, 20000); // toutes les 20s
+}
 
-function syncNow(){
+let isSyncing = false;
+
+async function syncNow(){
+  if(isSyncing) return; // eviter les appels simultanés
+  isSyncing = true;
   setSS('pend');
-  var apiKey=gs('apikey');
-  if(!apiKey){setSS('local');return;}
-  var binId=gs('binid');
-  var headers={'X-Master-Key':apiKey,'X-Access-Key':apiKey,'Content-Type':'application/json'};
-  var pullThenPush=function(){
-    var payload={responses:responses,users:users,customQ:customQ,Q_EDITS:Q_EDITS,updated:Date.now()};
-    fetch('https://api.jsonbin.io/v3/b/'+binId,{method:'PUT',headers:headers,body:JSON.stringify(payload)})
-    .then(function(){setSS('ok');}).catch(function(){setSS('err');});
-  };
-  if(binId){
-    fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest',{headers:headers})
-    .then(function(r){return r.ok?r.json():null;})
-    .then(function(d){
-      if(d&&d.record){
-        var rec=d.record;var changed=false;
-        var eIds=new Set(responses.map(function(r){return r.id;}));
-        (rec.responses||[]).forEach(function(r){if(!eIds.has(r.id)){responses.push(r);changed=true;}});
-        if(CU&&CU.role==='admin'&&rec.users&&rec.users.length)
-          rec.users.forEach(function(u){if(!users.find(function(x){return x.id===u.id;})){users.push(u);changed=true;}});
-        if(rec.customQ){customQ=rec.customQ;changed=true;}
-        if(rec.Q_EDITS){Q_EDITS=rec.Q_EDITS;changed=true;}
-        if(changed){saveLocal();if(curPage==='dashboard')renderDash();}
+  const apiKey = gs('apikey');
+  if(!apiKey){ setSS('local'); isSyncing=false; return; }
+  const binId = gs('binid');
+  const hdrs = {'Content-Type':'application/json','X-Master-Key':apiKey,'X-Access-Key':apiKey};
+  try {
+    if(binId) {
+      // 1. Pull — récupérer les données distantes
+      const res = await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest', {headers:hdrs});
+      if(res.ok) {
+        const d = await res.json();
+        const rec = d.record || d;
+        if(rec && typeof rec === 'object') {
+          let changed = false;
+          const eIds = new Set(responses.map(r=>r.id));
+          (rec.responses||[]).forEach(r=>{if(!eIds.has(r.id)){responses.push(r);changed=true;}});
+          if(CU && CU.role==='admin' && rec.users && rec.users.length)
+            rec.users.forEach(u=>{if(!users.find(x=>x.id===u.id)){users.push(u);changed=true;}});
+          if(rec.customQ && JSON.stringify(rec.customQ)!==JSON.stringify(customQ)){customQ=rec.customQ;changed=true;}
+          if(rec.Q_EDITS && JSON.stringify(rec.Q_EDITS)!==JSON.stringify(Q_EDITS)){Q_EDITS=rec.Q_EDITS;changed=true;}
+          if(changed){ saveLocal(); if(curPage==='dashboard') renderDash(); }
+        }
       }
-      pullThenPush();
-    }).catch(function(){pullThenPush();});
-  } else {
-    var payload={responses:responses,users:users,customQ:customQ,Q_EDITS:Q_EDITS,updated:Date.now()};
-    fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:headers,body:JSON.stringify(payload)})
-    .then(function(r){return r.json();})
-    .then(function(d){if(d.metadata&&d.metadata.id){ss('binid',d.metadata.id);toast('✅ Bin créé : '+d.metadata.id,'s');}setSS('ok');})
-    .catch(function(){setSS('err');});
+      // 2. Push — envoyer les données fusionnées
+      const payload = {responses, users, customQ, Q_EDITS, updated:Date.now()};
+      const putRes = await fetch('https://api.jsonbin.io/v3/b/'+binId, {method:'PUT', headers:hdrs, body:JSON.stringify(payload)});
+      if(!putRes.ok) throw new Error('PUT failed: '+putRes.status);
+    } else {
+      // Créer un nouveau bin
+      const payload = {responses, users, customQ, Q_EDITS, updated:Date.now()};
+      const res = await fetch('https://api.jsonbin.io/v3/b', {method:'POST', headers:{...hdrs,'X-Bin-Name':'EnquetePro-ARV','X-Bin-Private':'false'}, body:JSON.stringify(payload)});
+      if(!res.ok) throw new Error('POST failed: '+res.status);
+      const d = await res.json();
+      if(d.metadata && d.metadata.id) { ss('binid', d.metadata.id); toast('✅ Bin créé ! ID: '+d.metadata.id,'s'); }
+    }
+    setSS('ok');
+  } catch(e) {
+    setSS('err');
+    console.error('syncNow error:', e.message);
   }
+  isSyncing = false;
 }
 
 function setSS(s){
-  var d=document.getElementById('sdot'),l=document.getElementById('slbl');if(!d)return;
+  const d=document.getElementById('sdot'),l=document.getElementById('slbl');
+  if(!d)return;
   d.className='sync-dot';
   if(s==='ok'){d.classList.add('s-ok');if(l)l.textContent='Synchronisé';}
   else if(s==='pend'){d.classList.add('s-pend');if(l)l.textContent='Synchro...';}
@@ -1474,9 +1666,10 @@ function setSS(s){
 // =====================================================================
 // STORAGE
 // =====================================================================
-function saveLocal(){localStorage.setItem('arv_v4',JSON.stringify({responses:responses,users:users,customQ:customQ,Q_EDITS:Q_EDITS}));}
+function saveLocal(){localStorage.setItem('arv_v3',JSON.stringify({responses,users,customQ,Q_EDITS}));}
 function loadLocal(){
-  try{var d=JSON.parse(localStorage.getItem('arv_v4')||'{}');
+  try{
+    const d=JSON.parse(localStorage.getItem('arv_v3')||'{}');
     if(d.responses)responses=d.responses;
     if(d.users&&d.users.length)users=d.users;
     if(d.customQ)customQ=d.customQ;
@@ -1490,42 +1683,43 @@ function ss(k,v){localStorage.setItem('arv_cfg_'+k,v);}
 // EXPORT CSV
 // =====================================================================
 function buildAllCsvRows(){
-  var Qall=Q_BASE.filter(function(q){return !['auto','morisky_result'].includes(q.type);});
-  var headers=['N°','Enquêteur','Date'].concat(Qall.map(function(q,i){return 'Q'+(i+1)+': '+q.label;})).concat(customQ.map(function(q,i){return 'CQ'+(i+1)+': '+q.label;})).concat(['Score Morisky','Niveau observance']);
-  var rows=responses.map(function(r){
-    if(!r.answers)return[r.id,r.agentName,r.date];
-    var ms=r.answers.q_morisky_score;
-    var lv=(ms!==undefined&&ms!==null)?morLevel(parseInt(ms)).label:'—';
-    return[r.answers.q_num||r.id,r.agentName,r.date]
-      .concat(Qall.map(function(q){var a=r.answers[q.id];return Array.isArray(a)?a.join('|'):(a||'');}))
-      .concat(customQ.map(function(q){var a=r.answers[q.id];return Array.isArray(a)?a.join('|'):(a||'');}))
-      .concat([(ms!==undefined&&ms!==null?ms+'/4':'—'),lv]);
+  const Qall=Q_BASE.filter(q=>!['auto','morisky_result'].includes(q.type));
+  const cust=customQ;
+  const headers=['N°','Enquêteur','Date',...Qall.map((q,i)=>'Q'+(i+1)+': '+q.label),...cust.map((q,i)=>'CQ'+(i+1)+': '+q.label),'Score Morisky','Niveau observance'];
+  const rows=responses.map(r=>{
+    const ms=r.answers.q_morisky_score;
+    const lv=ms!==undefined&&ms!==null?morLevel(parseInt(ms)).label:'—';
+    return[r.answers.q_num||r.id, r.agentName, r.date,
+      ...Qall.map(q=>{const a=r.answers[q.id];return Array.isArray(a)?a.join('|'):(a||'');}),
+      ...cust.map(q=>{const a=r.answers[q.id];return Array.isArray(a)?a.join('|'):(a||'');}),
+      ms!==undefined&&ms!==null?ms+'/4':'—', lv];
   });
-  return[headers].concat(rows);
+  return[headers,...rows];
 }
 
 function exportTabCsv(){
   if(activeTab==='classement'){
-    var map={};
-    responses.forEach(function(r){
+    const map={};
+    responses.forEach(r=>{
       if(!map[r.agentName])map[r.agentName]={name:r.agentName,count:0,ms:0,msn:0};
       map[r.agentName].count++;
-      if(r.answers){var ms=parseFloat(r.answers.q_morisky_score);if(!isNaN(ms)){map[r.agentName].ms+=ms;map[r.agentName].msn++;}}
+      const ms=parseFloat(r.answers.q_morisky_score);
+      if(!isNaN(ms)){map[r.agentName].ms+=ms;map[r.agentName].msn++;}
     });
-    var list=Object.values(map).sort(function(a,b){return b.count-a.count;});
-    var rows=list.map(function(ag,i){return[i+1,ag.name,ag.count,pct(ag.count,responses.length)+'%',ag.msn?(ag.ms/ag.msn).toFixed(1)+'/4':'—'];});
-    dlCSV([['Rang','Enquêteur','Enquêtes','Part','Morisky moy.']].concat(rows),'Classement_Enqueteurs');
+    const list=Object.values(map).sort((a,b)=>b.count-a.count);
+    const rows=list.map((ag,i)=>[i+1,ag.name,ag.count,pct(ag.count,responses.length)+'%',ag.msn?(ag.ms/ag.msn).toFixed(1)+'/4':'—']);
+    dlCSV([['Rang','Enquêteur','Enquêtes','Part','Morisky moy.'],...rows],'Classement_Enqueteurs');
   } else {
     dlCSV(buildAllCsvRows(),'Rapport_ARV_'+activeTab);
   }
 }
 
-function dlCSV(rows,name){
+function dlCSV(rows, name){
   if(!rows||rows.length<2){toast('Aucune donnée.','w');return;}
-  var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c||'').replace(/"/g,'""')+'"';}).join(',');}).join('\n');
-  var blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
-  var url=URL.createObjectURL(blob);
-  var a=document.createElement('a');a.href=url;a.download=name+'_'+new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')+'.csv';a.click();
+  const csv=rows.map(r=>r.map(c=>`"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=name+'_'+new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')+'.csv';a.click();
   URL.revokeObjectURL(url);
   toast('📥 Export réussi !','s');
 }
@@ -1534,41 +1728,40 @@ function dlCSV(rows,name){
 // SHARE MODAL
 // =====================================================================
 function showShareModal(){
-  var binId=gs('binid');
-  var m=document.createElement('div');m.className='modal-ov';
-  m.onclick=function(e){if(e.target===m)m.remove();};
-  m.innerHTML='<div class="modal-box">'
-    +'<span class="modal-handle"></span>'
-    +'<div class="modal-title">🔗 Partager avec les enquêteurs</div>'
-    +'<p style="font-size:13px;color:var(--text2);margin-bottom:14px">Distribuez ce fichier HTML avec leurs identifiants.</p>'
-    +(binId
-      ?'<div style="margin-bottom:12px"><label class="fl">Bin ID JSONBin</label>'
-        +'<div style="display:flex;gap:8px"><input class="input-f" style="margin:0" value="'+esc(binId)+'" readonly/>'
-        +'<button class="btn btn-sm" onclick="navigator.clipboard.writeText(\''+esc(binId)+'\').then(function(){toast(\'📋 Copié !\',\'s\')})">📋</button></div></div>'
-      :'<div style="padding:10px;background:rgba(246,173,85,.1);border:1px solid rgba(246,173,85,.2);border-radius:var(--radius-sm);font-size:13px;color:var(--warn);margin-bottom:12px">⚠️ Configurez JSONBin dans Paramètres.</div>')
-    +'<div style="background:var(--bg3);border-radius:var(--radius-sm);padding:13px;font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px">'
-      +'<strong>Instructions :</strong><br>'
-      +'1. Ouvrir <strong>EnquetePro_Memoire.html</strong><br>'
-      +'2. Cliquer <strong>☁️ Récupérer</strong> (footer)<br>'
-      +'3. Entrer Clé API + Bin ID<br>'
-      +'4. Connexion avec identifiant personnel ✅'
-    +'</div>'
-    +'<button class="btn btn-primary btn-full" onclick="this.closest(\'.modal-ov\').remove()">Fermer</button>'
-  +'</div>';
+  const binId=gs('binid');
+  const m=document.createElement('div');m.className='modal-ov';
+  m.onclick=e=>{if(e.target===m)m.remove();};
+  m.innerHTML=`<div class="modal-box">
+    <span class="modal-handle"></span>
+    <div class="modal-title">🔗 Partager avec les enquêteurs</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Distribuez ce fichier HTML avec leurs identifiants créés dans <strong>Enquêteurs</strong>.</p>
+    ${binId?`<div style="margin-bottom:12px"><label class="fl">Bin ID JSONBin</label>
+      <div style="display:flex;gap:8px"><input class="input-f" style="margin:0" value="${esc(binId)}" readonly/>
+      <button class="btn btn-sm" onclick="navigator.clipboard.writeText('${esc(binId)}').then(()=>toast('📋 Copié !','s'))">📋</button></div></div>`
+    :`<div style="padding:10px;background:rgba(246,173,85,.1);border:1px solid rgba(246,173,85,.2);border-radius:var(--radius-sm);font-size:13px;color:var(--warn);margin-bottom:12px">⚠️ Configurez JSONBin dans Paramètres pour la sync multi-appareils.</div>`}
+    <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:13px;font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px">
+      <strong>Instructions enquêteurs :</strong><br>
+      1. Ouvrir <strong>EnquetePro_Memoire.html</strong><br>
+      2. Saisir son identifiant personnel<br>
+      3. Saisir son mot de passe personnel<br>
+      4. Remplir et soumettre ✅
+    </div>
+    <button class="btn btn-primary btn-full" onclick="this.closest('.modal-ov').remove()">Fermer</button>
+  </div>`;
   document.body.appendChild(m);
 }
 
 // =====================================================================
-// UTILS
+// UTILITAIRES
 // =====================================================================
-function clearAll(){if(!confirm('Supprimer toutes les enquêtes ?'))return;responses=[];saveLocal();syncNow();toast('🗑 Effacées.','w');go('dashboard');}
+function clearAll(){if(!confirm('⚠️ Supprimer toutes les enquêtes ?'))return;responses=[];saveLocal();syncNow();toast('🗑 Enquêtes effacées.','w');go('dashboard');}
 function toggleTheme(){isDark=!isDark;document.body.classList.toggle('light',!isDark);document.getElementById('thbtn').textContent=isDark?'🌙':'☀️';ss('theme',isDark?'dark':'light');}
 function pct(a,b){return b?Math.round(a/b*100):0;}
-function noData(msg){return '<div class="card" style="text-align:center;padding:2.5rem"><div style="font-size:40px;margin-bottom:12px">🔍</div><p style="color:var(--text2)">'+(msg||'Aucune donnée pour ces filtres.')+'</p></div>';}
+function noData(msg){return `<div class="card" style="text-align:center;padding:2.5rem"><div style="font-size:40px;margin-bottom:12px">🔍</div><p style="color:var(--text2)">${msg||'Aucune donnée pour ces filtres.'}</p></div>`;}
 function toast(msg,t){
-  var el=document.getElementById('toast');el.textContent=msg;
+  const el=document.getElementById('toast');el.textContent=msg;
   el.style.borderColor=t==='d'?'var(--danger)':t==='s'?'var(--accent3)':t==='w'?'var(--warn)':'var(--border2)';
-  el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show');},3800);
+  el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),3800);
 }
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 
@@ -1577,15 +1770,19 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 // =====================================================================
 loadLocal();
 initUsers();
-var _t=gs('theme');if(_t==='light'){isDark=false;document.body.classList.add('light');}
-// Pre-fill recover/sync fields with saved keys
-var _key=gs('apikey'),_bin=gs('binid');
-if(_key){var _rk=document.getElementById('rec-key');if(_rk)_rk.value=_key;}
-if(_bin){var _rb=document.getElementById('rec-bin');if(_rb)_rb.value=_bin;}
-if(_key){var _sk=document.getElementById('sync-key');if(_sk)_sk.value=_key;}
-if(_bin){var _sb=document.getElementById('sync-bin');if(_sb)_sb.value=_bin;}
-showLoginPanel('connect');
-renderSpaces();
+(function(){
+  var t=gs('theme');
+  if(t==='light'){isDark=false;document.body.classList.add('light');}
+  // Pre-fill all key fields
+  var k=gs('apikey'), b=gs('binid');
+  ['rec-key','sync-key'].forEach(function(id){var e=document.getElementById(id);if(e&&k)e.value=k;});
+  ['rec-bin','sync-bin'].forEach(function(id){var e=document.getElementById(id);if(e&&b)e.value=b;});
+  // Show step1, hide step2
+  var s1=document.getElementById('ls-step1'); if(s1)s1.style.display='block';
+  var s2=document.getElementById('ls-step2'); if(s2)s2.style.display='none';
+  // Default tab: recover if keys configured, else new
+  switchStep1Tab(k ? 'recover' : 'new');
+})();
 </script>
 </body>
 </html>
