@@ -244,6 +244,13 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
         <div id="ls-recover">
           <h2 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:#1a1e30;margin-bottom:4px">Récupérer les données</h2>
           <p class="lp-sub">Entrez vos clés JSONBin pour charger les données synchronisées depuis le cloud.</p>
+          <!-- Bannière enquête locale (visible après déconnexion si données locales présentes) -->
+          <div id="local-survey-banner" style="display:none;background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+            <div style="font-size:10px;font-weight:700;color:#1d4ed8;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">📋 Enquête locale détectée</div>
+            <div id="local-banner-name" style="font-family:var(--font-h);font-size:17px;font-weight:800;color:#1e40af;margin-bottom:6px"></div>
+            <div style="font-size:12.5px;color:#3b82f6;margin-bottom:10px"><span id="local-banner-count">0</span> réponse(s) enregistrée(s) localement</div>
+            <button class="btn-login" onclick="goToStep2()" style="margin:0;padding:11px 16px;font-size:14px">Se connecter à cette enquête →</button>
+          </div>
           <div class="fg"><label>Clé API JSONBin (Master Key)</label>
             <input type="text" id="rec-key" placeholder="$2a$10$..." autocapitalize="none"/></div>
           <div class="fg"><label>Bin ID</label>
@@ -525,7 +532,17 @@ function createNewSurvey() {
     toast('Donnez un nom à votre enquête.', 'w');
     return;
   }
+  // Si une enquête existe déjà, demander confirmation avant d'écraser
+  if (surveyName && responses.length > 0) {
+    if (!confirm('⚠️ Une enquête "' + surveyName + '" existe déjà avec ' + responses.length + ' réponse(s).\n\nCréer une nouvelle enquête effacera toutes les données locales actuelles.\n\nContinuer ?')) return;
+  }
+  // Réinitialiser toutes les données pour cette nouvelle enquête
   surveyName = name;
+  responses = [];
+  customQ = [];
+  Q_EDITS = {};
+  // Garder seulement l'admin par défaut (réinitialiser les enquêteurs)
+  users = [{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true,mustChangePass:true}];
   saveLocal();
   updateSurveyNameUI();
   // Show survey name badge in step2
@@ -739,18 +756,34 @@ function doLogout() {
   clearInterval(syncInt); syncInt = null; saveLocal(); CU = null; selectedUser = null;
   document.getElementById('app').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('lp').value = '';
-  document.getElementById('login-err').style.display = 'none';
+  document.getElementById('lp') && (document.getElementById('lp').value = '');
+  document.getElementById('login-err') && (document.getElementById('login-err').style.display = 'none');
   document.querySelectorAll('[data-admin]').forEach(e => e.style.display = '');
   document.querySelectorAll('.bn-admin').forEach(e => e.style.display = '');
   closeSidebar();
   Object.values(charts).forEach(c => { try { c.destroy(); } catch(e) {} }); charts = {};
-  // Reset to step 1
+  // Reset to step 1 — show local survey directly if one exists
   const s1 = document.getElementById('ls-step1'); if(s1) s1.style.display = 'block';
   const s2 = document.getElementById('ls-step2'); if(s2) s2.style.display = 'none';
   const prev = document.getElementById('rec-preview'); if(prev) prev.style.display = 'none';
   const rst = document.getElementById('rec-status'); if(rst) rst.style.display = 'none';
-  switchStep1Tab('recover');
+  // Si enquête locale connue → aller directement à la connexion
+  if (surveyName && users.length > 0) {
+    const badge = document.getElementById('step2-survey-badge');
+    const label = document.getElementById('step2-survey-label');
+    if (badge) { badge.style.display = 'block'; if(label) label.textContent = surveyName; }
+    // Afficher une bannière de reprise sur l'onglet récupérer
+    const localBanner = document.getElementById('local-survey-banner');
+    if (localBanner) {
+      document.getElementById('local-banner-name') && (document.getElementById('local-banner-name').textContent = surveyName);
+      document.getElementById('local-banner-count') && (document.getElementById('local-banner-count').textContent = responses.length);
+      localBanner.style.display = 'block';
+    }
+    switchStep1Tab('recover');
+  } else {
+    switchStep1Tab('new');
+  }
+  updateSurveyNameUI();
 }
 
 // =====================================================================
@@ -1739,7 +1772,9 @@ function changeMyPass(){
 function startSync(){
   if(syncInt) clearInterval(syncInt); // reset propre
   syncNow();
-  syncInt = setInterval(syncNow, 20000); // toutes les 20s
+  // Admin: sync toutes les 10s pour temps réel; enquêteur: 30s
+  const interval = (CU && CU.role === 'admin') ? 10000 : 30000;
+  syncInt = setInterval(syncNow, interval);
 }
 
 let isSyncing = false;
@@ -1922,8 +1957,14 @@ initUsers();
   // Default tab: recover if keys configured, else new
   // If surveyName already known (local data), show on left panel
   updateSurveyNameUI();
-  // If we already have a surveyName locally, show it and go directly to step2 option
+  // Si on a déjà une enquête locale, afficher la bannière sur l'onglet Récupérer
   if (surveyName && users.length > 1) {
+    const localBanner = document.getElementById('local-survey-banner');
+    if (localBanner) {
+      const n = document.getElementById('local-banner-name'); if(n) n.textContent = surveyName;
+      const c = document.getElementById('local-banner-count'); if(c) c.textContent = responses.length;
+      localBanner.style.display = 'block';
+    }
     // Known survey + users already set up -> show recover tab with local data hint
     switchStep1Tab('recover');
   } else if (k) {
