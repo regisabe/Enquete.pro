@@ -419,6 +419,15 @@ function createNewSurvey() {
   // Garder seulement l'admin par défaut (réinitialiser les enquêteurs)
   users = [{id:'admin-001',name:'Administrateur',login:'admin',password:'admin2026',role:'admin',createdAt:new Date().toLocaleDateString('fr-FR'),active:true,mustChangePass:true}];
   saveLocal();
+  // Chaque enquête doit avoir son PROPRE espace cloud (son propre Bin
+  // JSONBin), sinon les enquêteurs créés pour cette nouvelle enquête
+  // finiraient mélangés avec ceux de l'enquête précédente dans le même bin.
+  // On efface donc le binId courant : syncNow() va automatiquement créer
+  // un nouveau bin pour cette enquête, sans toucher aux données de
+  // l'ancienne enquête (toujours accessibles via son ancien Bin ID dans
+  // l'onglet "Récupérer").
+  ss('binid', '');
+  syncNow();
   updateSurveyNameUI();
   // Show survey name badge in step2
   const badge = document.getElementById('step2-survey-badge');
@@ -657,19 +666,22 @@ function closeSidebar() { document.getElementById('sidebar').classList.remove('o
 // DASHBOARD
 // =====================================================================
 function renderDash() {
-  const n = responses.length;
-  const today = responses.filter(r => new Date(r.ts).toDateString() === new Date().toDateString()).length;
-  const women = responses.filter(r => r.answers.q_sexe === 'Féminin').length;
-  const men   = responses.filter(r => r.answers.q_sexe === 'Masculin').length;
+  const isAdmin = CU.role === 'admin';
+  // Un enquêteur ne doit voir que SES PROPRES statistiques, pas celles de toute l'équipe.
+  const scope = isAdmin ? responses : responses.filter(r => r.agentId === CU.id);
+  const n = scope.length;
+  const today = scope.filter(r => new Date(r.ts).toDateString() === new Date().toDateString()).length;
+  const women = scope.filter(r => r.answers.q_sexe === 'Féminin').length;
+  const men   = scope.filter(r => r.answers.q_sexe === 'Masculin').length;
   const agSet = [...new Set(responses.map(r => r.agentName))];
   document.getElementById('content').innerHTML = `<div class="page">
     <div class="met-grid">
-      <div class="met-card"><div class="met-val">${n}</div><div class="met-lbl">📋 Enquêtes totales</div></div>
+      <div class="met-card"><div class="met-val">${n}</div><div class="met-lbl">📋 ${isAdmin?'Enquêtes totales':'Mes enquêtes'}</div></div>
       <div class="met-card m2"><div class="met-val">${today}</div><div class="met-lbl">📅 Aujourd'hui</div></div>
       <div class="met-card m3"><div class="met-val">${women}</div><div class="met-lbl">♀ Femmes</div></div>
       <div class="met-card m4"><div class="met-val">${men}</div><div class="met-lbl">♂ Hommes</div></div>
     </div>
-    ${CU.role==='admin' ? `<div class="card no-print"><div class="card-header"><div class="card-title">⚡ Actions rapides</div></div>
+    ${isAdmin ? `<div class="card no-print"><div class="card-header"><div class="card-title">⚡ Actions rapides</div></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="go('fill')">📝 Nouvelle enquête</button>
         <button class="btn btn-success" onclick="go('report')">📊 Rapport</button>
@@ -681,16 +693,16 @@ function renderDash() {
         <p style="font-size:13px;color:var(--text2);margin-bottom:12px">Appuyez ci-dessous pour commencer une enquête.</p>
         <button class="btn btn-primary btn-full" onclick="go('fill')">📝 Commencer une enquête</button>
       </div>`}
-    <div class="card">
+    ${isAdmin ? `<div class="card">
       <div class="card-header"><div class="card-title">📈 Activité par enquêteur</div></div>
       ${agSet.length===0 ? '<p style="color:var(--text2);font-size:13px">Aucune donnée encore.</p>' :
-        agSet.map(a => { const c=responses.filter(r=>r.agentName===a).length; const p=pct(c,n);
+        agSet.map(a => { const c=responses.filter(r=>r.agentName===a).length; const p=pct(c,responses.length);
           return `<div class="prog-wrap"><div class="prog-info"><span>👤 ${esc(a)}</span><span style="font-weight:500">${c} (${p}%)</span></div><div class="prog-bar-bg"><div class="prog-bar" style="width:${p}%;background:var(--accent)"></div></div></div>`;
         }).join('')}
-    </div>
+    </div>` : ''}
     <div class="card">
-      <div class="card-header"><div class="card-title">🕐 Dernières enquêtes</div></div>
-      ${responses.slice().reverse().slice(0,6).map(r => {
+      <div class="card-header"><div class="card-title">🕐 ${isAdmin?'Dernières enquêtes':'Mes dernières enquêtes'}</div></div>
+      ${scope.slice().reverse().slice(0,6).map(r => {
         const ms = r.answers.q_morisky_score;
         const ml = ms !== undefined && ms !== null ? morLevel(ms) : null;
         return `<div class="agent-row">
@@ -1643,12 +1655,21 @@ async function syncNow(){
       if(res.ok) {
         const d = await res.json();
         const rec = d.record || d;
-        if(rec && typeof rec === 'object') {
+        // Ne fusionner les données distantes que si elles appartiennent à la
+        // même enquête (même surveyName). Sans ce garde-fou, deux enquêtes
+        // différentes partageant le même binId se mélangeaient : créer une
+        // nouvelle enquête réimportait les réponses de l'ancienne au premier
+        // cycle de synchro.
+        if(rec && typeof rec === 'object' && (!surveyName || !rec.surveyName || rec.surveyName === surveyName)) {
           let changed = false;
           const eIds = new Set(responses.map(r=>r.id));
           (rec.responses||[]).forEach(r=>{if(!eIds.has(r.id)){responses.push(r);changed=true;}});
-          if(CU && CU.role==='admin' && rec.users && rec.users.length)
-            rec.users.forEach(u=>{if(!users.find(x=>x.id===u.id)){users.push(u);changed=true;}});
+          if(rec.users && rec.users.length)
+            rec.users.forEach(ru=>{
+              const idx = users.findIndex(x=>x.id===ru.id);
+              if(idx===-1){ users.push(ru); changed=true; }
+              else if(JSON.stringify(users[idx])!==JSON.stringify(ru)){ users[idx]=ru; changed=true; }
+            });
           if(rec.customQ && JSON.stringify(rec.customQ)!==JSON.stringify(customQ)){customQ=rec.customQ;changed=true;}
           if(rec.Q_EDITS && JSON.stringify(rec.Q_EDITS)!==JSON.stringify(Q_EDITS)){Q_EDITS=rec.Q_EDITS;changed=true;}
           if(rec.surveyName && rec.surveyName!==surveyName){surveyName=rec.surveyName;changed=true;}
