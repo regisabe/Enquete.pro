@@ -360,7 +360,15 @@ const Q_BASE = [
 ];
 
 function allQ() { return [...getQBase(), ...customQ]; }
-function genNum() { return String(responses.length + 1).padStart(3,'0') + '/' + new Date().getFullYear(); }
+function genId() { return 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+function genNum() {
+  // Numéro lisible mais unique par enquêteur (préfixe login) pour éviter les
+  // doublons quand plusieurs appareils travaillent hors-ligne en parallèle
+  // puis se synchronisent (chaque appareil ne connaît que SES propres réponses).
+  const mine = responses.filter(r => r.agentId === CU.id).length + 1;
+  const prefix = (CU.login || CU.name || 'X').replace(/[^a-zA-Z0-9]/g,'').slice(0,3).toUpperCase() || 'X';
+  return prefix + '-' + String(mine).padStart(3,'0') + '/' + new Date().getFullYear();
+}
 
 // MMAS-4 : Oui=0, Non=1 => score = nombre de "Non"
 function calcMorisky(ans) {
@@ -847,7 +855,7 @@ function submitResp() {
   }
   FA.q_num = genNum();
   FA.q_morisky_score = calcMorisky(FA);
-  const r = {id: responses.length + 1, agentId: CU.id, agentName: CU.name, date: new Date().toLocaleString('fr-FR'), ts: Date.now(), answers: {...FA}};
+  const r = {id: genId(), agentId: CU.id, agentName: CU.name, date: new Date().toLocaleString('fr-FR'), ts: Date.now(), answers: {...FA}};
   responses.push(r);
   saveLocal(); syncNow();
   const lv = morLevel(FA.q_morisky_score);
